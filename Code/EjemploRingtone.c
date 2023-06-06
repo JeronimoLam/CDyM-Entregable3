@@ -2,14 +2,14 @@
  * EjemploTimerRingtone.c
  *
  * Created: 23/10/2020 08:26:59 p. m.
- * Autor:								Pereira F?bio (01/09/2008) - Para un microcontrolador Freescale HCS08
- * Autor migraci?n / modificaci?n:		Perri Victor
- * Asignatura:							Dise?o de Controladores Digitales
+ * Autor:								Pereira F�bio (01/09/2008) - Para un microcontrolador Freescale HCS08
+ * Autor migraci�n / modificaci�n:		Perri Victor
+ * Asignatura:							Dise�o de Controladores Digitales
 -----------------------------------------------------------*/
-#define F_CPU 16000000UL		// 16 MHz
-#include "Audio.h"
 
-// Colecci?n de m?sica RTTL
+#include "main.h"
+
+// Colecci�n de m�sica RTTL
 const char *rtttl_library[]=
 {
 	"TheSimpsons:d=4,o=5,b=160:c.6,e6,f#6,8a6,g.6,e6,c6,8a,8f#,8f#,8f#,2g,8p,8p,8f#,8f#,8f#,8g,a#.,8c6,8c6,8c6,c6",
@@ -45,12 +45,13 @@ const unsigned int note[4][12] =
 	{2093, 2218, 2349, 2489, 2637, 2794, 2960, 3136, 3320, 3520, 3728, 3951}  // 7ma octava
 };
 
-
+unsigned int duration_timer;
+volatile unsigned int sound_playing=0;
 unsigned char duration, octave;
 unsigned int tempo;
 
-// Control de la duraci?n del sonido
-ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
+// Control de la duraci�n del sonido
+ISR (TIMER0_COMPA_vect) // ISR para la interrupci�n de comparaci�n del Timer 0
 {
 	if (duration_timer) duration_timer--; // Decremento el timer si > 0
 	else                                  // si timer es = 0
@@ -64,92 +65,92 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 // Saco el sonido por el PIN5 del PORTD: freq en Hz, dur en ms
 void sound(unsigned int freq, unsigned int dur)
 {
-	while (sound_playing);      // Si hay alg?n sonido presente, espero a que termine
-	
-	duration_timer = dur;       // Seteo el tiempo de duraci?n
-	
-	// Activo la salida y configuro el timer para que genere la se?al de la frecuencia apropiada
+	while (sound_playing);      // Si hay alg�n sonido presente, espero a que termine
+
+	duration_timer = dur;       // Seteo el tiempo de duraci�n
+
+	// Activo la salida y configuro el timer para que genere la se�al de la frecuencia apropiada
 	TCCR1A|=(1<<COM1A0);
-	
+
 	// Actualizo el valor de OCR1A para que produzca la nota adecuada
 	OCR1A=(8000000/(freq))-1;
-	
+
 	sound_playing = 1;          // Activo el flag para avisar que hay una nota sonando
 }
 
-// Esta funci?n reproduce una canci?n que se le pase en un string con formato RTTTL
+// Esta funci�n reproduce una canci�n que se le pase en un string con formato RTTTL
 void play_song(char *song)
 {
 	unsigned char temp_duration, temp_octave, current_note, dot_flag;
 	unsigned int calc_duration;
-	duration = 4;                 // Duraci?n est?ndar = 4/4 = 1 beat
-	tempo = 63;                   // Tempo est?ndar = 63 bpm
-	octave = 6;                   // Octava est?ndar = 6th
+	duration = 4;                 // Duraci�n est�ndar = 4/4 = 1 beat
+	tempo = 63;                   // Tempo est�ndar = 63 bpm
+	octave = 6;                   // Octava est�ndar = 6th
 	while (*song != ':') song++;  // Busca el primer ':'
 	song++;                       // Saltea el primer ':'
 	while (*song!=':')            // Repite hasta encontrar ':'
 	{
-		if (*song == 'd')           // Entra si es el seteo de la duraci?n
+		if (*song == 'd')           // Entra si es el seteo de la duraci�n
 		{
-			duration = 0;             // Seteo la duraci?n en cero (temporalmente)
-			song++;                   // Avanzo al pr?ximo caracter
+			duration = 0;             // Seteo la duraci�n en cero (temporalmente)
+			song++;                   // Avanzo al pr�ximo caracter
 			while (*song == '=') song++;  // Salteo '='
 			while (*song == ' ') song++;  // Salteo los espacios
-			// Si el caracter es un n?mero, seteo la duraci?n
+			// Si el caracter es un n�mero, seteo la duraci�n
 			if (*song>='0' && *song<='9') duration = *song - '0';
-			song++;                   // Avanzo al pr?ximo caracter
-			// Me fijo si el caracter es un n?mero, ya que la diraci?n puede ser de dos d?gitos de largo
+			song++;                   // Avanzo al pr�ximo caracter
+			// Me fijo si el caracter es un n�mero, ya que la diraci�n puede ser de dos d�gitos de largo
 			if (*song>='0' && *song<='9')
-			{ // Multiplico duraci?n por 10 y le agrego el valor del caracter
+			{ // Multiplico duraci�n por 10 y le agrego el valor del caracter
 				duration = duration*10 + (*song - '0');
-				song++;                 // Avanzo al pr?ximo caracter
+				song++;                 // Avanzo al pr�ximo caracter
 			}
 			while (*song == ',') song++;  // Salteo ','
 		}
-		
+
 		if (*song == 'o')           // Entra si es el seteo de la octava
 		{
 			octave = 0;               // Seteo la octava en cero (temporalmente)
-			song++;                   // Avanzo al pr?ximo caracter
+			song++;                   // Avanzo al pr�ximo caracter
 			while (*song == '=') song++;  // Salteo '='
 			while (*song == ' ') song++;  // Salteo los espacios
-			// Si el caracter es un n?mero, seteo la octava
+			// Si el caracter es un n�mero, seteo la octava
 			if (*song>='0' && *song<='9') octave = *song - '0';
-			song++;                   // Avanzo al pr?ximo caracter
+			song++;                   // Avanzo al pr�ximo caracter
 			while (*song == ',') song++;  // Salteo ','
 		}
 		if (*song == 'b')           // Entra si es el seteo del tempo (beats por minuto)
 		{
 			tempo = 0;                // Seteo el tempo en cero (temporalmente)
-			song++;                   // Avanzo al pr?ximo caracter
+			song++;                   // Avanzo al pr�ximo caracter
 			while (*song == '=') song++;  // Salteo '='
 			while (*song == ' ') song++;  // Salteo los espacios
-			// Ahora leo el seteo del tempo (puede tener 3 d?gitos de largo)
+			// Ahora leo el seteo del tempo (puede tener 3 d�gitos de largo)
 			if (*song>='0' && *song<='9') tempo = *song - '0';
-			song++;                   // Avanzo al pr?ximo caracter
+			song++;                   // Avanzo al pr�ximo caracter
 			if (*song>='0' && *song<='9')
 			{
-				tempo = tempo*10 + (*song - '0'); // El tempo tiene dos d?gitos
-				song++;                 // Avanzo al pr?ximo caracter
+				tempo = tempo*10 + (*song - '0'); // El tempo tiene dos d�gitos
+				song++;                 // Avanzo al pr�ximo caracter
 				if (*song>='0' && *song<='9')
 				{
-					tempo = tempo*10 + (*song - '0'); // El tempo tiene tres d?gitos
-					song++;               // Avanzo al pr?ximo caracter
+					tempo = tempo*10 + (*song - '0'); // El tempo tiene tres d�gitos
+					song++;               // Avanzo al pr�ximo caracter
 				}
 			}
 			while (*song == ',') song++;  // Salteo ','
 		}
 		while (*song == ',') song++;    // Salteo ','
 	}
-	song++;                       // Avanzo al pr?ximo caracter
+	song++;                       // Avanzo al pr�ximo caracter
 	// read the musical notes
 	while (*song)                 // Repito hasta que el caracter sea null
 	{
 		current_note = 255;         // Nota por defecto = pausa
-		temp_octave = octave;       // Seteo la octava a la por defecto de la canci?n
-		temp_duration = duration;   // Seteo la duraci?n a la por defecto de la canci?n
-		dot_flag = 0;               // Borro el flag de detecci?n de punto
-		// Busco un prefijo de duraci?n
+		temp_octave = octave;       // Seteo la octava a la por defecto de la canci�n
+		temp_duration = duration;   // Seteo la duraci�n a la por defecto de la canci�n
+		dot_flag = 0;               // Borro el flag de detecci�n de punto
+		// Busco un prefijo de duraci�n
 		if (*song>='0' && *song<='9')
 		{
 			temp_duration = *song - '0';
@@ -172,41 +173,41 @@ void play_song(char *song)
 			case 'b': current_note = 11; break;   // B (si)
 			case 'p': current_note = 255; break;  // pausa
 		}
-		song++;                     // Avanzo al pr?ximo caracter
+		song++;                     // Avanzo al pr�ximo caracter
 		// Busco un '#' siguiendo la nota
 		if (*song=='#')
 		{
 			current_note++;   // Incremento la nota (A->A#, C->C#, D->D#, F->F#, G->G#)
-			song++;                   // Avanzo al pr?ximo caracter
+			song++;                   // Avanzo al pr�ximo caracter
 		}
 
 
 
 
-		// Busco '.' (extiende la duraci?n de la nota un 50%)
+		// Busco '.' (extiende la duraci�n de la nota un 50%)
 		if (*song=='.')
 		{
 			dot_flag = 1;             // Si se encuentra '.', seteo el flag
-			song++;                   // Avanzo al pr?ximo caracter
+			song++;                   // Avanzo al pr�ximo caracter
 		}
 		// Busco un sufijo de una octava
 		if (*song>='0' && *song<='9')
 		{
 			temp_octave = *song - '0';// Seteo la octava en consecuencia
-			song++;                   // Avanzo al pr?ximo caracter
+			song++;                   // Avanzo al pr�ximo caracter
 		}
-		if (*song=='.') // Un punto puede ser encontrado incluso despu?s de una octava
+		if (*song=='.') // Un punto puede ser encontrado incluso despu�s de una octava
 		{
 			dot_flag = 1;             // Si se encuentra '.', seteo el flag
-			song++;                   // Avanzo al pr?ximo caracter
+			song++;                   // Avanzo al pr�ximo caracter
 		}
 		while (*song == ',') song++;    // Salteo ','
-		// Calculo la duraci?n de la nota
+		// Calculo la duraci�n de la nota
 		calc_duration = (60000/tempo)/(temp_duration);
 		calc_duration *= 4;         // La nota completa tiene cuatro beats
-		// Chequeo si el flag de punto est? activado, de ser as?, extiendo la duraci?n en un 50%
+		// Chequeo si el flag de punto est� activado, de ser as�, extiendo la duraci�n en un 50%
 		if (dot_flag) calc_duration = (calc_duration*3)/2;
-		// Si la nota actual NO es una pausa, reproduzco la nota usando la funci?n sound
+		// Si la nota actual NO es una pausa, reproduzco la nota usando la funci�n sound
 		if (current_note<255) sound(note[temp_octave-4][current_note],calc_duration);
 		else
 		{ // Si la nota actual es una pausa (255), espero dicha cantidad de tiempo
@@ -215,4 +216,51 @@ void play_song(char *song)
 		}
 		while (sound_playing);      // Espero a la que nota/pausa en curso finalice
 	}
+}
+
+
+
+
+
+int main(void)
+{
+	// Declaraciones de variables
+
+	unsigned char song_sel;
+
+
+	// ------------------------ Timer 0 ------------------------
+
+	// Configuro una interrupci�n cada 1 mseg
+	OCR0A = 248;			//124 para 8MHz y 248 para 16MHz
+	TCCR0A = (1<<WGM01);   // Modo CTC, clock interno, prescalador 64
+	TCCR0B = (1<<CS01)|(1<<CS00);   // Modo CTC, clock interno, prescalador 64
+	TIMSK0 = (1<<OCIE0A);   // Habilito Timer 0 en modo de interrupci�n de comparaci�n
+
+
+	// ------------------------ Timer 1 ------------------------
+
+	TCCR1A|=(1<<COM1A0);// Configuro Timer1 para clk con prescaler P=1, modo CTC y salida por pin
+	TCCR1B|=(1<<WGM12)|(1<<CS10);
+	DDRB|=(1<<PINB1); // El PIN1 del PORTB ser� el pin de salida
+
+
+	//Habilito la m�scara de interrupciones
+
+	sei();
+
+	while(1)
+	{
+		//Main
+		for (song_sel=0;song_sel<11;song_sel++)
+		{
+			play_song(rtttl_library[song_sel]); // Reproduzco la canci�n
+			// Espero dos segundos antes de comenzar la siguiente canci�n
+			duration_timer = 2000;
+			sound_playing = 1;
+			while (sound_playing);
+		}
+	}
+
+	return 0; // Nunca va a alcanzar esta parte
 }

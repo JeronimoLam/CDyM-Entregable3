@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>Entregable3</AssemblyName>
-    <Name>Entregable3</Name>
-    <RootNamespace>Entregable3</RootNamespace>
+    <AssemblyName>GccApplication1</AssemblyName>
+    <Name>GccApplication1</Name>
+    <RootNamespace>GccApplication1</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -133,13 +133,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Audio.c">
+    <Compile Include="audio.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="audio.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Audio.h">
+    <Compile Include="main.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="serialPort.c">

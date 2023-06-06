@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-Audio.c
+audio.c
 
 main.c
 
