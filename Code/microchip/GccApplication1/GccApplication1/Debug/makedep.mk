@@ -2,9 +2,9 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-audio.c
+audio\audio.c
 
 main.c
 
-serialPort.c
+serialPort\serialPort.c
 
