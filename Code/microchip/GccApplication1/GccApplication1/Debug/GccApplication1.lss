@@ -13,21 +13,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000dcc  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000a0  00000000  00000000  00000e0c  2**0
+  5 .debug_aranges 000000a8  00000000  00000000  00000e0c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000ae4  00000000  00000000  00000eac  2**0
+  6 .debug_info   00000ba3  00000000  00000000  00000eb4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000799  00000000  00000000  00001990  2**0
+  7 .debug_abbrev 000007da  00000000  00000000  00001a57  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000768  00000000  00000000  00002129  2**0
+  8 .debug_line   00000790  00000000  00000000  00002231  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000184  00000000  00000000  00002894  2**2
+  9 .debug_frame  00000194  00000000  00000000  000029c4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000004ef  00000000  00000000  00002a18  2**0
+ 10 .debug_str    0000052e  00000000  00000000  00002b58  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000046a  00000000  00000000  00002f07  2**0
+ 11 .debug_loc    0000046a  00000000  00000000  00003086  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000080  00000000  00000000  00003371  2**0
+ 12 .debug_ranges 00000088  00000000  00000000  000034f0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -750,12 +750,12 @@ void play_song(char *song)
  428:	08 95       	ret
 
 0000042a <__vector_14>:
-
-
-
-// Control de la duraci?n del sonido
-ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 {
+	//El men� se escribe en el buffer de transmisi�n
+	UART_Write_String_To_Buffer("Menu:\n\r");
+	UART_Write_String_To_Buffer("a � Read PORT1\n\r");
+	UART_Write_String_To_Buffer("b � Read PORT2\n\r");
+	UART_Write_String_To_Buffer("? : ");
  42a:	1f 92       	push	r1
  42c:	0f 92       	push	r0
  42e:	0f b6       	in	r0, 0x3f	; 63
@@ -773,27 +773,16 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
  446:	bf 93       	push	r27
  448:	ef 93       	push	r30
  44a:	ff 93       	push	r31
-	unsigned int duration_timer = get_duration_timer();
  44c:	0e 94 64 00 	call	0xc8	; 0xc8 <get_duration_timer>
-	if (duration_timer) {
  450:	00 97       	sbiw	r24, 0x00	; 0
  452:	21 f0       	breq	.+8      	; 0x45c <__vector_14+0x32>
-		duration_timer--; // Decremento el timer si > 0
-		set_duration_timer(duration_timer);
  454:	01 97       	sbiw	r24, 0x01	; 1
  456:	0e 94 5a 00 	call	0xb4	; 0xb4 <set_duration_timer>
  45a:	06 c0       	rjmp	.+12     	; 0x468 <__vector_14+0x3e>
-	} 
-	else                                  // si timer es = 0
-	{
-		TCCR1A=0;	// Desactivo el timer 1
  45c:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
-		set_sound_playing(0);                  // Borro el flag para avisar que no hay una nota sonando
  460:	80 e0       	ldi	r24, 0x00	; 0
  462:	90 e0       	ldi	r25, 0x00	; 0
  464:	0e 94 5f 00 	call	0xbe	; 0xbe <set_sound_playing>
-	}
-}
  468:	ff 91       	pop	r31
  46a:	ef 91       	pop	r30
  46c:	bf 91       	pop	r27
@@ -849,16 +838,18 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
  4ae:	84 b1       	in	r24, 0x04	; 4
  4b0:	82 60       	ori	r24, 0x02	; 2
  4b2:	84 b9       	out	0x04, r24	; 4
+	char MENU_flag=0;
 
 
 	//Habilito la m?scara de interrupciones
 
 	sei();
  4b4:	78 94       	sei
-
-	while(1)
-	{
-		//Main
+		if (MENU_flag) {
+			MENU_flag=0;
+			MENU_Command_Update();
+		}
+		
 		for (song_sel=0;song_sel<11;song_sel++)
  4b6:	c0 e0       	ldi	r28, 0x00	; 0
  4b8:	17 c0       	rjmp	.+46     	; 0x4e8 <main+0x5e>
@@ -886,11 +877,11 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
  4de:	0e 94 69 00 	call	0xd2	; 0xd2 <get_sound_playing>
  4e2:	89 2b       	or	r24, r25
  4e4:	e1 f7       	brne	.-8      	; 0x4de <main+0x54>
-	sei();
-
-	while(1)
-	{
-		//Main
+		if (MENU_flag) {
+			MENU_flag=0;
+			MENU_Command_Update();
+		}
+		
 		for (song_sel=0;song_sel<11;song_sel++)
  4e6:	cf 5f       	subi	r28, 0xFF	; 255
  4e8:	cb 30       	cpi	r28, 0x0B	; 11

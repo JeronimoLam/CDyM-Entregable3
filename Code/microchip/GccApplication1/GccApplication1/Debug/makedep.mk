@@ -8,3 +8,5 @@ main.c
 
 serialPort\serialPort.c
 
+UART\UART.c
+

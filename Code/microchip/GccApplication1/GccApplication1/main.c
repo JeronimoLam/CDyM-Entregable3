@@ -9,6 +9,8 @@
                         
 #include "main.h"
 #include "audio/audio.h"
+#include "serialPort/serialPort.h"
+#include "UART/UART.h"
 
 
 
@@ -28,9 +30,32 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 }
 
 
+// ISR(USART_RX_vect){
+// 	BufferRX[Index_escritura++] = UDR0;
+// 	if (Index_escritura==N_DATOS) {
+// 		FLAG_datos_recibidos=1;
+// 	}
+// }
+
+// ISR(USART_RX_vect){
+// 	UDR0 = BufferRX[Index_escritura++];
+// 	Txindex_lectura++;
+// 	if (Txindex_lectura==N_DATOS) {
+// 		Txindex_lectura=0;
+// 		UCSR0B &=~(1<<TXCIE0);
+// 	}
+// }
 
 
 
+void MENU_Show_Menu(void)
+{
+	//El men� se escribe en el buffer de transmisi�n
+	UART_Write_String_To_Buffer("Menu:\n\r");
+	UART_Write_String_To_Buffer("a � Read PORT1\n\r");
+	UART_Write_String_To_Buffer("b � Read PORT2\n\r");
+	UART_Write_String_To_Buffer("? : ");
+}
 
 int main(void)
 {
@@ -53,6 +78,8 @@ int main(void)
 	TCCR1A|=(1<<COM1A0);// Configuro Timer1 para clk con prescaler P=1, modo CTC y salida por pin
 	TCCR1B|=(1<<WGM12)|(1<<CS10);
 	DDRB|=(1<<PINB1); // El PIN1 del PORTB ser? el pin de salida
+	char UART_flag=0;
+	char MENU_flag=0;
 
 
 	//Habilito la m?scara de interrupciones
@@ -62,6 +89,16 @@ int main(void)
 	while(1)
 	{
 		//Main
+		
+		if (UART_flag) {
+			UART_flag=0;
+			UART_Update();
+		}
+		if (MENU_flag) {
+			MENU_flag=0;
+			MENU_Command_Update();
+		}
+		
 		for (song_sel=0;song_sel<11;song_sel++)
 		{
 			play_song(rtttl_library[song_sel]); // Reproduzco la canci?n

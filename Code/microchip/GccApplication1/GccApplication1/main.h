@@ -12,10 +12,6 @@
 	#include <avr/io.h>
 	#include <util/delay.h>
 	#include <avr/interrupt.h>
-	
-	void sound(unsigned int freq, unsigned int dur);
-	void play_song(char *song);
-	
 
 #define MAIN_H_
 
