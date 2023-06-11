@@ -29,6 +29,11 @@ uint8_t get_TX_data (uint8_t index)
 	return TX_buffer.data[index];
 }
 
+// uint8_t _RX_data (uint8_t index)
+// {
+// 	return RX_buffer.data[index];
+// }
+
 uint8_t get_TX_index_escritura (void){
 	return TX_buffer.indice_escritura;
 }
@@ -39,7 +44,7 @@ uint8_t get_TX_index_lectura (void){
 
 void reset_TX_index(void){
 	TX_buffer.indice_lectura = 0;
-	TX_buffer.indice_escritura = 0;	
+	TX_buffer.indice_escritura = 0;
 }
 
 void reset_TX_index_lectura (void){
