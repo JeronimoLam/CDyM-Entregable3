@@ -16,7 +16,7 @@
 
 	void UART_Send_Char (uint8_t dato);
 	uint8_t UART_Write_Char_To_Buffer (uint8_t data);
-	void UART_Write_String_To_Buffer(uint8_t* STR_PTR);
+	void UART_Write_String_To_Buffer(char* STR_PTR);
 	uint8_t UART_Receive_data (uint8_t *dato);
 	void UART_Update (void);
 	void inc_RX_index_escritura (void);
@@ -24,10 +24,13 @@
 	void inc_TX_index_escritura (void);
 	void inc_TX_index_lectura (void);
 	void reset_TX_index_lectura (void);
+	void reset_TX_index_escritura (void);
+	void reset_TX_index(void);
 	uint8_t get_TX_index_escritura (void);
 	uint8_t get_TX_index_lectura (void);
 	uint8_t get_TX_data (uint8_t index);
 	char hay_datos_TX_buffer();
+	void Buffer_Init();
 
 #define UART_H_
 

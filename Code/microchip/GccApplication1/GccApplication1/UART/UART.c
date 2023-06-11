@@ -15,28 +15,39 @@ typedef struct {
 
 Buffer TX_buffer;
 Buffer RX_buffer;
-	// static unsigned TX_index_escritura;
-	// static unsigned TX_index_lectura;
-uint8_t RX_index_lectura;
+
+void Buffer_Init (void)
+{
+	TX_buffer.indice_escritura = 0;
+	TX_buffer.indice_lectura = 0;
+	RX_buffer.indice_escritura = 0;
+	RX_buffer.indice_lectura = 0;
+}
 
 uint8_t get_TX_data (uint8_t index)
 {
 	return TX_buffer.data[index];
 }
 
-uint8_t get_TX_index_escritura (void)
-{
+uint8_t get_TX_index_escritura (void){
 	return TX_buffer.indice_escritura;
 }
 
-uint8_t get_TX_index_lectura (void)
-{
+uint8_t get_TX_index_lectura (void){
 	return TX_buffer.indice_lectura;
 }
 
-void reset_TX_index_lectura (void)
-{
+void reset_TX_index(void){
 	TX_buffer.indice_lectura = 0;
+	TX_buffer.indice_escritura = 0;	
+}
+
+void reset_TX_index_lectura (void){
+	TX_buffer.indice_lectura = 0;
+}
+
+void reset_TX_index_escritura (void){
+	TX_buffer.indice_escritura = 0;
 }
 
 void inc_RX_index_escritura (void)
@@ -74,6 +85,7 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 {
 	if (TX_buffer.indice_escritura < BUFFER_LEN)
 	{
+		SerialPort_TX_Interrupt_Disable();
 		TX_buffer.data[TX_buffer.indice_escritura] = data;
 		TX_buffer.indice_escritura++;
 		SerialPort_TX_Interrupt_Enable();
@@ -85,14 +97,20 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 	}
 }
 
-void UART_Write_String_To_Buffer(uint8_t* STR_PTR)
+// h
+
+void UART_Write_String_To_Buffer(char* STR_PTR)
 {
-	char i = 0;
-	while ( STR_PTR [ i ] != "\0")
+	uint8_t i = 0;
+	//SerialPort_TX_Interrupt_Disable();
+	while ( STR_PTR [ i ] != '\0')
 	{
 		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
 		i++;
 	}
+	//SerialPort_TX_Interrupt_Enable();
+	UART_Write_Char_To_Buffer ('\r');
+	UART_Write_Char_To_Buffer ('\n');
 }
 
 uint8_t UART_Receive_data (uint8_t *dato)

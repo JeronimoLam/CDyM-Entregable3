@@ -41,8 +41,8 @@ ISR(USART_UDRE_vect){
 	UDR0 = get_TX_data(get_TX_index_lectura()); // BufferTX[index_lectura]
 	inc_TX_index_lectura();						// index_lectura++
 	if (!hay_datos_TX_buffer()) {	// buffer_len = 8
-		reset_TX_index_lectura();
-		//SerialPort_TX_Interrupt_Disable();
+		reset_TX_index();
+		SerialPort_TX_Interrupt_Disable();
 	}
 }
 
@@ -68,6 +68,18 @@ ISR(USART_UDRE_vect){
 // }
 // }
 
+const char msjBienvenida [] = "Bienvenido al selector de ringtones! Canciones disponibles: ";
+#define LONGBIENVENIDA 59
+const char msjPlay[] = "PLAY: Reproduce la cancion seleccionada";
+#define LONGPLAY 39
+const char msjStop[] = "STOP: Detiene la reproduccion del sonido en curso";
+#define LONGSTOP 49
+const char msjNum[] = "NUM: Numero de cancion a seleccionar de la lista [1 a N]";
+#define LONGNUM 56
+
+const char msjReset[] ="RESET: Reinicia el sistema al estado inicial";
+#define LONGRESET 44
+uint8_t cancionSeleccionada=0;
 
 int main(void)
 {
@@ -96,23 +108,31 @@ int main(void)
 
 	//Habilito la m?scara de interrupciones
 
+	Buffer_Init();
 	SerialPort_Init(103); // 9600 baudios para 16MHz
 	SerialPort_TX_Enable();
-	SerialPort_TX_Interrupt_Enable();
+	//SerialPort_TX_Interrupt_Enable();
 
 	sei();
 
 	int i = 0;
-	uint8_t * string = "hola\r\n";
-	UART_Write_String_To_Buffer(string);
+	uint8_t * string = "hola\r\n\0";
+	//UART_Update();
+
+	UART_Write_String_To_Buffer(msjBienvenida);
+	UART_Write_String_To_Buffer(msjPlay);
+	UART_Write_String_To_Buffer(msjStop);
+	UART_Write_String_To_Buffer(msjNum);
+	UART_Write_String_To_Buffer(msjReset);
+
 
 	while(1)
 	{
+
 		//Main
 		// Send a string to the UART
 		//sprintf(string, "%d\r\n", i);
 		//i++;
-		UART_Update();
 		_delay_ms(500);
 
 		// if (UART_flag) {
@@ -123,7 +143,8 @@ int main(void)
 		// 	MENU_flag=0;
 		// 	MENU_Command_Update();
 		// }
-
+		int a = 2;
+	//	UART_Update();
 		// for (song_sel=0;song_sel<11;song_sel++)
 		// {
 		// 	play_song(rtttl_library[song_sel]); // Reproduzco la canci?n
