@@ -7,12 +7,15 @@
  * Asignatura:							Dise?o de Controladores Digitales
 -----------------------------------------------------------*/
 
-#include "main.h"
+#define F_CPU 16000000UL
+#include <avr/io.h>
+#include <util/delay.h>
+#include <avr/interrupt.h>
 #include "audio/audio.h"
 #include "serialPort/serialPort.h"
 #include "UART/UART.h"
 
-uint8_t FLAG_datos_recibidos = 0;
+
 
 // Control de la duraci?n del sonido
 ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
@@ -29,24 +32,6 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 	}
 }
 
-
-ISR(USART_RX_vect){
-	set_RX_data_UDR0(); // BufferRX[index_escritura] = UDR0
-	inc_RX_index_escritura(); // index_escritura++
-	if (get_RX_data_index_lectura() == (uint8_t)'\n') {
-		set_RX_data('\0');
-		FLAG_datos_recibidos=1;
-	}
-}
-
-ISR(USART_UDRE_vect){
-	UDR0 = get_TX_data(get_TX_index_lectura()); // BufferTX[index_lectura]
-	inc_TX_index_lectura();						// index_lectura++
-	if (!hay_datos_TX_buffer()) {	// buffer_len = 8
-		reset_TX_index();
-		SerialPort_TX_Interrupt_Disable();
-	}
-}
 
 
 
@@ -130,9 +115,9 @@ int main(void)
 	uint8_t aa = '\r';
 	while(1)
 	{
-		if (FLAG_datos_recibidos == 1) {
-			FLAG_datos_recibidos = 0;
-			//UART_Write_String_To_Buffer(get_RX_data());
+		if (get_FLAG_datos_recibidos()) {
+			set_FLAG_datos_recibidos(0);
+			UART_Write_String_To_Buffer(get_RX_data());
 		}
 
 		//Main

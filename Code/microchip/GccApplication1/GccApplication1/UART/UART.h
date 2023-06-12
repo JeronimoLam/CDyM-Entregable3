@@ -33,6 +33,8 @@
 	uint8_t set_RX_data_UDR0 ();
 	uint8_t* get_RX_data();
 	uint8_t get_RX_data_index_lectura();
+	uint8_t get_FLAG_datos_recibidos(void);
+	void set_FLAG_datos_recibidos(uint8_t value);
 	char hay_datos_TX_buffer();
 	void Buffer_Init();
 

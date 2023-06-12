@@ -6,7 +6,6 @@
  */
 #include "UART.h"
 
-
 typedef struct {
 	uint8_t data[BUFFER_LEN];
 	uint16_t index_escritura;
@@ -15,6 +14,28 @@ typedef struct {
 
 Buffer TX_buffer;
 Buffer RX_buffer;
+
+static uint8_t FLAG_datos_recibidos = 0;
+
+ISR(USART_RX_vect){
+	set_RX_data_UDR0(); // BufferRX[index_escritura] = UDR0
+	inc_RX_index_escritura(); // index_escritura++
+	if (get_RX_data_index_lectura() == (uint8_t)'\n') {
+		set_RX_data('\0');
+		FLAG_datos_recibidos=1;
+	}
+}
+
+ISR(USART_UDRE_vect){
+	UDR0 = get_TX_data(get_TX_index_lectura()); // BufferTX[index_lectura]
+	inc_TX_index_lectura();						// index_lectura++
+	if (!hay_datos_TX_buffer()) {	// buffer_len = 8
+		reset_TX_index();
+		SerialPort_TX_Interrupt_Disable();
+	}
+}
+
+
 
 void Buffer_Init (void)
 {
@@ -87,6 +108,14 @@ void inc_TX_index_escritura (void)
 void inc_TX_index_lectura (void)
 {
 	TX_buffer.index_lectura++;
+}
+
+uint8_t get_FLAG_datos_recibidos(void){
+	return FLAG_datos_recibidos;
+} 
+
+void set_FLAG_datos_recibidos(uint8_t value){
+	FLAG_datos_recibidos = value;
 }
 
 void UART_Send_Char ( uint8_t dato) {
