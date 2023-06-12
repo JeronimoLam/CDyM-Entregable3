@@ -49,9 +49,11 @@ volatile unsigned char song_playing=1;
 unsigned char duration, octave;
 unsigned int tempo;
 static char *song;
+static uint8_t current_song;
 
 void set_song(uint8_t song_num) {
-	song = rtttl_library[song_num];
+	current_song = song_num;
+	song = rtttl_library[current_song];
 }
 
 // @brief *resumen*
@@ -146,6 +148,7 @@ void stop_song()
 void play_song()
 {
 	song_playing = 1;
+	song = rtttl_library[current_song];
 	unsigned char temp_duration, temp_octave, current_note, dot_flag;
 	unsigned int calc_duration;
 	duration = 4;                 // Duraci?n est?ndar = 4/4 = 1 beat
