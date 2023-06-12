@@ -69,9 +69,10 @@ void MENU_select_option(char * inpt){
 		if (inpt[3] == ' ' && inpt[5] == '\0') {
 
 			// value contiene el valor "X"
-			uint8_t value = atoi(inpt[4]);
 			char str[2] = "";
 			str[0] = inpt[4];
+			uint8_t value = inpt[4] - '0';
+			
 			
 
 			UART_Write_String_To_Buffer_No_NewLine("Song selected: ");
@@ -91,7 +92,7 @@ void MENU_select_option(char * inpt){
 	else if (strcmp(inpt, "RESET") == 0){
 		UART_Write_String_To_Buffer("RESETTING system\n");
 		stop_song();
-		set_song(1);
+		set_song(0);
 		// Se resetean los buffers
 		/*
 		cli();

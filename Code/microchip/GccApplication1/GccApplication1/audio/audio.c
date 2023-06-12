@@ -48,7 +48,7 @@ volatile unsigned int sound_playing=0;
 volatile unsigned char song_playing=1;
 unsigned char duration, octave;
 unsigned int tempo;
-char *song;
+static char *song;
 
 void set_song(uint8_t song_num) {
 	song = rtttl_library[song_num];
