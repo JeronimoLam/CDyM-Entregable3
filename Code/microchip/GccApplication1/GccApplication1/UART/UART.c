@@ -9,8 +9,8 @@
 
 typedef struct {
 	uint8_t data[BUFFER_LEN];
-	uint16_t indice_escritura;
-	uint16_t indice_lectura;
+	uint16_t index_escritura;
+	uint16_t index_lectura;
 } Buffer;
 
 Buffer TX_buffer;
@@ -18,10 +18,10 @@ Buffer RX_buffer;
 
 void Buffer_Init (void)
 {
-	TX_buffer.indice_escritura = 0;
-	TX_buffer.indice_lectura = 0;
-	RX_buffer.indice_escritura = 0;
-	RX_buffer.indice_lectura = 0;
+	TX_buffer.index_escritura = 0;
+	TX_buffer.index_lectura = 0;
+	RX_buffer.index_escritura = 0;
+	RX_buffer.index_lectura = 0;
 }
 
 uint8_t get_TX_data (uint8_t index)
@@ -29,50 +29,64 @@ uint8_t get_TX_data (uint8_t index)
 	return TX_buffer.data[index];
 }
 
-// uint8_t _RX_data (uint8_t index)
-// {
-// 	return RX_buffer.data[index];
-// }
+uint8_t get_RX_data_index_lectura()
+{
+	return RX_buffer.data[RX_buffer.index_lectura];
+}
+
+uint8_t* get_RX_data()
+{
+	return RX_buffer.data;
+}
+
+
+uint8_t set_RX_data (uint8_t dato){
+	RX_buffer.data[RX_buffer.index_escritura] = dato;
+}
+
+uint8_t set_RX_data_UDR0 (){
+	RX_buffer.data[RX_buffer.index_escritura] = UDR0;
+}
 
 uint8_t get_TX_index_escritura (void){
-	return TX_buffer.indice_escritura;
+	return TX_buffer.index_escritura;
 }
 
 uint8_t get_TX_index_lectura (void){
-	return TX_buffer.indice_lectura;
+	return TX_buffer.index_lectura;
 }
 
 void reset_TX_index(void){
-	TX_buffer.indice_lectura = 0;
-	TX_buffer.indice_escritura = 0;
+	TX_buffer.index_lectura = 0;
+	TX_buffer.index_escritura = 0;
 }
 
 void reset_TX_index_lectura (void){
-	TX_buffer.indice_lectura = 0;
+	TX_buffer.index_lectura = 0;
 }
 
 void reset_TX_index_escritura (void){
-	TX_buffer.indice_escritura = 0;
+	TX_buffer.index_escritura = 0;
 }
 
 void inc_RX_index_escritura (void)
 {
-	RX_buffer.indice_escritura++;
+	RX_buffer.index_escritura++;
 }
 
 void inc_RX_index_lectura (void)
 {
-	RX_buffer.indice_lectura++;
+	RX_buffer.index_lectura++;
 }
 
 void inc_TX_index_escritura (void)
 {
-	TX_buffer.indice_escritura++;
+	TX_buffer.index_escritura++;
 }
 
 void inc_TX_index_lectura (void)
 {
-	TX_buffer.indice_lectura++;
+	TX_buffer.index_lectura++;
 }
 
 void UART_Send_Char ( uint8_t dato) {
@@ -88,11 +102,11 @@ void UART_Send_Char ( uint8_t dato) {
 
 uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 {
-	if (TX_buffer.indice_escritura < BUFFER_LEN)
+	if (TX_buffer.index_escritura < BUFFER_LEN)
 	{
 		SerialPort_TX_Interrupt_Disable();
-		TX_buffer.data[TX_buffer.indice_escritura] = data;
-		TX_buffer.indice_escritura++;
+		TX_buffer.data[TX_buffer.index_escritura] = data;
+		TX_buffer.index_escritura++;
 		SerialPort_TX_Interrupt_Enable();
 	}
 	else
@@ -133,16 +147,20 @@ void UART_Update (void)
 	// Hay byte en el buffer Tx para transmitir?
 	if (hay_datos_TX_buffer())
 	{
-		UART_Send_Char ( TX_buffer.data[TX_buffer.indice_lectura] ); // entrega al perif�rico para enviar
-		TX_buffer.indice_lectura++;
+		UART_Send_Char ( TX_buffer.data[TX_buffer.index_lectura] ); // entrega al perif�rico para enviar
+		TX_buffer.index_lectura++;
 	}
 	else
 	{// No hay datos disponibles para enviar
-		TX_buffer.indice_lectura = 0;
-		TX_buffer.indice_escritura = 0;
+		TX_buffer.index_lectura = 0;
+		TX_buffer.index_escritura = 0;
 	}
 }
 
 char hay_datos_TX_buffer() {
-	return (TX_buffer.indice_lectura < TX_buffer.indice_escritura);
+	return (TX_buffer.index_lectura < TX_buffer.index_escritura);
+}
+
+char hay_datos_RX_buffer() {
+	return (RX_buffer.index_lectura < RX_buffer.index_escritura);
 }

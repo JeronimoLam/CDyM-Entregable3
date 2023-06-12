@@ -29,6 +29,10 @@
 	uint8_t get_TX_index_escritura (void);
 	uint8_t get_TX_index_lectura (void);
 	uint8_t get_TX_data (uint8_t index);
+	uint8_t set_RX_data (uint8_t dato);
+	uint8_t set_RX_data_UDR0 ();
+	uint8_t* get_RX_data();
+	uint8_t get_RX_data_index_lectura();
 	char hay_datos_TX_buffer();
 	void Buffer_Init();
 

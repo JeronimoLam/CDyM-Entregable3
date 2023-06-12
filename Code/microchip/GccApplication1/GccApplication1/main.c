@@ -12,7 +12,7 @@
 #include "serialPort/serialPort.h"
 #include "UART/UART.h"
 
-
+uint8_t FLAG_datos_recibidos = 0;
 
 // Control de la duraci?n del sonido
 ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
@@ -30,12 +30,14 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 }
 
 
-// ISR(USART_RX_vect){
-// 	BufferRX[Index_escritura++] = UDR0;
-// 	if (Index_escritura==N_DATOS) {
-// 		FLAG_datos_recibidos=1;
-// 	}
-// }
+ISR(USART_RX_vect){
+	set_RX_data_UDR0(); // BufferRX[index_escritura] = UDR0
+	inc_RX_index_escritura(); // index_escritura++
+	if (get_RX_data_index_lectura() == (uint8_t)'\n') {
+		set_RX_data('\0');
+		FLAG_datos_recibidos=1;
+	}
+}
 
 ISR(USART_UDRE_vect){
 	UDR0 = get_TX_data(get_TX_index_lectura()); // BufferTX[index_lectura]
@@ -111,13 +113,13 @@ int main(void)
 	Buffer_Init();
 	SerialPort_Init(103); // 9600 baudios para 16MHz
 	SerialPort_TX_Enable();
-	//SerialPort_TX_Interrupt_Enable();
+	SerialPort_RX_Enable();
+	SerialPort_RX_Interrupt_Enable();
 
 	sei();
 
 	int i = 0;
 	uint8_t * string = "hola\r\n\0";
-	//UART_Update();
 
 	UART_Write_String_To_Buffer(msjBienvenida);
 	UART_Write_String_To_Buffer(msjPlay);
@@ -125,9 +127,13 @@ int main(void)
 	UART_Write_String_To_Buffer(msjNum);
 	UART_Write_String_To_Buffer(msjReset);
 
-
+	uint8_t aa = '\r';
 	while(1)
 	{
+		if (FLAG_datos_recibidos == 1) {
+			FLAG_datos_recibidos = 0;
+			//UART_Write_String_To_Buffer(get_RX_data());
+		}
 
 		//Main
 		// Send a string to the UART
