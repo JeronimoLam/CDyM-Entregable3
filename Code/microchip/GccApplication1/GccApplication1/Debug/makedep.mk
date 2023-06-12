@@ -6,6 +6,8 @@ audio\audio.c
 
 main.c
 
+Menu\Menu.c
+
 serialPort\serialPort.c
 
 UART\UART.c

@@ -6,11 +6,7 @@
  */
 #include "UART.h"
 
-typedef struct {
-	uint8_t data[BUFFER_LEN];
-	uint16_t index_escritura;
-	uint16_t index_lectura;
-} Buffer;
+
 
 Buffer TX_buffer;
 Buffer RX_buffer;
@@ -19,12 +15,12 @@ static uint8_t FLAG_datos_recibidos = 0;
 
 ISR(USART_RX_vect){
 	set_RX_data_UDR0(); // BufferRX[index_escritura] = UDR0
-	inc_RX_index_escritura(); // index_escritura++
-	//FLAG_datos_recibidos=1;
-	if ((RX_buffer.data[RX_buffer.index_escritura-1]) == '\n') {
-		set_RX_data('\0');
+	if ((RX_buffer.data[RX_buffer.index_escritura]) == '\n') {
+		//set_RX_data('\0');
 		FLAG_datos_recibidos=1;
 	}
+	inc_RX_index_escritura(); // index_escritura++
+
 }
 
 ISR(USART_UDRE_vect){

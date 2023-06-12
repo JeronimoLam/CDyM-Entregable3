@@ -11,9 +11,11 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <string.h>
 #include "audio/audio.h"
 #include "serialPort/serialPort.h"
 #include "UART/UART.h"
+#include "Menu/Menu.h"
 
 
 
@@ -114,34 +116,18 @@ int main(void)
 
 	uint8_t aa = '\r';
 	uint8_t *Buffer_RX;
+	
 	while(1)
 	{
 		if (get_FLAG_datos_recibidos() == 1) {
 			cli();
 			set_FLAG_datos_recibidos(0);
-			UART_Write_String_To_Buffer(get_RX_data());
 			
 			// procesamiento BUffer_Rx
+			MENU_process_inpt();
+			
 			sei();
 			
-			
-			//cli();
-			//UART_Write_String_To_Buffer(get_RX_data());
-			// if (FLAG_datos_recibidos == 1) {
-			// 	cli();
-			// 	FLAG_datos_recibidos = 0;
-			// 	//UART_Write_String_To_Buffer(get_RX_data());
-			// 	// if (strcmp(get_RX_data(), "PLAY")){
-			// 	uint8_t * RX_reg = get_RX_data();
-			// 	uint8_t i = 0;
-			// 	UART_Write_String_To_Buffer("se ingreso: ");
-			// 	while (RX_reg[i] != '\0') {
-			// 		UART_Write_Char_To_Buffer(RX_reg[i]);
-			// 	}
-			// 	//UART_Write_String_To_Buffer("INGRESO PLAY");
-			// 	// }
-			// 	sei();
-			// }
 		}
 		
 		//UART_Write_String_To_Buffer("hola");
@@ -175,3 +161,6 @@ int main(void)
 
 	return 0; // Nunca va a alcanzar esta parte
 }
+
+
+

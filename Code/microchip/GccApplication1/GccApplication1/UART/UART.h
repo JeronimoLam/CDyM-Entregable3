@@ -6,7 +6,8 @@
  */
 
 #ifndef UART_H_
-
+	
+	
 	#define BUFFER_LEN 400
 	#define ERROR_UART_FULL_BUFF 0xFF
 	#include <avr/io.h>
@@ -14,6 +15,12 @@
 	#include <avr/interrupt.h>
 	#include "../serialPort/serialPort.h"
 
+	typedef struct {
+		uint8_t data[BUFFER_LEN];
+		uint16_t index_escritura;
+		uint16_t index_lectura;
+	} Buffer;
+	
 	void UART_Send_Char (uint8_t dato);
 	uint8_t UART_Write_Char_To_Buffer (uint8_t data);
 	void UART_Write_String_To_Buffer(char* STR_PTR);
