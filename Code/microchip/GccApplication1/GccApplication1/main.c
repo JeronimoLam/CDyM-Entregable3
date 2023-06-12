@@ -15,8 +15,6 @@
 #include "serialPort/serialPort.h"
 #include "UART/UART.h"
 
-
-
 // Control de la duraci?n del sonido
 ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 {
@@ -55,18 +53,8 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 // }
 // }
 
-const char msjBienvenida [] = "Bienvenido al selector de ringtones! Canciones disponibles: ";
-#define LONGBIENVENIDA 59
-const char msjPlay[] = "PLAY: Reproduce la cancion seleccionada";
-#define LONGPLAY 39
-const char msjStop[] = "STOP: Detiene la reproduccion del sonido en curso";
-#define LONGSTOP 49
-const char msjNum[] = "NUM: Numero de cancion a seleccionar de la lista [1 a N]";
-#define LONGNUM 56
 
-const char msjReset[] ="RESET: Reinicia el sistema al estado inicial";
-#define LONGRESET 44
-uint8_t cancionSeleccionada=0;
+
 
 int main(void)
 {
@@ -78,19 +66,19 @@ int main(void)
 	// ------------------------ Timer 0 ------------------------
 
 	// Configuro una interrupci?n cada 1 mseg
-	// OCR0A = 248;			//124 para 8MHz y 248 para 16MHz
-	// TCCR0A = (1<<WGM01);   // Modo CTC, clock interno, prescalador 64
-	// TCCR0B = (1<<CS01)|(1<<CS00);   // Modo CTC, clock interno, prescalador 64
-	// TIMSK0 = (1<<OCIE0A);   // Habilito Timer 0 en modo de interrupci?n de comparaci?n
+	OCR0A = 248;			//124 para 8MHz y 248 para 16MHz
+	TCCR0A = (1<<WGM01);   // Modo CTC, clock interno, prescalador 64
+	TCCR0B = (1<<CS01)|(1<<CS00);   // Modo CTC, clock interno, prescalador 64
+	TIMSK0 = (1<<OCIE0A);   // Habilito Timer 0 en modo de interrupci?n de comparaci?n
 
 
 	// // ------------------------ Timer 1 ------------------------
 
-	// TCCR1A|=(1<<COM1A0);// Configuro Timer1 para clk con prescaler P=1, modo CTC y salida por pin
-	// TCCR1B|=(1<<WGM12)|(1<<CS10);
-	// DDRB|=(1<<PINB1); // El PIN1 del PORTB ser? el pin de salida
-	// char UART_flag=0;
-	// char MENU_flag=0;
+	TCCR1A|=(1<<COM1A0);// Configuro Timer1 para clk con prescaler P=1, modo CTC y salida por pin
+	TCCR1B|=(1<<WGM12)|(1<<CS10);
+	DDRB|=(1<<PINB1); // El PIN1 del PORTB ser? el pin de salida
+	char UART_flag=0;
+	char MENU_flag=0;
 
 
 	//Habilito la m?scara de interrupciones
@@ -103,28 +91,42 @@ int main(void)
 
 	sei();
 
-	int i = 0;
-	uint8_t * string = "hola\r\n\0";
-
-	UART_Write_String_To_Buffer(msjBienvenida);
-	UART_Write_String_To_Buffer(msjPlay);
-	UART_Write_String_To_Buffer(msjStop);
-	UART_Write_String_To_Buffer(msjNum);
-	UART_Write_String_To_Buffer(msjReset);
-
-	uint8_t aa = '\r';
-	uint8_t *Buffer_RX;
+	UART_Write_Menu();
+	char command;
+	uint8_t num = 0;
 	while(1)
 	{
 		if (get_FLAG_datos_recibidos() == 1) {
-			cli();
+			//cli();
 			set_FLAG_datos_recibidos(0);
-			UART_Write_String_To_Buffer(get_RX_data());
-			
+			command = get_RX_data_index_lectura();
+			Buffer_Init();
+
 			// procesamiento BUffer_Rx
-			sei();
+			switch (command){
+				case 'P':
+				UART_Write_String_To_Buffer("Playing song");
+				play_song();
+				break;
+				case 'S':
+				stop_song();
+				UART_Write_String_To_Buffer("Stopped song");
+				break;
+				case 'N':
+				UART_Write_String_To_Buffer("New song");
+				set_song(num);
+				break;
+				case 'R':
+				cli();
+				Buffer_Init();
+				sei();
+				UART_Write_Menu();
+				break;
+			}
+			//sei();
 			
-			
+
+
 			//cli();
 			//UART_Write_String_To_Buffer(get_RX_data());
 			// if (FLAG_datos_recibidos == 1) {
@@ -143,7 +145,7 @@ int main(void)
 			// 	sei();
 			// }
 		}
-		
+
 		//UART_Write_String_To_Buffer("hola");
 
 		//Main
@@ -170,7 +172,7 @@ int main(void)
 		// 	set_sound_playing(1);
 		// 	while (get_sound_playing());
 		// }
-		i++;
+		//i++;
 	}
 
 	return 0; // Nunca va a alcanzar esta parte
