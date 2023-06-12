@@ -20,7 +20,8 @@ static uint8_t FLAG_datos_recibidos = 0;
 ISR(USART_RX_vect){
 	set_RX_data_UDR0(); // BufferRX[index_escritura] = UDR0
 	inc_RX_index_escritura(); // index_escritura++
-	if (get_RX_data_index_lectura() == (uint8_t)'\n') {
+	//FLAG_datos_recibidos=1;
+	if ((RX_buffer.data[RX_buffer.index_escritura-1]) == '\n') {
 		set_RX_data('\0');
 		FLAG_datos_recibidos=1;
 	}
@@ -90,14 +91,12 @@ void reset_TX_index_escritura (void){
 	TX_buffer.index_escritura = 0;
 }
 
-void inc_RX_index_escritura (void)
-{
-	RX_buffer.index_escritura++;
+void inc_RX_index_escritura (void){
+	RX_buffer.index_escritura = (RX_buffer.index_escritura+1)%BUFFER_LEN;
 }
 
-void inc_RX_index_lectura (void)
-{
-	RX_buffer.index_lectura++;
+void inc_RX_index_lectura (void){
+	RX_buffer.index_lectura = (RX_buffer.index_lectura+1)%BUFFER_LEN;
 }
 
 void inc_TX_index_escritura (void)

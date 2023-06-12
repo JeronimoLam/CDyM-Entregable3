@@ -113,18 +113,44 @@ int main(void)
 	UART_Write_String_To_Buffer(msjReset);
 
 	uint8_t aa = '\r';
+	uint8_t *Buffer_RX;
 	while(1)
 	{
-		if (get_FLAG_datos_recibidos()) {
+		if (get_FLAG_datos_recibidos() == 1) {
+			cli();
 			set_FLAG_datos_recibidos(0);
 			UART_Write_String_To_Buffer(get_RX_data());
+			
+			// procesamiento BUffer_Rx
+			sei();
+			
+			
+			//cli();
+			//UART_Write_String_To_Buffer(get_RX_data());
+			// if (FLAG_datos_recibidos == 1) {
+			// 	cli();
+			// 	FLAG_datos_recibidos = 0;
+			// 	//UART_Write_String_To_Buffer(get_RX_data());
+			// 	// if (strcmp(get_RX_data(), "PLAY")){
+			// 	uint8_t * RX_reg = get_RX_data();
+			// 	uint8_t i = 0;
+			// 	UART_Write_String_To_Buffer("se ingreso: ");
+			// 	while (RX_reg[i] != '\0') {
+			// 		UART_Write_Char_To_Buffer(RX_reg[i]);
+			// 	}
+			// 	//UART_Write_String_To_Buffer("INGRESO PLAY");
+			// 	// }
+			// 	sei();
+			// }
 		}
+		
+		//UART_Write_String_To_Buffer("hola");
 
 		//Main
 		// Send a string to the UART
 		//sprintf(string, "%d\r\n", i);
 		//i++;
-		_delay_ms(500);
+		//_delay_ms(500);
 
 		// if (UART_flag) {
 		// 	UART_flag=0;
