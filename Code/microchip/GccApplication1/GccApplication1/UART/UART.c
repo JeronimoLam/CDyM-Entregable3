@@ -8,8 +8,8 @@
 
 
 
-Buffer TX_buffer;
-Buffer RX_buffer;
+Buffer_TX TX_buffer;
+Buffer_RX RX_buffer;
 
 static uint8_t FLAG_datos_recibidos = 0;
 
@@ -87,21 +87,21 @@ void reset_TX_index_escritura (void){
 }
 
 void inc_RX_index_escritura (void){
-	RX_buffer.index_escritura = (RX_buffer.index_escritura+1)%BUFFER_LEN;
+	RX_buffer.index_escritura = (RX_buffer.index_escritura+1)%BUFFER_RX_LEN;
 }
 
 void inc_RX_index_lectura (void){
-	RX_buffer.index_lectura = (RX_buffer.index_lectura+1)%BUFFER_LEN;
+	RX_buffer.index_lectura = (RX_buffer.index_lectura+1)%BUFFER_RX_LEN;
 }
 
 void inc_TX_index_escritura (void)
 {
-	TX_buffer.index_escritura++;
+	TX_buffer.index_escritura = (TX_buffer.index_escritura+1)%BUFFER_TX_LEN;
 }
 
 void inc_TX_index_lectura (void)
 {
-	TX_buffer.index_lectura++;
+	TX_buffer.index_lectura = (TX_buffer.index_lectura+1)%BUFFER_TX_LEN;
 }
 
 uint8_t get_FLAG_datos_recibidos(void){
@@ -125,7 +125,7 @@ void UART_Send_Char ( uint8_t dato) {
 
 uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 {
-	if (TX_buffer.index_escritura < BUFFER_LEN)
+	if (TX_buffer.index_escritura < BUFFER_TX_LEN)
 	{
 		SerialPort_TX_Interrupt_Disable();
 		TX_buffer.data[TX_buffer.index_escritura] = data;
@@ -188,22 +188,3 @@ char hay_datos_RX_buffer() {
 	return (RX_buffer.index_lectura < RX_buffer.index_escritura);
 }
 
-const char msjBienvenida [] = "Bienvenido al selector de ringtones! Canciones disponibles: ";
-#define LONGBIENVENIDA 59
-const char msjPlay[] = "PLAY: Reproduce la cancion seleccionada";
-#define LONGPLAY 39
-const char msjStop[] = "STOP: Detiene la reproduccion del sonido en curso";
-#define LONGSTOP 49
-const char msjNum[] = "NUM: Numero de cancion a seleccionar de la lista [1 a N]";
-#define LONGNUM 56
-
-const char msjReset[] ="RESET: Reinicia el sistema al estado inicial";
-#define LONGRESET 44
-
-void UART_Write_Menu(void){
-	UART_Write_String_To_Buffer(msjBienvenida);
-	UART_Write_String_To_Buffer(msjPlay);
-	UART_Write_String_To_Buffer(msjStop);
-	UART_Write_String_To_Buffer(msjNum);
-	UART_Write_String_To_Buffer(msjReset);
-}

@@ -33,31 +33,6 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 }
 
 
-
-
-// void MENU_Show_Menu(void)
-// {
-// 	//El men� se escribe en el buffer de transmisi�n
-// 	UART_Write_String_To_Buffer("Menu:\n\r");
-// 	UART_Write_String_To_Buffer("a � Read PORT1\n\r");
-// 	UART_Write_String_To_Buffer("b � Read PORT2\n\r");
-// 	UART_Write_String_To_Buffer("? : ");
-// }
-
-// void MENU_Command_Update(void)
-// {
-// 	char ch;
-// 	// Check for user inputs
-// 	if ( UART_Get_Char_From_Buffer ( &ch ) != 0)
-// 	{
-// 	MENU_Perform_Task ( Ch );
-// 	MENU_Show_Menu ();
-// }
-// }
-
-
-
-
 int main(void)
 {
 	// Declaraciones de variables
@@ -83,7 +58,7 @@ int main(void)
 	char MENU_flag=0;
 
 
-	//Habilito la m?scara de interrupciones
+	//Habilito la mAscara de interrupciones
 
 	Buffer_Init();
 	SerialPort_Init(103); // 9600 baudios para 16MHz
@@ -92,10 +67,8 @@ int main(void)
 	SerialPort_RX_Interrupt_Enable();
 
 	sei();
-
-	UART_Write_Menu();
-	char command;
-	uint8_t num = 0;
+	MENU_display_options_bienvenida();
+	MENU_display_options();
 	while(1)
 	{
 		if (get_FLAG_datos_recibidos() == 1) {
@@ -125,7 +98,6 @@ int main(void)
 		// 	MENU_flag=0;
 		// 	MENU_Command_Update();
 		// }
-		int a = 2;
 	//	UART_Update();
 		// for (song_sel=0;song_sel<11;song_sel++)
 		// {

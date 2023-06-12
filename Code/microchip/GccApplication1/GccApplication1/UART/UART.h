@@ -8,7 +8,8 @@
 #ifndef UART_H_
 	
 	
-	#define BUFFER_LEN 400
+	#define BUFFER_TX_LEN 400
+	#define BUFFER_RX_LEN 400
 	#define ERROR_UART_FULL_BUFF 0xFF
 	#include <avr/io.h>
 	#include <util/delay.h>
@@ -16,10 +17,16 @@
 	#include "../serialPort/serialPort.h"
 
 	typedef struct {
-		uint8_t data[BUFFER_LEN];
+		uint8_t data[BUFFER_TX_LEN];
 		uint16_t index_escritura;
 		uint16_t index_lectura;
-	} Buffer;
+	} Buffer_TX;
+	
+	typedef struct {
+		uint8_t data[BUFFER_RX_LEN];
+		uint16_t index_escritura;
+		uint16_t index_lectura;
+	} Buffer_RX;
 	
 	void UART_Send_Char (uint8_t dato);
 	uint8_t UART_Write_Char_To_Buffer (uint8_t data);
@@ -44,7 +51,6 @@
 	void set_FLAG_datos_recibidos(uint8_t value);
 	char hay_datos_TX_buffer();
 	void Buffer_Init();
-	void UART_Write_Menu(void);
 
 #define UART_H_
 
