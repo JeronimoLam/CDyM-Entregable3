@@ -18,6 +18,19 @@ ISR(USART_RX_vect){
 	if ((RX_buffer.data[RX_buffer.index_escritura]) == '\n') {
 		//set_RX_data('\0');
 		FLAG_datos_recibidos=1;
+		if (get_RX_data_index_lectura() == 'S') {
+			uint8_t substring[BUFFER_RX_LEN];
+			
+			create_substring(get_RX_data(), substring);
+			UART_Write_String_To_Buffer(substring);
+			if (strcmp(substring, "STOP") == 0){
+				
+				stop_song();
+				UART_Write_String_To_Buffer("Stopped song\n");
+				FLAG_datos_recibidos=0;
+				
+			}
+		}
 	}
 	inc_RX_index_escritura(); // index_escritura++
 

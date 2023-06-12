@@ -15,6 +15,8 @@
 	#include <util/delay.h>
 	#include <avr/interrupt.h>
 	#include "../serialPort/serialPort.h"
+	#include "../audio/audio.h"
+//	#include "../Menu/Menu.h"
 
 	typedef struct {
 		uint8_t data[BUFFER_TX_LEN];

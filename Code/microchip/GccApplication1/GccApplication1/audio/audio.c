@@ -48,7 +48,7 @@ volatile unsigned int sound_playing=0;
 volatile unsigned char song_playing=1;
 unsigned char duration, octave;
 unsigned int tempo;
-char *song;
+static char *song;
 
 void set_song(uint8_t song_num) {
 	song = rtttl_library[song_num];
@@ -145,6 +145,7 @@ void stop_song()
 // Esta funci?n reproduce una canci?n que se le pase en un string con formato RTTTL
 void play_song()
 {
+	song_playing = 1;
 	unsigned char temp_duration, temp_octave, current_note, dot_flag;
 	unsigned int calc_duration;
 	duration = 4;                 // Duraci?n est?ndar = 4/4 = 1 beat
