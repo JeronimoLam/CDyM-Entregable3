@@ -30,6 +30,8 @@
     unsigned char get_duration();
     unsigned char get_octave();
     unsigned int get_tempo();
+	const char * AUDIO_get_songs_menu();
+
 
     extern const char *rtttl_library[];
 

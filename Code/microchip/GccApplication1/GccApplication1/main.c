@@ -12,10 +12,6 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <string.h>
-#include "audio/audio.h"
-#include "serialPort/serialPort.h"
-#include "UART/UART.h"
-#include "Menu/Menu.h"
 
 // Control de la duraci?n del sonido
 ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
@@ -66,9 +62,10 @@ int main(void)
 	SerialPort_RX_Enable();
 	SerialPort_RX_Interrupt_Enable();
 
-	sei();
 	MENU_display_options_bienvenida();
 	MENU_display_options();
+	sei();
+	
 	while(1)
 	{
 		if (get_FLAG_datos_recibidos() == 1) {

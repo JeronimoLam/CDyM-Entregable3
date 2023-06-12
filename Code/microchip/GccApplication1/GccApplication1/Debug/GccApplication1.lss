@@ -3,31 +3,31 @@ GccApplication1.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         000003ba  00800100  00000cfc  00000d90  2**0
+  0 .data         00000482  00800100  00000cf0  00000d84  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000cfc  00000000  00000000  00000094  2**1
+  1 .text         00000cf0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000333  008004ba  008004ba  0000114a  2**0
+  2 .bss          00000239  00800582  00800582  00001206  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000114a  2**0
+  3 .comment      00000030  00000000  00000000  00001206  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000117c  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001238  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000258  00000000  00000000  000011bc  2**0
+  5 .debug_aranges 00000268  00000000  00000000  00001278  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001b3c  00000000  00000000  00001414  2**0
+  6 .debug_info   00001d97  00000000  00000000  000014e0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000c6a  00000000  00000000  00002f50  2**0
+  7 .debug_abbrev 00000c4e  00000000  00000000  00003277  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000011d9  00000000  00000000  00003bba  2**0
+  8 .debug_line   00001194  00000000  00000000  00003ec5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000005f8  00000000  00000000  00004d94  2**2
+  9 .debug_frame  0000060c  00000000  00000000  0000505c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000095f  00000000  00000000  0000538c  2**0
+ 10 .debug_str    0000099e  00000000  00000000  00005668  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000c09  00000000  00000000  00005ceb  2**0
+ 11 .debug_loc    00000bf4  00000000  00000000  00006006  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000208  00000000  00000000  000068f4  2**0
+ 12 .debug_ranges 00000218  00000000  00000000  00006bfa  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -47,25 +47,25 @@ Disassembly of section .text:
   2c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   30:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   34:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  38:	0c 94 27 03 	jmp	0x64e	; 0x64e <__vector_14>
+  38:	0c 94 29 03 	jmp	0x652	; 0x652 <__vector_14>
   3c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   40:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   44:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  48:	0c 94 5a 05 	jmp	0xab4	; 0xab4 <__vector_18>
-  4c:	0c 94 dd 05 	jmp	0xbba	; 0xbba <__vector_19>
+  48:	0c 94 7e 05 	jmp	0xafc	; 0xafc <__vector_18>
+  4c:	0c 94 9c 04 	jmp	0x938	; 0x938 <__vector_19>
   50:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   54:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   58:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   5c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   60:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
   64:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  68:	76 02       	muls	r23, r22
-  6a:	78 02       	muls	r23, r24
-  6c:	7a 02       	muls	r23, r26
-  6e:	6e 02       	muls	r22, r30
-  70:	70 02       	muls	r23, r16
-  72:	72 02       	muls	r23, r18
-  74:	74 02       	muls	r23, r20
+  68:	78 02       	muls	r23, r24
+  6a:	7a 02       	muls	r23, r26
+  6c:	7c 02       	muls	r23, r28
+  6e:	70 02       	muls	r23, r16
+  70:	72 02       	muls	r23, r18
+  72:	74 02       	muls	r23, r20
+  74:	76 02       	muls	r23, r22
 
 00000076 <__ctors_end>:
   76:	11 24       	eor	r1, r1
@@ -76,1911 +76,1984 @@ Disassembly of section .text:
   80:	cd bf       	out	0x3d, r28	; 61
 
 00000082 <__do_copy_data>:
-  82:	14 e0       	ldi	r17, 0x04	; 4
+  82:	15 e0       	ldi	r17, 0x05	; 5
   84:	a0 e0       	ldi	r26, 0x00	; 0
   86:	b1 e0       	ldi	r27, 0x01	; 1
-  88:	ec ef       	ldi	r30, 0xFC	; 252
+  88:	e0 ef       	ldi	r30, 0xF0	; 240
   8a:	fc e0       	ldi	r31, 0x0C	; 12
   8c:	02 c0       	rjmp	.+4      	; 0x92 <__do_copy_data+0x10>
   8e:	05 90       	lpm	r0, Z+
   90:	0d 92       	st	X+, r0
-  92:	aa 3b       	cpi	r26, 0xBA	; 186
+  92:	a2 38       	cpi	r26, 0x82	; 130
   94:	b1 07       	cpc	r27, r17
   96:	d9 f7       	brne	.-10     	; 0x8e <__do_copy_data+0xc>
 
 00000098 <__do_clear_bss>:
   98:	27 e0       	ldi	r18, 0x07	; 7
-  9a:	aa eb       	ldi	r26, 0xBA	; 186
-  9c:	b4 e0       	ldi	r27, 0x04	; 4
+  9a:	a2 e8       	ldi	r26, 0x82	; 130
+  9c:	b5 e0       	ldi	r27, 0x05	; 5
   9e:	01 c0       	rjmp	.+2      	; 0xa2 <.do_clear_bss_start>
 
 000000a0 <.do_clear_bss_loop>:
   a0:	1d 92       	st	X+, r1
 
 000000a2 <.do_clear_bss_start>:
-  a2:	ad 3e       	cpi	r26, 0xED	; 237
+  a2:	ab 3b       	cpi	r26, 0xBB	; 187
   a4:	b2 07       	cpc	r27, r18
   a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
-  a8:	0e 94 57 03 	call	0x6ae	; 0x6ae <main>
-  ac:	0c 94 7c 06 	jmp	0xcf8	; 0xcf8 <_exit>
+  a8:	0e 94 59 03 	call	0x6b2	; 0x6b2 <main>
+  ac:	0c 94 76 06 	jmp	0xcec	; 0xcec <_exit>
 
 000000b0 <__bad_interrupt>:
   b0:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-000000b4 <set_song>:
+000000b4 <AUDIO_get_songs_menu>:
 // @brief *resumen*
 // @param  *parametrsoq que resumen*
 // @return *lo que retorna*
 unsigned int get_tempo() {
 	return tempo;
 }
-  b4:	e8 2f       	mov	r30, r24
-  b6:	f0 e0       	ldi	r31, 0x00	; 0
-  b8:	ee 0f       	add	r30, r30
-  ba:	ff 1f       	adc	r31, r31
-  bc:	ef 5f       	subi	r30, 0xFF	; 255
-  be:	fe 4f       	sbci	r31, 0xFE	; 254
-  c0:	80 81       	ld	r24, Z
-  c2:	91 81       	ldd	r25, Z+1	; 0x01
-  c4:	90 93 bb 04 	sts	0x04BB, r25	; 0x8004bb <__data_end+0x1>
-  c8:	80 93 ba 04 	sts	0x04BA, r24	; 0x8004ba <__data_end>
-  cc:	08 95       	ret
+  b4:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <songs_menu>
+  b8:	90 91 02 01 	lds	r25, 0x0102	; 0x800102 <songs_menu+0x1>
+  bc:	08 95       	ret
 
-000000ce <set_duration_timer>:
-  ce:	90 93 c3 04 	sts	0x04C3, r25	; 0x8004c3 <duration_timer+0x1>
-  d2:	80 93 c2 04 	sts	0x04C2, r24	; 0x8004c2 <duration_timer>
+000000be <set_song>:
+  be:	e8 2f       	mov	r30, r24
+  c0:	f0 e0       	ldi	r31, 0x00	; 0
+  c2:	ee 0f       	add	r30, r30
+  c4:	ff 1f       	adc	r31, r31
+  c6:	ed 5f       	subi	r30, 0xFD	; 253
+  c8:	fe 4f       	sbci	r31, 0xFE	; 254
+  ca:	80 81       	ld	r24, Z
+  cc:	91 81       	ldd	r25, Z+1	; 0x01
+  ce:	90 93 83 05 	sts	0x0583, r25	; 0x800583 <__data_end+0x1>
+  d2:	80 93 82 05 	sts	0x0582, r24	; 0x800582 <__data_end>
   d6:	08 95       	ret
 
-000000d8 <set_sound_playing>:
-  d8:	90 93 bd 04 	sts	0x04BD, r25	; 0x8004bd <sound_playing+0x1>
-  dc:	80 93 bc 04 	sts	0x04BC, r24	; 0x8004bc <sound_playing>
+000000d8 <set_duration_timer>:
+  d8:	90 93 8b 05 	sts	0x058B, r25	; 0x80058b <duration_timer+0x1>
+  dc:	80 93 8a 05 	sts	0x058A, r24	; 0x80058a <duration_timer>
   e0:	08 95       	ret
 
-000000e2 <get_duration_timer>:
-  e2:	80 91 c2 04 	lds	r24, 0x04C2	; 0x8004c2 <duration_timer>
-  e6:	90 91 c3 04 	lds	r25, 0x04C3	; 0x8004c3 <duration_timer+0x1>
+000000e2 <set_sound_playing>:
+  e2:	90 93 85 05 	sts	0x0585, r25	; 0x800585 <sound_playing+0x1>
+  e6:	80 93 84 05 	sts	0x0584, r24	; 0x800584 <sound_playing>
   ea:	08 95       	ret
 
-000000ec <sound>:
+000000ec <get_duration_timer>:
+  ec:	80 91 8a 05 	lds	r24, 0x058A	; 0x80058a <duration_timer>
+  f0:	90 91 8b 05 	lds	r25, 0x058B	; 0x80058b <duration_timer+0x1>
+  f4:	08 95       	ret
+
+000000f6 <sound>:
 
 
 // Saco el sonido por el PIN5 del PORTD: freq en Hz, dur en ms
 void sound(unsigned int freq, unsigned int dur)
 {
-  ec:	9c 01       	movw	r18, r24
+  f6:	9c 01       	movw	r18, r24
 	while (sound_playing && song_playing);      // Si hay alg?n sonido presente, espero a que termine
-  ee:	40 91 bc 04 	lds	r20, 0x04BC	; 0x8004bc <sound_playing>
-  f2:	50 91 bd 04 	lds	r21, 0x04BD	; 0x8004bd <sound_playing+0x1>
-  f6:	45 2b       	or	r20, r21
-  f8:	21 f0       	breq	.+8      	; 0x102 <sound+0x16>
-  fa:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
-  fe:	91 11       	cpse	r25, r1
- 100:	f6 cf       	rjmp	.-20     	; 0xee <sound+0x2>
+  f8:	40 91 84 05 	lds	r20, 0x0584	; 0x800584 <sound_playing>
+  fc:	50 91 85 05 	lds	r21, 0x0585	; 0x800585 <sound_playing+0x1>
+ 100:	45 2b       	or	r20, r21
+ 102:	21 f0       	breq	.+8      	; 0x10c <sound+0x16>
+ 104:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 108:	91 11       	cpse	r25, r1
+ 10a:	f6 cf       	rjmp	.-20     	; 0xf8 <sound+0x2>
 
 	duration_timer = dur;       // Seteo el tiempo de duraci?n
- 102:	70 93 c3 04 	sts	0x04C3, r23	; 0x8004c3 <duration_timer+0x1>
- 106:	60 93 c2 04 	sts	0x04C2, r22	; 0x8004c2 <duration_timer>
+ 10c:	70 93 8b 05 	sts	0x058B, r23	; 0x80058b <duration_timer+0x1>
+ 110:	60 93 8a 05 	sts	0x058A, r22	; 0x80058a <duration_timer>
 
 	// Activo la salida y configuro el timer para que genere la se?al de la frecuencia apropiada
 	TCCR1A|=(1<<COM1A0);
- 10a:	e0 e8       	ldi	r30, 0x80	; 128
- 10c:	f0 e0       	ldi	r31, 0x00	; 0
- 10e:	80 81       	ld	r24, Z
- 110:	80 64       	ori	r24, 0x40	; 64
- 112:	80 83       	st	Z, r24
+ 114:	e0 e8       	ldi	r30, 0x80	; 128
+ 116:	f0 e0       	ldi	r31, 0x00	; 0
+ 118:	80 81       	ld	r24, Z
+ 11a:	80 64       	ori	r24, 0x40	; 64
+ 11c:	80 83       	st	Z, r24
 
 	// Actualizo el valor de OCR1A para que produzca la nota adecuada
 	OCR1A=(8000000/(freq))-1;
- 114:	40 e0       	ldi	r20, 0x00	; 0
- 116:	50 e0       	ldi	r21, 0x00	; 0
- 118:	60 e0       	ldi	r22, 0x00	; 0
- 11a:	72 e1       	ldi	r23, 0x12	; 18
- 11c:	8a e7       	ldi	r24, 0x7A	; 122
- 11e:	90 e0       	ldi	r25, 0x00	; 0
- 120:	0e 94 0f 06 	call	0xc1e	; 0xc1e <__divmodsi4>
- 124:	21 50       	subi	r18, 0x01	; 1
- 126:	31 09       	sbc	r19, r1
- 128:	30 93 89 00 	sts	0x0089, r19	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
- 12c:	20 93 88 00 	sts	0x0088, r18	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+ 11e:	40 e0       	ldi	r20, 0x00	; 0
+ 120:	50 e0       	ldi	r21, 0x00	; 0
+ 122:	60 e0       	ldi	r22, 0x00	; 0
+ 124:	72 e1       	ldi	r23, 0x12	; 18
+ 126:	8a e7       	ldi	r24, 0x7A	; 122
+ 128:	90 e0       	ldi	r25, 0x00	; 0
+ 12a:	0e 94 09 06 	call	0xc12	; 0xc12 <__divmodsi4>
+ 12e:	21 50       	subi	r18, 0x01	; 1
+ 130:	31 09       	sbc	r19, r1
+ 132:	30 93 89 00 	sts	0x0089, r19	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 136:	20 93 88 00 	sts	0x0088, r18	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
 
 	sound_playing = 1;          // Activo el flag para avisar que hay una nota sonando
- 130:	81 e0       	ldi	r24, 0x01	; 1
- 132:	90 e0       	ldi	r25, 0x00	; 0
- 134:	90 93 bd 04 	sts	0x04BD, r25	; 0x8004bd <sound_playing+0x1>
- 138:	80 93 bc 04 	sts	0x04BC, r24	; 0x8004bc <sound_playing>
- 13c:	08 95       	ret
+ 13a:	81 e0       	ldi	r24, 0x01	; 1
+ 13c:	90 e0       	ldi	r25, 0x00	; 0
+ 13e:	90 93 85 05 	sts	0x0585, r25	; 0x800585 <sound_playing+0x1>
+ 142:	80 93 84 05 	sts	0x0584, r24	; 0x800584 <sound_playing>
+ 146:	08 95       	ret
 
-0000013e <stop_song>:
+00000148 <stop_song>:
 }
 
 void stop_song()
 {
 	song_playing = 0;           // Activo el flag para avisar que hay una nota sonando
- 13e:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 148:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
 	sound_playing = 0;          // Activo el flag para avisar que hay una nota sonando
- 142:	10 92 bd 04 	sts	0x04BD, r1	; 0x8004bd <sound_playing+0x1>
- 146:	10 92 bc 04 	sts	0x04BC, r1	; 0x8004bc <sound_playing>
+ 14c:	10 92 85 05 	sts	0x0585, r1	; 0x800585 <sound_playing+0x1>
+ 150:	10 92 84 05 	sts	0x0584, r1	; 0x800584 <sound_playing>
 	TCCR1A&=~(1<<COM1A0);       // Desactivo la salida
- 14a:	e0 e8       	ldi	r30, 0x80	; 128
- 14c:	f0 e0       	ldi	r31, 0x00	; 0
- 14e:	80 81       	ld	r24, Z
- 150:	8f 7b       	andi	r24, 0xBF	; 191
- 152:	80 83       	st	Z, r24
- 154:	08 95       	ret
+ 154:	e0 e8       	ldi	r30, 0x80	; 128
+ 156:	f0 e0       	ldi	r31, 0x00	; 0
+ 158:	80 81       	ld	r24, Z
+ 15a:	8f 7b       	andi	r24, 0xBF	; 191
+ 15c:	80 83       	st	Z, r24
+ 15e:	08 95       	ret
 
-00000156 <play_song>:
+00000160 <play_song>:
 }
 
 // Esta funci?n reproduce una canci?n que se le pase en un string con formato RTTTL
 void play_song()
 {
- 156:	ff 92       	push	r15
- 158:	0f 93       	push	r16
- 15a:	cf 93       	push	r28
- 15c:	df 93       	push	r29
-	song_playing = 1;
- 15e:	81 e0       	ldi	r24, 0x01	; 1
- 160:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 160:	ff 92       	push	r15
+ 162:	0f 93       	push	r16
+ 164:	cf 93       	push	r28
+ 166:	df 93       	push	r29
 	unsigned char temp_duration, temp_octave, current_note, dot_flag;
 	unsigned int calc_duration;
 	duration = 4;                 // Duraci?n est?ndar = 4/4 = 1 beat
- 164:	84 e0       	ldi	r24, 0x04	; 4
- 166:	80 93 c1 04 	sts	0x04C1, r24	; 0x8004c1 <duration>
+ 168:	84 e0       	ldi	r24, 0x04	; 4
+ 16a:	80 93 89 05 	sts	0x0589, r24	; 0x800589 <duration>
 	tempo = 63;                   // Tempo est?ndar = 63 bpm
- 16a:	8f e3       	ldi	r24, 0x3F	; 63
- 16c:	90 e0       	ldi	r25, 0x00	; 0
- 16e:	90 93 c0 04 	sts	0x04C0, r25	; 0x8004c0 <tempo+0x1>
- 172:	80 93 bf 04 	sts	0x04BF, r24	; 0x8004bf <tempo>
+ 16e:	8f e3       	ldi	r24, 0x3F	; 63
+ 170:	90 e0       	ldi	r25, 0x00	; 0
+ 172:	90 93 88 05 	sts	0x0588, r25	; 0x800588 <tempo+0x1>
+ 176:	80 93 87 05 	sts	0x0587, r24	; 0x800587 <tempo>
 	octave = 6;                   // Octava est?ndar = 6th
- 176:	86 e0       	ldi	r24, 0x06	; 6
- 178:	80 93 c4 04 	sts	0x04C4, r24	; 0x8004c4 <octave>
+ 17a:	86 e0       	ldi	r24, 0x06	; 6
+ 17c:	80 93 8c 05 	sts	0x058C, r24	; 0x80058c <octave>
 	while (*song != ':' && song_playing) song++;  // Busca el primer ':'
- 17c:	05 c0       	rjmp	.+10     	; 0x188 <play_song+0x32>
- 17e:	31 96       	adiw	r30, 0x01	; 1
- 180:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 184:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 188:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 18c:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 190:	80 81       	ld	r24, Z
- 192:	8a 33       	cpi	r24, 0x3A	; 58
- 194:	21 f0       	breq	.+8      	; 0x19e <play_song+0x48>
- 196:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 19a:	81 11       	cpse	r24, r1
- 19c:	f0 cf       	rjmp	.-32     	; 0x17e <play_song+0x28>
+ 180:	05 c0       	rjmp	.+10     	; 0x18c <play_song+0x2c>
+ 182:	31 96       	adiw	r30, 0x01	; 1
+ 184:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 188:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 18c:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 190:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 194:	80 81       	ld	r24, Z
+ 196:	8a 33       	cpi	r24, 0x3A	; 58
+ 198:	21 f0       	breq	.+8      	; 0x1a2 <play_song+0x42>
+ 19a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 19e:	81 11       	cpse	r24, r1
+ 1a0:	f0 cf       	rjmp	.-32     	; 0x182 <play_song+0x22>
 	song++;                       // Saltea el primer ':'
- 19e:	31 96       	adiw	r30, 0x01	; 1
- 1a0:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 1a4:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 1a2:	31 96       	adiw	r30, 0x01	; 1
+ 1a4:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 1a8:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 	while (*song!=':' && song_playing)            // Repite hasta encontrar ':'
- 1a8:	51 c1       	rjmp	.+674    	; 0x44c <__EEPROM_REGION_LENGTH__+0x4c>
+ 1ac:	51 c1       	rjmp	.+674    	; 0x450 <__EEPROM_REGION_LENGTH__+0x50>
 	{
 		if (*song == 'd')           // Entra si es el seteo de la duraci?n
- 1aa:	84 36       	cpi	r24, 0x64	; 100
- 1ac:	09 f0       	breq	.+2      	; 0x1b0 <play_song+0x5a>
- 1ae:	5c c0       	rjmp	.+184    	; 0x268 <play_song+0x112>
+ 1ae:	84 36       	cpi	r24, 0x64	; 100
+ 1b0:	09 f0       	breq	.+2      	; 0x1b4 <play_song+0x54>
+ 1b2:	5c c0       	rjmp	.+184    	; 0x26c <play_song+0x10c>
 		{
 			duration = 0;             // Seteo la duraci?n en cero (temporalmente)
- 1b0:	10 92 c1 04 	sts	0x04C1, r1	; 0x8004c1 <duration>
+ 1b4:	10 92 89 05 	sts	0x0589, r1	; 0x800589 <duration>
 			song++;                   // Avanzo al pr?ximo caracter
- 1b4:	31 96       	adiw	r30, 0x01	; 1
- 1b6:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 1ba:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 1b8:	31 96       	adiw	r30, 0x01	; 1
+ 1ba:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 1be:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 			while (*song == '=' && song_playing) song++;  // Salteo '='
- 1be:	05 c0       	rjmp	.+10     	; 0x1ca <play_song+0x74>
- 1c0:	31 96       	adiw	r30, 0x01	; 1
- 1c2:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 1c6:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 1ca:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 1ce:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 1d2:	80 81       	ld	r24, Z
- 1d4:	8d 33       	cpi	r24, 0x3D	; 61
- 1d6:	51 f4       	brne	.+20     	; 0x1ec <play_song+0x96>
- 1d8:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 1dc:	81 11       	cpse	r24, r1
- 1de:	f0 cf       	rjmp	.-32     	; 0x1c0 <play_song+0x6a>
- 1e0:	05 c0       	rjmp	.+10     	; 0x1ec <play_song+0x96>
+ 1c2:	05 c0       	rjmp	.+10     	; 0x1ce <play_song+0x6e>
+ 1c4:	31 96       	adiw	r30, 0x01	; 1
+ 1c6:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 1ca:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 1ce:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 1d2:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 1d6:	80 81       	ld	r24, Z
+ 1d8:	8d 33       	cpi	r24, 0x3D	; 61
+ 1da:	51 f4       	brne	.+20     	; 0x1f0 <play_song+0x90>
+ 1dc:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 1e0:	81 11       	cpse	r24, r1
+ 1e2:	f0 cf       	rjmp	.-32     	; 0x1c4 <play_song+0x64>
+ 1e4:	05 c0       	rjmp	.+10     	; 0x1f0 <play_song+0x90>
 			while (*song == ' ' && song_playing) song++;  // Salteo los espacios
- 1e2:	31 96       	adiw	r30, 0x01	; 1
- 1e4:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 1e8:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 1ec:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 1f0:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 1f4:	80 81       	ld	r24, Z
- 1f6:	80 32       	cpi	r24, 0x20	; 32
- 1f8:	21 f4       	brne	.+8      	; 0x202 <play_song+0xac>
- 1fa:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 1fe:	91 11       	cpse	r25, r1
- 200:	f0 cf       	rjmp	.-32     	; 0x1e2 <play_song+0x8c>
+ 1e6:	31 96       	adiw	r30, 0x01	; 1
+ 1e8:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 1ec:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 1f0:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 1f4:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 1f8:	80 81       	ld	r24, Z
+ 1fa:	80 32       	cpi	r24, 0x20	; 32
+ 1fc:	21 f4       	brne	.+8      	; 0x206 <play_song+0xa6>
+ 1fe:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 202:	91 11       	cpse	r25, r1
+ 204:	f0 cf       	rjmp	.-32     	; 0x1e6 <play_song+0x86>
 			// Si el caracter es un n?mero, seteo la duraci?n
 			if (*song>='0' && *song<='9') duration = *song - '0';
- 202:	80 53       	subi	r24, 0x30	; 48
- 204:	8a 30       	cpi	r24, 0x0A	; 10
- 206:	10 f4       	brcc	.+4      	; 0x20c <play_song+0xb6>
- 208:	80 93 c1 04 	sts	0x04C1, r24	; 0x8004c1 <duration>
+ 206:	80 53       	subi	r24, 0x30	; 48
+ 208:	8a 30       	cpi	r24, 0x0A	; 10
+ 20a:	10 f4       	brcc	.+4      	; 0x210 <play_song+0xb0>
+ 20c:	80 93 89 05 	sts	0x0589, r24	; 0x800589 <duration>
 			song++;                   // Avanzo al pr?ximo caracter
- 20c:	9f 01       	movw	r18, r30
- 20e:	2f 5f       	subi	r18, 0xFF	; 255
- 210:	3f 4f       	sbci	r19, 0xFF	; 255
- 212:	30 93 bb 04 	sts	0x04BB, r19	; 0x8004bb <__data_end+0x1>
- 216:	20 93 ba 04 	sts	0x04BA, r18	; 0x8004ba <__data_end>
+ 210:	9f 01       	movw	r18, r30
+ 212:	2f 5f       	subi	r18, 0xFF	; 255
+ 214:	3f 4f       	sbci	r19, 0xFF	; 255
+ 216:	30 93 83 05 	sts	0x0583, r19	; 0x800583 <__data_end+0x1>
+ 21a:	20 93 82 05 	sts	0x0582, r18	; 0x800582 <__data_end>
 			// Me fijo si el caracter es un n?mero, ya que la diraci?n puede ser de dos d?gitos de largo
 			if (*song>='0' && *song<='9')
- 21a:	81 81       	ldd	r24, Z+1	; 0x01
- 21c:	90 ed       	ldi	r25, 0xD0	; 208
- 21e:	98 0f       	add	r25, r24
- 220:	9a 30       	cpi	r25, 0x0A	; 10
- 222:	b8 f4       	brcc	.+46     	; 0x252 <play_song+0xfc>
+ 21e:	81 81       	ldd	r24, Z+1	; 0x01
+ 220:	90 ed       	ldi	r25, 0xD0	; 208
+ 222:	98 0f       	add	r25, r24
+ 224:	9a 30       	cpi	r25, 0x0A	; 10
+ 226:	b8 f4       	brcc	.+46     	; 0x256 <play_song+0xf6>
 			{ // Multiplico duraci?n por 10 y le agrego el valor del caracter
 				duration = duration*10 + (*song - '0');
- 224:	90 91 c1 04 	lds	r25, 0x04C1	; 0x8004c1 <duration>
- 228:	99 0f       	add	r25, r25
- 22a:	49 2f       	mov	r20, r25
- 22c:	44 0f       	add	r20, r20
- 22e:	44 0f       	add	r20, r20
- 230:	94 0f       	add	r25, r20
- 232:	89 0f       	add	r24, r25
- 234:	80 53       	subi	r24, 0x30	; 48
- 236:	80 93 c1 04 	sts	0x04C1, r24	; 0x8004c1 <duration>
+ 228:	90 91 89 05 	lds	r25, 0x0589	; 0x800589 <duration>
+ 22c:	99 0f       	add	r25, r25
+ 22e:	49 2f       	mov	r20, r25
+ 230:	44 0f       	add	r20, r20
+ 232:	44 0f       	add	r20, r20
+ 234:	94 0f       	add	r25, r20
+ 236:	89 0f       	add	r24, r25
+ 238:	80 53       	subi	r24, 0x30	; 48
+ 23a:	80 93 89 05 	sts	0x0589, r24	; 0x800589 <duration>
 				song++;                 // Avanzo al pr?ximo caracter
- 23a:	2f 5f       	subi	r18, 0xFF	; 255
- 23c:	3f 4f       	sbci	r19, 0xFF	; 255
- 23e:	30 93 bb 04 	sts	0x04BB, r19	; 0x8004bb <__data_end+0x1>
- 242:	20 93 ba 04 	sts	0x04BA, r18	; 0x8004ba <__data_end>
- 246:	05 c0       	rjmp	.+10     	; 0x252 <play_song+0xfc>
+ 23e:	2f 5f       	subi	r18, 0xFF	; 255
+ 240:	3f 4f       	sbci	r19, 0xFF	; 255
+ 242:	30 93 83 05 	sts	0x0583, r19	; 0x800583 <__data_end+0x1>
+ 246:	20 93 82 05 	sts	0x0582, r18	; 0x800582 <__data_end>
+ 24a:	05 c0       	rjmp	.+10     	; 0x256 <play_song+0xf6>
 			}
 			while (*song == ',' && song_playing) song++;  // Salteo ','
- 248:	31 96       	adiw	r30, 0x01	; 1
- 24a:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 24e:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 252:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 256:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 25a:	80 81       	ld	r24, Z
- 25c:	8c 32       	cpi	r24, 0x2C	; 44
- 25e:	21 f4       	brne	.+8      	; 0x268 <play_song+0x112>
- 260:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 264:	81 11       	cpse	r24, r1
- 266:	f0 cf       	rjmp	.-32     	; 0x248 <play_song+0xf2>
+ 24c:	31 96       	adiw	r30, 0x01	; 1
+ 24e:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 252:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 256:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 25a:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 25e:	80 81       	ld	r24, Z
+ 260:	8c 32       	cpi	r24, 0x2C	; 44
+ 262:	21 f4       	brne	.+8      	; 0x26c <play_song+0x10c>
+ 264:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 268:	81 11       	cpse	r24, r1
+ 26a:	f0 cf       	rjmp	.-32     	; 0x24c <play_song+0xec>
 		}
 
 		if (*song == 'o')           // Entra si es el seteo de la octava
- 268:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 26c:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 270:	80 81       	ld	r24, Z
- 272:	8f 36       	cpi	r24, 0x6F	; 111
- 274:	09 f0       	breq	.+2      	; 0x278 <play_song+0x122>
- 276:	44 c0       	rjmp	.+136    	; 0x300 <play_song+0x1aa>
+ 26c:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 270:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 274:	80 81       	ld	r24, Z
+ 276:	8f 36       	cpi	r24, 0x6F	; 111
+ 278:	09 f0       	breq	.+2      	; 0x27c <play_song+0x11c>
+ 27a:	44 c0       	rjmp	.+136    	; 0x304 <play_song+0x1a4>
 		{
 			octave = 0;               // Seteo la octava en cero (temporalmente)
- 278:	10 92 c4 04 	sts	0x04C4, r1	; 0x8004c4 <octave>
+ 27c:	10 92 8c 05 	sts	0x058C, r1	; 0x80058c <octave>
 			song++;                   // Avanzo al pr?ximo caracter
- 27c:	31 96       	adiw	r30, 0x01	; 1
- 27e:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 282:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 280:	31 96       	adiw	r30, 0x01	; 1
+ 282:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 286:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 			while (*song == '=' && song_playing) song++;  // Salteo '='
- 286:	05 c0       	rjmp	.+10     	; 0x292 <play_song+0x13c>
- 288:	31 96       	adiw	r30, 0x01	; 1
- 28a:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 28e:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 292:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 296:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 29a:	80 81       	ld	r24, Z
- 29c:	8d 33       	cpi	r24, 0x3D	; 61
- 29e:	51 f4       	brne	.+20     	; 0x2b4 <play_song+0x15e>
- 2a0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 2a4:	81 11       	cpse	r24, r1
- 2a6:	f0 cf       	rjmp	.-32     	; 0x288 <play_song+0x132>
- 2a8:	05 c0       	rjmp	.+10     	; 0x2b4 <play_song+0x15e>
+ 28a:	05 c0       	rjmp	.+10     	; 0x296 <play_song+0x136>
+ 28c:	31 96       	adiw	r30, 0x01	; 1
+ 28e:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 292:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 296:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 29a:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 29e:	80 81       	ld	r24, Z
+ 2a0:	8d 33       	cpi	r24, 0x3D	; 61
+ 2a2:	51 f4       	brne	.+20     	; 0x2b8 <play_song+0x158>
+ 2a4:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 2a8:	81 11       	cpse	r24, r1
+ 2aa:	f0 cf       	rjmp	.-32     	; 0x28c <play_song+0x12c>
+ 2ac:	05 c0       	rjmp	.+10     	; 0x2b8 <play_song+0x158>
 			while (*song == ' ' && song_playing) song++;  // Salteo los espacios
- 2aa:	31 96       	adiw	r30, 0x01	; 1
- 2ac:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 2b0:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 2b4:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 2b8:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 2bc:	80 81       	ld	r24, Z
- 2be:	80 32       	cpi	r24, 0x20	; 32
- 2c0:	21 f4       	brne	.+8      	; 0x2ca <play_song+0x174>
- 2c2:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 2c6:	91 11       	cpse	r25, r1
- 2c8:	f0 cf       	rjmp	.-32     	; 0x2aa <play_song+0x154>
+ 2ae:	31 96       	adiw	r30, 0x01	; 1
+ 2b0:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 2b4:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 2b8:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 2bc:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 2c0:	80 81       	ld	r24, Z
+ 2c2:	80 32       	cpi	r24, 0x20	; 32
+ 2c4:	21 f4       	brne	.+8      	; 0x2ce <play_song+0x16e>
+ 2c6:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 2ca:	91 11       	cpse	r25, r1
+ 2cc:	f0 cf       	rjmp	.-32     	; 0x2ae <play_song+0x14e>
 			// Si el caracter es un n?mero, seteo la octava
 			if (*song>='0' && *song<='9') octave = *song - '0';
- 2ca:	80 53       	subi	r24, 0x30	; 48
- 2cc:	8a 30       	cpi	r24, 0x0A	; 10
- 2ce:	10 f4       	brcc	.+4      	; 0x2d4 <play_song+0x17e>
- 2d0:	80 93 c4 04 	sts	0x04C4, r24	; 0x8004c4 <octave>
+ 2ce:	80 53       	subi	r24, 0x30	; 48
+ 2d0:	8a 30       	cpi	r24, 0x0A	; 10
+ 2d2:	10 f4       	brcc	.+4      	; 0x2d8 <play_song+0x178>
+ 2d4:	80 93 8c 05 	sts	0x058C, r24	; 0x80058c <octave>
 			song++;                   // Avanzo al pr?ximo caracter
- 2d4:	31 96       	adiw	r30, 0x01	; 1
- 2d6:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 2da:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 2d8:	31 96       	adiw	r30, 0x01	; 1
+ 2da:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 2de:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 			while (*song == ',' && song_playing) song++;  // Salteo ','
- 2de:	05 c0       	rjmp	.+10     	; 0x2ea <play_song+0x194>
- 2e0:	31 96       	adiw	r30, 0x01	; 1
- 2e2:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 2e6:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 2ea:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 2ee:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 2f2:	80 81       	ld	r24, Z
- 2f4:	8c 32       	cpi	r24, 0x2C	; 44
- 2f6:	21 f4       	brne	.+8      	; 0x300 <play_song+0x1aa>
- 2f8:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 2fc:	81 11       	cpse	r24, r1
- 2fe:	f0 cf       	rjmp	.-32     	; 0x2e0 <play_song+0x18a>
+ 2e2:	05 c0       	rjmp	.+10     	; 0x2ee <play_song+0x18e>
+ 2e4:	31 96       	adiw	r30, 0x01	; 1
+ 2e6:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 2ea:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 2ee:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 2f2:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 2f6:	80 81       	ld	r24, Z
+ 2f8:	8c 32       	cpi	r24, 0x2C	; 44
+ 2fa:	21 f4       	brne	.+8      	; 0x304 <play_song+0x1a4>
+ 2fc:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 300:	81 11       	cpse	r24, r1
+ 302:	f0 cf       	rjmp	.-32     	; 0x2e4 <play_song+0x184>
 		}
 		if (*song == 'b')           // Entra si es el seteo del tempo (beats por minuto)
- 300:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 304:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 308:	80 81       	ld	r24, Z
- 30a:	82 36       	cpi	r24, 0x62	; 98
- 30c:	09 f0       	breq	.+2      	; 0x310 <play_song+0x1ba>
- 30e:	93 c0       	rjmp	.+294    	; 0x436 <__EEPROM_REGION_LENGTH__+0x36>
+ 304:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 308:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 30c:	80 81       	ld	r24, Z
+ 30e:	82 36       	cpi	r24, 0x62	; 98
+ 310:	09 f0       	breq	.+2      	; 0x314 <play_song+0x1b4>
+ 312:	93 c0       	rjmp	.+294    	; 0x43a <__EEPROM_REGION_LENGTH__+0x3a>
 		{
 			tempo = 0;                // Seteo el tempo en cero (temporalmente)
- 310:	10 92 c0 04 	sts	0x04C0, r1	; 0x8004c0 <tempo+0x1>
- 314:	10 92 bf 04 	sts	0x04BF, r1	; 0x8004bf <tempo>
+ 314:	10 92 88 05 	sts	0x0588, r1	; 0x800588 <tempo+0x1>
+ 318:	10 92 87 05 	sts	0x0587, r1	; 0x800587 <tempo>
 			song++;                   // Avanzo al pr?ximo caracter
- 318:	31 96       	adiw	r30, 0x01	; 1
- 31a:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 31e:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 31c:	31 96       	adiw	r30, 0x01	; 1
+ 31e:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 322:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 			while (*song == '=' && song_playing) song++;  // Salteo '='
- 322:	05 c0       	rjmp	.+10     	; 0x32e <play_song+0x1d8>
- 324:	31 96       	adiw	r30, 0x01	; 1
- 326:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 32a:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 32e:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 332:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 336:	80 81       	ld	r24, Z
- 338:	8d 33       	cpi	r24, 0x3D	; 61
- 33a:	51 f4       	brne	.+20     	; 0x350 <play_song+0x1fa>
- 33c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 340:	81 11       	cpse	r24, r1
- 342:	f0 cf       	rjmp	.-32     	; 0x324 <play_song+0x1ce>
- 344:	05 c0       	rjmp	.+10     	; 0x350 <play_song+0x1fa>
+ 326:	05 c0       	rjmp	.+10     	; 0x332 <play_song+0x1d2>
+ 328:	31 96       	adiw	r30, 0x01	; 1
+ 32a:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 32e:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 332:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 336:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 33a:	80 81       	ld	r24, Z
+ 33c:	8d 33       	cpi	r24, 0x3D	; 61
+ 33e:	51 f4       	brne	.+20     	; 0x354 <play_song+0x1f4>
+ 340:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 344:	81 11       	cpse	r24, r1
+ 346:	f0 cf       	rjmp	.-32     	; 0x328 <play_song+0x1c8>
+ 348:	05 c0       	rjmp	.+10     	; 0x354 <play_song+0x1f4>
 			while (*song == ' ' && song_playing) song++;  // Salteo los espacios
- 346:	31 96       	adiw	r30, 0x01	; 1
- 348:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 34c:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 350:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 354:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 358:	80 81       	ld	r24, Z
- 35a:	80 32       	cpi	r24, 0x20	; 32
- 35c:	21 f4       	brne	.+8      	; 0x366 <play_song+0x210>
- 35e:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 362:	91 11       	cpse	r25, r1
- 364:	f0 cf       	rjmp	.-32     	; 0x346 <play_song+0x1f0>
+ 34a:	31 96       	adiw	r30, 0x01	; 1
+ 34c:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 350:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 354:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 358:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 35c:	80 81       	ld	r24, Z
+ 35e:	80 32       	cpi	r24, 0x20	; 32
+ 360:	21 f4       	brne	.+8      	; 0x36a <play_song+0x20a>
+ 362:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 366:	91 11       	cpse	r25, r1
+ 368:	f0 cf       	rjmp	.-32     	; 0x34a <play_song+0x1ea>
 			// Ahora leo el seteo del tempo (puede tener 3 d?gitos de largo)
 			if (*song>='0' && *song<='9') tempo = *song - '0';
- 366:	90 ed       	ldi	r25, 0xD0	; 208
- 368:	98 0f       	add	r25, r24
- 36a:	9a 30       	cpi	r25, 0x0A	; 10
- 36c:	30 f4       	brcc	.+12     	; 0x37a <play_song+0x224>
- 36e:	90 e0       	ldi	r25, 0x00	; 0
- 370:	c0 97       	sbiw	r24, 0x30	; 48
- 372:	90 93 c0 04 	sts	0x04C0, r25	; 0x8004c0 <tempo+0x1>
- 376:	80 93 bf 04 	sts	0x04BF, r24	; 0x8004bf <tempo>
+ 36a:	90 ed       	ldi	r25, 0xD0	; 208
+ 36c:	98 0f       	add	r25, r24
+ 36e:	9a 30       	cpi	r25, 0x0A	; 10
+ 370:	30 f4       	brcc	.+12     	; 0x37e <play_song+0x21e>
+ 372:	90 e0       	ldi	r25, 0x00	; 0
+ 374:	c0 97       	sbiw	r24, 0x30	; 48
+ 376:	90 93 88 05 	sts	0x0588, r25	; 0x800588 <tempo+0x1>
+ 37a:	80 93 87 05 	sts	0x0587, r24	; 0x800587 <tempo>
 			song++;                   // Avanzo al pr?ximo caracter
- 37a:	df 01       	movw	r26, r30
- 37c:	11 96       	adiw	r26, 0x01	; 1
- 37e:	b0 93 bb 04 	sts	0x04BB, r27	; 0x8004bb <__data_end+0x1>
- 382:	a0 93 ba 04 	sts	0x04BA, r26	; 0x8004ba <__data_end>
+ 37e:	df 01       	movw	r26, r30
+ 380:	11 96       	adiw	r26, 0x01	; 1
+ 382:	b0 93 83 05 	sts	0x0583, r27	; 0x800583 <__data_end+0x1>
+ 386:	a0 93 82 05 	sts	0x0582, r26	; 0x800582 <__data_end>
 			if (*song>='0' && *song<='9')
- 386:	41 81       	ldd	r20, Z+1	; 0x01
- 388:	80 ed       	ldi	r24, 0xD0	; 208
- 38a:	84 0f       	add	r24, r20
- 38c:	8a 30       	cpi	r24, 0x0A	; 10
- 38e:	08 f0       	brcs	.+2      	; 0x392 <play_song+0x23c>
- 390:	41 c0       	rjmp	.+130    	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
+ 38a:	41 81       	ldd	r20, Z+1	; 0x01
+ 38c:	80 ed       	ldi	r24, 0xD0	; 208
+ 38e:	84 0f       	add	r24, r20
+ 390:	8a 30       	cpi	r24, 0x0A	; 10
+ 392:	08 f0       	brcs	.+2      	; 0x396 <play_song+0x236>
+ 394:	41 c0       	rjmp	.+130    	; 0x418 <__EEPROM_REGION_LENGTH__+0x18>
 			{
 				tempo = tempo*10 + (*song - '0'); // El tempo tiene dos d?gitos
- 392:	20 91 bf 04 	lds	r18, 0x04BF	; 0x8004bf <tempo>
- 396:	30 91 c0 04 	lds	r19, 0x04C0	; 0x8004c0 <tempo+0x1>
- 39a:	c9 01       	movw	r24, r18
- 39c:	88 0f       	add	r24, r24
- 39e:	99 1f       	adc	r25, r25
- 3a0:	22 0f       	add	r18, r18
- 3a2:	33 1f       	adc	r19, r19
+ 396:	20 91 87 05 	lds	r18, 0x0587	; 0x800587 <tempo>
+ 39a:	30 91 88 05 	lds	r19, 0x0588	; 0x800588 <tempo+0x1>
+ 39e:	c9 01       	movw	r24, r18
+ 3a0:	88 0f       	add	r24, r24
+ 3a2:	99 1f       	adc	r25, r25
  3a4:	22 0f       	add	r18, r18
  3a6:	33 1f       	adc	r19, r19
  3a8:	22 0f       	add	r18, r18
  3aa:	33 1f       	adc	r19, r19
- 3ac:	82 0f       	add	r24, r18
- 3ae:	93 1f       	adc	r25, r19
- 3b0:	84 0f       	add	r24, r20
- 3b2:	91 1d       	adc	r25, r1
- 3b4:	c0 97       	sbiw	r24, 0x30	; 48
- 3b6:	90 93 c0 04 	sts	0x04C0, r25	; 0x8004c0 <tempo+0x1>
- 3ba:	80 93 bf 04 	sts	0x04BF, r24	; 0x8004bf <tempo>
+ 3ac:	22 0f       	add	r18, r18
+ 3ae:	33 1f       	adc	r19, r19
+ 3b0:	82 0f       	add	r24, r18
+ 3b2:	93 1f       	adc	r25, r19
+ 3b4:	84 0f       	add	r24, r20
+ 3b6:	91 1d       	adc	r25, r1
+ 3b8:	c0 97       	sbiw	r24, 0x30	; 48
+ 3ba:	90 93 88 05 	sts	0x0588, r25	; 0x800588 <tempo+0x1>
+ 3be:	80 93 87 05 	sts	0x0587, r24	; 0x800587 <tempo>
 				song++;                 // Avanzo al pr?ximo caracter
- 3be:	9d 01       	movw	r18, r26
- 3c0:	2f 5f       	subi	r18, 0xFF	; 255
- 3c2:	3f 4f       	sbci	r19, 0xFF	; 255
- 3c4:	30 93 bb 04 	sts	0x04BB, r19	; 0x8004bb <__data_end+0x1>
- 3c8:	20 93 ba 04 	sts	0x04BA, r18	; 0x8004ba <__data_end>
+ 3c2:	9d 01       	movw	r18, r26
+ 3c4:	2f 5f       	subi	r18, 0xFF	; 255
+ 3c6:	3f 4f       	sbci	r19, 0xFF	; 255
+ 3c8:	30 93 83 05 	sts	0x0583, r19	; 0x800583 <__data_end+0x1>
+ 3cc:	20 93 82 05 	sts	0x0582, r18	; 0x800582 <__data_end>
 				if (*song>='0' && *song<='9')
- 3cc:	11 96       	adiw	r26, 0x01	; 1
- 3ce:	4c 91       	ld	r20, X
- 3d0:	50 ed       	ldi	r21, 0xD0	; 208
- 3d2:	54 0f       	add	r21, r20
- 3d4:	5a 30       	cpi	r21, 0x0A	; 10
- 3d6:	f0 f4       	brcc	.+60     	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
+ 3d0:	11 96       	adiw	r26, 0x01	; 1
+ 3d2:	4c 91       	ld	r20, X
+ 3d4:	50 ed       	ldi	r21, 0xD0	; 208
+ 3d6:	54 0f       	add	r21, r20
+ 3d8:	5a 30       	cpi	r21, 0x0A	; 10
+ 3da:	f0 f4       	brcc	.+60     	; 0x418 <__EEPROM_REGION_LENGTH__+0x18>
 				{
 					tempo = tempo*10 + (*song - '0'); // El tempo tiene tres d?gitos
- 3d8:	bc 01       	movw	r22, r24
- 3da:	66 0f       	add	r22, r22
- 3dc:	77 1f       	adc	r23, r23
- 3de:	88 0f       	add	r24, r24
- 3e0:	99 1f       	adc	r25, r25
+ 3dc:	bc 01       	movw	r22, r24
+ 3de:	66 0f       	add	r22, r22
+ 3e0:	77 1f       	adc	r23, r23
  3e2:	88 0f       	add	r24, r24
  3e4:	99 1f       	adc	r25, r25
  3e6:	88 0f       	add	r24, r24
  3e8:	99 1f       	adc	r25, r25
- 3ea:	86 0f       	add	r24, r22
- 3ec:	97 1f       	adc	r25, r23
- 3ee:	84 0f       	add	r24, r20
- 3f0:	91 1d       	adc	r25, r1
- 3f2:	c0 97       	sbiw	r24, 0x30	; 48
- 3f4:	90 93 c0 04 	sts	0x04C0, r25	; 0x8004c0 <tempo+0x1>
- 3f8:	80 93 bf 04 	sts	0x04BF, r24	; 0x8004bf <tempo>
+ 3ea:	88 0f       	add	r24, r24
+ 3ec:	99 1f       	adc	r25, r25
+ 3ee:	86 0f       	add	r24, r22
+ 3f0:	97 1f       	adc	r25, r23
+ 3f2:	84 0f       	add	r24, r20
+ 3f4:	91 1d       	adc	r25, r1
+ 3f6:	c0 97       	sbiw	r24, 0x30	; 48
+ 3f8:	90 93 88 05 	sts	0x0588, r25	; 0x800588 <tempo+0x1>
+ 3fc:	80 93 87 05 	sts	0x0587, r24	; 0x800587 <tempo>
 					song++;               // Avanzo al pr?ximo caracter
- 3fc:	2f 5f       	subi	r18, 0xFF	; 255
- 3fe:	3f 4f       	sbci	r19, 0xFF	; 255
- 400:	30 93 bb 04 	sts	0x04BB, r19	; 0x8004bb <__data_end+0x1>
- 404:	20 93 ba 04 	sts	0x04BA, r18	; 0x8004ba <__data_end>
- 408:	05 c0       	rjmp	.+10     	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
+ 400:	2f 5f       	subi	r18, 0xFF	; 255
+ 402:	3f 4f       	sbci	r19, 0xFF	; 255
+ 404:	30 93 83 05 	sts	0x0583, r19	; 0x800583 <__data_end+0x1>
+ 408:	20 93 82 05 	sts	0x0582, r18	; 0x800582 <__data_end>
+ 40c:	05 c0       	rjmp	.+10     	; 0x418 <__EEPROM_REGION_LENGTH__+0x18>
 				}
 			}
 			while (*song == ',' && song_playing) song++;  // Salteo ','
- 40a:	31 96       	adiw	r30, 0x01	; 1
- 40c:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 410:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 414:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 418:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 41c:	80 81       	ld	r24, Z
- 41e:	8c 32       	cpi	r24, 0x2C	; 44
- 420:	51 f4       	brne	.+20     	; 0x436 <__EEPROM_REGION_LENGTH__+0x36>
- 422:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 426:	81 11       	cpse	r24, r1
- 428:	f0 cf       	rjmp	.-32     	; 0x40a <__EEPROM_REGION_LENGTH__+0xa>
- 42a:	05 c0       	rjmp	.+10     	; 0x436 <__EEPROM_REGION_LENGTH__+0x36>
+ 40e:	31 96       	adiw	r30, 0x01	; 1
+ 410:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 414:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 418:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 41c:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 420:	80 81       	ld	r24, Z
+ 422:	8c 32       	cpi	r24, 0x2C	; 44
+ 424:	51 f4       	brne	.+20     	; 0x43a <__EEPROM_REGION_LENGTH__+0x3a>
+ 426:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 42a:	81 11       	cpse	r24, r1
+ 42c:	f0 cf       	rjmp	.-32     	; 0x40e <__EEPROM_REGION_LENGTH__+0xe>
+ 42e:	05 c0       	rjmp	.+10     	; 0x43a <__EEPROM_REGION_LENGTH__+0x3a>
 		}
 		while (*song == ',' && song_playing) song++;    // Salteo ','
- 42c:	31 96       	adiw	r30, 0x01	; 1
- 42e:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 432:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 436:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 43a:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 43e:	80 81       	ld	r24, Z
- 440:	8c 32       	cpi	r24, 0x2C	; 44
- 442:	21 f4       	brne	.+8      	; 0x44c <__EEPROM_REGION_LENGTH__+0x4c>
- 444:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 448:	81 11       	cpse	r24, r1
- 44a:	f0 cf       	rjmp	.-32     	; 0x42c <__EEPROM_REGION_LENGTH__+0x2c>
+ 430:	31 96       	adiw	r30, 0x01	; 1
+ 432:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 436:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 43a:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 43e:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 442:	80 81       	ld	r24, Z
+ 444:	8c 32       	cpi	r24, 0x2C	; 44
+ 446:	21 f4       	brne	.+8      	; 0x450 <__EEPROM_REGION_LENGTH__+0x50>
+ 448:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 44c:	81 11       	cpse	r24, r1
+ 44e:	f0 cf       	rjmp	.-32     	; 0x430 <__EEPROM_REGION_LENGTH__+0x30>
 	duration = 4;                 // Duraci?n est?ndar = 4/4 = 1 beat
 	tempo = 63;                   // Tempo est?ndar = 63 bpm
 	octave = 6;                   // Octava est?ndar = 6th
 	while (*song != ':' && song_playing) song++;  // Busca el primer ':'
 	song++;                       // Saltea el primer ':'
 	while (*song!=':' && song_playing)            // Repite hasta encontrar ':'
- 44c:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 450:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 454:	80 81       	ld	r24, Z
- 456:	8a 33       	cpi	r24, 0x3A	; 58
- 458:	21 f0       	breq	.+8      	; 0x462 <__EEPROM_REGION_LENGTH__+0x62>
- 45a:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 45e:	91 11       	cpse	r25, r1
- 460:	a4 ce       	rjmp	.-696    	; 0x1aa <play_song+0x54>
+ 450:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 454:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 458:	80 81       	ld	r24, Z
+ 45a:	8a 33       	cpi	r24, 0x3A	; 58
+ 45c:	21 f0       	breq	.+8      	; 0x466 <__EEPROM_REGION_LENGTH__+0x66>
+ 45e:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 462:	91 11       	cpse	r25, r1
+ 464:	a4 ce       	rjmp	.-696    	; 0x1ae <play_song+0x4e>
 			}
 			while (*song == ',' && song_playing) song++;  // Salteo ','
 		}
 		while (*song == ',' && song_playing) song++;    // Salteo ','
 	}
 	song++;                       // Avanzo al pr?ximo caracter
- 462:	31 96       	adiw	r30, 0x01	; 1
- 464:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 468:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 466:	31 96       	adiw	r30, 0x01	; 1
+ 468:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 46c:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 	// read the musical notes
 	while (*song && song_playing)                 // Repito hasta que el caracter sea null
- 46c:	e0 c0       	rjmp	.+448    	; 0x62e <__EEPROM_REGION_LENGTH__+0x22e>
+ 470:	e0 c0       	rjmp	.+448    	; 0x632 <__EEPROM_REGION_LENGTH__+0x232>
 	{
 		current_note = 255;         // Nota por defecto = pausa
 		temp_octave = octave;       // Seteo la octava a la por defecto de la canci?n
- 46e:	c0 91 c4 04 	lds	r28, 0x04C4	; 0x8004c4 <octave>
+ 472:	c0 91 8c 05 	lds	r28, 0x058C	; 0x80058c <octave>
 		temp_duration = duration;   // Seteo la duraci?n a la por defecto de la canci?n
- 472:	00 91 c1 04 	lds	r16, 0x04C1	; 0x8004c1 <duration>
+ 476:	00 91 89 05 	lds	r16, 0x0589	; 0x800589 <duration>
 		dot_flag = 0;               // Borro el flag de detecci?n de punto
 		// Busco un prefijo de duraci?n
 		if (*song>='0' && *song<='9')
- 476:	80 53       	subi	r24, 0x30	; 48
- 478:	8a 30       	cpi	r24, 0x0A	; 10
- 47a:	e0 f4       	brcc	.+56     	; 0x4b4 <__EEPROM_REGION_LENGTH__+0xb4>
+ 47a:	80 53       	subi	r24, 0x30	; 48
+ 47c:	8a 30       	cpi	r24, 0x0A	; 10
+ 47e:	e0 f4       	brcc	.+56     	; 0x4b8 <__EEPROM_REGION_LENGTH__+0xb8>
 		{
 			temp_duration = *song - '0';
 			song++;
- 47c:	af 01       	movw	r20, r30
- 47e:	4f 5f       	subi	r20, 0xFF	; 255
- 480:	5f 4f       	sbci	r21, 0xFF	; 255
- 482:	50 93 bb 04 	sts	0x04BB, r21	; 0x8004bb <__data_end+0x1>
- 486:	40 93 ba 04 	sts	0x04BA, r20	; 0x8004ba <__data_end>
+ 480:	af 01       	movw	r20, r30
+ 482:	4f 5f       	subi	r20, 0xFF	; 255
+ 484:	5f 4f       	sbci	r21, 0xFF	; 255
+ 486:	50 93 83 05 	sts	0x0583, r21	; 0x800583 <__data_end+0x1>
+ 48a:	40 93 82 05 	sts	0x0582, r20	; 0x800582 <__data_end>
 			if (*song>='0' && *song<='9')
- 48a:	91 81       	ldd	r25, Z+1	; 0x01
- 48c:	20 ed       	ldi	r18, 0xD0	; 208
- 48e:	29 0f       	add	r18, r25
- 490:	2a 30       	cpi	r18, 0x0A	; 10
- 492:	78 f4       	brcc	.+30     	; 0x4b2 <__EEPROM_REGION_LENGTH__+0xb2>
+ 48e:	91 81       	ldd	r25, Z+1	; 0x01
+ 490:	20 ed       	ldi	r18, 0xD0	; 208
+ 492:	29 0f       	add	r18, r25
+ 494:	2a 30       	cpi	r18, 0x0A	; 10
+ 496:	78 f4       	brcc	.+30     	; 0x4b6 <__EEPROM_REGION_LENGTH__+0xb6>
 			{
 				temp_duration = temp_duration*10 + (*song - '0');
- 494:	88 0f       	add	r24, r24
- 496:	08 2f       	mov	r16, r24
- 498:	00 0f       	add	r16, r16
- 49a:	00 0f       	add	r16, r16
- 49c:	80 0f       	add	r24, r16
- 49e:	08 2f       	mov	r16, r24
- 4a0:	09 0f       	add	r16, r25
- 4a2:	00 53       	subi	r16, 0x30	; 48
+ 498:	88 0f       	add	r24, r24
+ 49a:	08 2f       	mov	r16, r24
+ 49c:	00 0f       	add	r16, r16
+ 49e:	00 0f       	add	r16, r16
+ 4a0:	80 0f       	add	r24, r16
+ 4a2:	08 2f       	mov	r16, r24
+ 4a4:	09 0f       	add	r16, r25
+ 4a6:	00 53       	subi	r16, 0x30	; 48
 				song++;
- 4a4:	4f 5f       	subi	r20, 0xFF	; 255
- 4a6:	5f 4f       	sbci	r21, 0xFF	; 255
- 4a8:	50 93 bb 04 	sts	0x04BB, r21	; 0x8004bb <__data_end+0x1>
- 4ac:	40 93 ba 04 	sts	0x04BA, r20	; 0x8004ba <__data_end>
- 4b0:	01 c0       	rjmp	.+2      	; 0x4b4 <__EEPROM_REGION_LENGTH__+0xb4>
+ 4a8:	4f 5f       	subi	r20, 0xFF	; 255
+ 4aa:	5f 4f       	sbci	r21, 0xFF	; 255
+ 4ac:	50 93 83 05 	sts	0x0583, r21	; 0x800583 <__data_end+0x1>
+ 4b0:	40 93 82 05 	sts	0x0582, r20	; 0x800582 <__data_end>
+ 4b4:	01 c0       	rjmp	.+2      	; 0x4b8 <__EEPROM_REGION_LENGTH__+0xb8>
 		temp_duration = duration;   // Seteo la duraci?n a la por defecto de la canci?n
 		dot_flag = 0;               // Borro el flag de detecci?n de punto
 		// Busco un prefijo de duraci?n
 		if (*song>='0' && *song<='9')
 		{
 			temp_duration = *song - '0';
- 4b2:	08 2f       	mov	r16, r24
+ 4b6:	08 2f       	mov	r16, r24
 				temp_duration = temp_duration*10 + (*song - '0');
 				song++;
 			}
 		}
 		// Busco una nota
 		switch (*song)
- 4b4:	20 91 ba 04 	lds	r18, 0x04BA	; 0x8004ba <__data_end>
- 4b8:	30 91 bb 04 	lds	r19, 0x04BB	; 0x8004bb <__data_end+0x1>
- 4bc:	d9 01       	movw	r26, r18
- 4be:	ec 91       	ld	r30, X
- 4c0:	8e 2f       	mov	r24, r30
- 4c2:	90 e0       	ldi	r25, 0x00	; 0
- 4c4:	fc 01       	movw	r30, r24
- 4c6:	e1 56       	subi	r30, 0x61	; 97
- 4c8:	f1 09       	sbc	r31, r1
- 4ca:	e7 30       	cpi	r30, 0x07	; 7
- 4cc:	f1 05       	cpc	r31, r1
- 4ce:	20 f4       	brcc	.+8      	; 0x4d8 <__EEPROM_REGION_LENGTH__+0xd8>
- 4d0:	ec 5c       	subi	r30, 0xCC	; 204
- 4d2:	ff 4f       	sbci	r31, 0xFF	; 255
- 4d4:	0c 94 2e 06 	jmp	0xc5c	; 0xc5c <__tablejump2__>
+ 4b8:	20 91 82 05 	lds	r18, 0x0582	; 0x800582 <__data_end>
+ 4bc:	30 91 83 05 	lds	r19, 0x0583	; 0x800583 <__data_end+0x1>
+ 4c0:	d9 01       	movw	r26, r18
+ 4c2:	ec 91       	ld	r30, X
+ 4c4:	8e 2f       	mov	r24, r30
+ 4c6:	90 e0       	ldi	r25, 0x00	; 0
+ 4c8:	fc 01       	movw	r30, r24
+ 4ca:	e1 56       	subi	r30, 0x61	; 97
+ 4cc:	f1 09       	sbc	r31, r1
+ 4ce:	e7 30       	cpi	r30, 0x07	; 7
+ 4d0:	f1 05       	cpc	r31, r1
+ 4d2:	20 f4       	brcc	.+8      	; 0x4dc <__EEPROM_REGION_LENGTH__+0xdc>
+ 4d4:	ec 5c       	subi	r30, 0xCC	; 204
+ 4d6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4d8:	0c 94 28 06 	jmp	0xc50	; 0xc50 <__tablejump2__>
 	}
 	song++;                       // Avanzo al pr?ximo caracter
 	// read the musical notes
 	while (*song && song_playing)                 // Repito hasta que el caracter sea null
 	{
 		current_note = 255;         // Nota por defecto = pausa
- 4d8:	df ef       	ldi	r29, 0xFF	; 255
- 4da:	0d c0       	rjmp	.+26     	; 0x4f6 <__EEPROM_REGION_LENGTH__+0xf6>
+ 4dc:	df ef       	ldi	r29, 0xFF	; 255
+ 4de:	0d c0       	rjmp	.+26     	; 0x4fa <__EEPROM_REGION_LENGTH__+0xfa>
 		}
 		// Busco una nota
 		switch (*song)
 		{
 			case 'c': current_note = 0; break;    // C (do)
 			case 'd': current_note = 2; break;    // D (re)
- 4dc:	d2 e0       	ldi	r29, 0x02	; 2
- 4de:	0b c0       	rjmp	.+22     	; 0x4f6 <__EEPROM_REGION_LENGTH__+0xf6>
+ 4e0:	d2 e0       	ldi	r29, 0x02	; 2
+ 4e2:	0b c0       	rjmp	.+22     	; 0x4fa <__EEPROM_REGION_LENGTH__+0xfa>
 			case 'e': current_note = 4; break;    // E (mi)
- 4e0:	d4 e0       	ldi	r29, 0x04	; 4
- 4e2:	09 c0       	rjmp	.+18     	; 0x4f6 <__EEPROM_REGION_LENGTH__+0xf6>
+ 4e4:	d4 e0       	ldi	r29, 0x04	; 4
+ 4e6:	09 c0       	rjmp	.+18     	; 0x4fa <__EEPROM_REGION_LENGTH__+0xfa>
 			case 'f': current_note = 5; break;    // F (fa)
- 4e4:	d5 e0       	ldi	r29, 0x05	; 5
- 4e6:	07 c0       	rjmp	.+14     	; 0x4f6 <__EEPROM_REGION_LENGTH__+0xf6>
+ 4e8:	d5 e0       	ldi	r29, 0x05	; 5
+ 4ea:	07 c0       	rjmp	.+14     	; 0x4fa <__EEPROM_REGION_LENGTH__+0xfa>
 			case 'g': current_note = 7; break;    // G (sol)
- 4e8:	d7 e0       	ldi	r29, 0x07	; 7
- 4ea:	05 c0       	rjmp	.+10     	; 0x4f6 <__EEPROM_REGION_LENGTH__+0xf6>
+ 4ec:	d7 e0       	ldi	r29, 0x07	; 7
+ 4ee:	05 c0       	rjmp	.+10     	; 0x4fa <__EEPROM_REGION_LENGTH__+0xfa>
 			case 'a': current_note = 9; break;    // A (la)
- 4ec:	d9 e0       	ldi	r29, 0x09	; 9
- 4ee:	03 c0       	rjmp	.+6      	; 0x4f6 <__EEPROM_REGION_LENGTH__+0xf6>
+ 4f0:	d9 e0       	ldi	r29, 0x09	; 9
+ 4f2:	03 c0       	rjmp	.+6      	; 0x4fa <__EEPROM_REGION_LENGTH__+0xfa>
 			case 'b': current_note = 11; break;   // B (si)
- 4f0:	db e0       	ldi	r29, 0x0B	; 11
- 4f2:	01 c0       	rjmp	.+2      	; 0x4f6 <__EEPROM_REGION_LENGTH__+0xf6>
+ 4f4:	db e0       	ldi	r29, 0x0B	; 11
+ 4f6:	01 c0       	rjmp	.+2      	; 0x4fa <__EEPROM_REGION_LENGTH__+0xfa>
 			}
 		}
 		// Busco una nota
 		switch (*song)
 		{
 			case 'c': current_note = 0; break;    // C (do)
- 4f4:	d0 e0       	ldi	r29, 0x00	; 0
+ 4f8:	d0 e0       	ldi	r29, 0x00	; 0
 			case 'g': current_note = 7; break;    // G (sol)
 			case 'a': current_note = 9; break;    // A (la)
 			case 'b': current_note = 11; break;   // B (si)
 			case 'p': current_note = 255; break;  // pausa
 		}
 		song++;                     // Avanzo al pr?ximo caracter
- 4f6:	c9 01       	movw	r24, r18
- 4f8:	01 96       	adiw	r24, 0x01	; 1
- 4fa:	90 93 bb 04 	sts	0x04BB, r25	; 0x8004bb <__data_end+0x1>
- 4fe:	80 93 ba 04 	sts	0x04BA, r24	; 0x8004ba <__data_end>
+ 4fa:	c9 01       	movw	r24, r18
+ 4fc:	01 96       	adiw	r24, 0x01	; 1
+ 4fe:	90 93 83 05 	sts	0x0583, r25	; 0x800583 <__data_end+0x1>
+ 502:	80 93 82 05 	sts	0x0582, r24	; 0x800582 <__data_end>
 		// Busco un '#' siguiendo la nota
 		if (*song=='#')
- 502:	f9 01       	movw	r30, r18
- 504:	21 81       	ldd	r18, Z+1	; 0x01
- 506:	23 32       	cpi	r18, 0x23	; 35
- 508:	31 f4       	brne	.+12     	; 0x516 <__EEPROM_REGION_LENGTH__+0x116>
+ 506:	f9 01       	movw	r30, r18
+ 508:	21 81       	ldd	r18, Z+1	; 0x01
+ 50a:	23 32       	cpi	r18, 0x23	; 35
+ 50c:	31 f4       	brne	.+12     	; 0x51a <__EEPROM_REGION_LENGTH__+0x11a>
 		{
 			current_note++;   // Incremento la nota (A->A#, C->C#, D->D#, F->F#, G->G#)
- 50a:	df 5f       	subi	r29, 0xFF	; 255
+ 50e:	df 5f       	subi	r29, 0xFF	; 255
 			song++;                   // Avanzo al pr?ximo caracter
- 50c:	01 96       	adiw	r24, 0x01	; 1
- 50e:	90 93 bb 04 	sts	0x04BB, r25	; 0x8004bb <__data_end+0x1>
- 512:	80 93 ba 04 	sts	0x04BA, r24	; 0x8004ba <__data_end>
+ 510:	01 96       	adiw	r24, 0x01	; 1
+ 512:	90 93 83 05 	sts	0x0583, r25	; 0x800583 <__data_end+0x1>
+ 516:	80 93 82 05 	sts	0x0582, r24	; 0x800582 <__data_end>
 
 
 
 
 		// Busco '.' (extiende la duraci?n de la nota un 50%)
 		if (*song=='.')
- 516:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 51a:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 51e:	80 81       	ld	r24, Z
- 520:	8e 32       	cpi	r24, 0x2E	; 46
- 522:	41 f4       	brne	.+16     	; 0x534 <__EEPROM_REGION_LENGTH__+0x134>
+ 51a:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 51e:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 522:	80 81       	ld	r24, Z
+ 524:	8e 32       	cpi	r24, 0x2E	; 46
+ 526:	41 f4       	brne	.+16     	; 0x538 <__EEPROM_REGION_LENGTH__+0x138>
 		{
 			dot_flag = 1;             // Si se encuentra '.', seteo el flag
 			song++;                   // Avanzo al pr?ximo caracter
- 524:	31 96       	adiw	r30, 0x01	; 1
- 526:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 52a:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 528:	31 96       	adiw	r30, 0x01	; 1
+ 52a:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 52e:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 
 
 		// Busco '.' (extiende la duraci?n de la nota un 50%)
 		if (*song=='.')
 		{
 			dot_flag = 1;             // Si se encuentra '.', seteo el flag
- 52e:	ff 24       	eor	r15, r15
- 530:	f3 94       	inc	r15
- 532:	01 c0       	rjmp	.+2      	; 0x536 <__EEPROM_REGION_LENGTH__+0x136>
+ 532:	ff 24       	eor	r15, r15
+ 534:	f3 94       	inc	r15
+ 536:	01 c0       	rjmp	.+2      	; 0x53a <__EEPROM_REGION_LENGTH__+0x13a>
 	while (*song && song_playing)                 // Repito hasta que el caracter sea null
 	{
 		current_note = 255;         // Nota por defecto = pausa
 		temp_octave = octave;       // Seteo la octava a la por defecto de la canci?n
 		temp_duration = duration;   // Seteo la duraci?n a la por defecto de la canci?n
 		dot_flag = 0;               // Borro el flag de detecci?n de punto
- 534:	f1 2c       	mov	r15, r1
+ 538:	f1 2c       	mov	r15, r1
 		{
 			dot_flag = 1;             // Si se encuentra '.', seteo el flag
 			song++;                   // Avanzo al pr?ximo caracter
 		}
 		// Busco un sufijo de una octava
 		if (*song>='0' && *song<='9')
- 536:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 53a:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 53e:	80 81       	ld	r24, Z
- 540:	80 53       	subi	r24, 0x30	; 48
- 542:	8a 30       	cpi	r24, 0x0A	; 10
- 544:	30 f4       	brcc	.+12     	; 0x552 <__EEPROM_REGION_LENGTH__+0x152>
+ 53a:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 53e:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 542:	80 81       	ld	r24, Z
+ 544:	80 53       	subi	r24, 0x30	; 48
+ 546:	8a 30       	cpi	r24, 0x0A	; 10
+ 548:	30 f4       	brcc	.+12     	; 0x556 <__EEPROM_REGION_LENGTH__+0x156>
 		{
 			temp_octave = *song - '0';// Seteo la octava en consecuencia
 			song++;                   // Avanzo al pr?ximo caracter
- 546:	31 96       	adiw	r30, 0x01	; 1
- 548:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 54c:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 54a:	31 96       	adiw	r30, 0x01	; 1
+ 54c:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 550:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 			song++;                   // Avanzo al pr?ximo caracter
 		}
 		// Busco un sufijo de una octava
 		if (*song>='0' && *song<='9')
 		{
 			temp_octave = *song - '0';// Seteo la octava en consecuencia
- 550:	c8 2f       	mov	r28, r24
+ 554:	c8 2f       	mov	r28, r24
 			song++;                   // Avanzo al pr?ximo caracter
 		}
 		if (*song=='.') // Un punto puede ser encontrado incluso despu?s de una octava
- 552:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 556:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 55a:	80 81       	ld	r24, Z
- 55c:	8e 32       	cpi	r24, 0x2E	; 46
- 55e:	69 f4       	brne	.+26     	; 0x57a <__EEPROM_REGION_LENGTH__+0x17a>
+ 556:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 55a:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 55e:	80 81       	ld	r24, Z
+ 560:	8e 32       	cpi	r24, 0x2E	; 46
+ 562:	69 f4       	brne	.+26     	; 0x57e <__EEPROM_REGION_LENGTH__+0x17e>
 		{
 			dot_flag = 1;             // Si se encuentra '.', seteo el flag
 			song++;                   // Avanzo al pr?ximo caracter
- 560:	31 96       	adiw	r30, 0x01	; 1
- 562:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 566:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
+ 564:	31 96       	adiw	r30, 0x01	; 1
+ 566:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 56a:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
 			temp_octave = *song - '0';// Seteo la octava en consecuencia
 			song++;                   // Avanzo al pr?ximo caracter
 		}
 		if (*song=='.') // Un punto puede ser encontrado incluso despu?s de una octava
 		{
 			dot_flag = 1;             // Si se encuentra '.', seteo el flag
- 56a:	ff 24       	eor	r15, r15
- 56c:	f3 94       	inc	r15
- 56e:	05 c0       	rjmp	.+10     	; 0x57a <__EEPROM_REGION_LENGTH__+0x17a>
+ 56e:	ff 24       	eor	r15, r15
+ 570:	f3 94       	inc	r15
+ 572:	05 c0       	rjmp	.+10     	; 0x57e <__EEPROM_REGION_LENGTH__+0x17e>
 			song++;                   // Avanzo al pr?ximo caracter
 		}
 		while (*song == ',' && song_playing) song++;    // Salteo ','
- 570:	31 96       	adiw	r30, 0x01	; 1
- 572:	f0 93 bb 04 	sts	0x04BB, r31	; 0x8004bb <__data_end+0x1>
- 576:	e0 93 ba 04 	sts	0x04BA, r30	; 0x8004ba <__data_end>
- 57a:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 57e:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 582:	80 81       	ld	r24, Z
- 584:	8c 32       	cpi	r24, 0x2C	; 44
- 586:	21 f4       	brne	.+8      	; 0x590 <__EEPROM_REGION_LENGTH__+0x190>
- 588:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 58c:	81 11       	cpse	r24, r1
- 58e:	f0 cf       	rjmp	.-32     	; 0x570 <__EEPROM_REGION_LENGTH__+0x170>
+ 574:	31 96       	adiw	r30, 0x01	; 1
+ 576:	f0 93 83 05 	sts	0x0583, r31	; 0x800583 <__data_end+0x1>
+ 57a:	e0 93 82 05 	sts	0x0582, r30	; 0x800582 <__data_end>
+ 57e:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 582:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 586:	80 81       	ld	r24, Z
+ 588:	8c 32       	cpi	r24, 0x2C	; 44
+ 58a:	21 f4       	brne	.+8      	; 0x594 <__EEPROM_REGION_LENGTH__+0x194>
+ 58c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 590:	81 11       	cpse	r24, r1
+ 592:	f0 cf       	rjmp	.-32     	; 0x574 <__EEPROM_REGION_LENGTH__+0x174>
 		// Calculo la duraci?n de la nota
 		calc_duration = (60000/tempo)/(temp_duration);
- 590:	20 91 bf 04 	lds	r18, 0x04BF	; 0x8004bf <tempo>
- 594:	30 91 c0 04 	lds	r19, 0x04C0	; 0x8004c0 <tempo+0x1>
- 598:	40 e0       	ldi	r20, 0x00	; 0
- 59a:	50 e0       	ldi	r21, 0x00	; 0
- 59c:	60 e6       	ldi	r22, 0x60	; 96
- 59e:	7a ee       	ldi	r23, 0xEA	; 234
- 5a0:	80 e0       	ldi	r24, 0x00	; 0
- 5a2:	90 e0       	ldi	r25, 0x00	; 0
- 5a4:	0e 94 0f 06 	call	0xc1e	; 0xc1e <__divmodsi4>
- 5a8:	ca 01       	movw	r24, r20
- 5aa:	b9 01       	movw	r22, r18
- 5ac:	20 2f       	mov	r18, r16
- 5ae:	30 e0       	ldi	r19, 0x00	; 0
- 5b0:	40 e0       	ldi	r20, 0x00	; 0
- 5b2:	50 e0       	ldi	r21, 0x00	; 0
- 5b4:	0e 94 0f 06 	call	0xc1e	; 0xc1e <__divmodsi4>
+ 594:	20 91 87 05 	lds	r18, 0x0587	; 0x800587 <tempo>
+ 598:	30 91 88 05 	lds	r19, 0x0588	; 0x800588 <tempo+0x1>
+ 59c:	40 e0       	ldi	r20, 0x00	; 0
+ 59e:	50 e0       	ldi	r21, 0x00	; 0
+ 5a0:	60 e6       	ldi	r22, 0x60	; 96
+ 5a2:	7a ee       	ldi	r23, 0xEA	; 234
+ 5a4:	80 e0       	ldi	r24, 0x00	; 0
+ 5a6:	90 e0       	ldi	r25, 0x00	; 0
+ 5a8:	0e 94 09 06 	call	0xc12	; 0xc12 <__divmodsi4>
+ 5ac:	ca 01       	movw	r24, r20
+ 5ae:	b9 01       	movw	r22, r18
+ 5b0:	20 2f       	mov	r18, r16
+ 5b2:	30 e0       	ldi	r19, 0x00	; 0
+ 5b4:	40 e0       	ldi	r20, 0x00	; 0
+ 5b6:	50 e0       	ldi	r21, 0x00	; 0
+ 5b8:	0e 94 09 06 	call	0xc12	; 0xc12 <__divmodsi4>
 		calc_duration *= 4;         // La nota completa tiene cuatro beats
- 5b8:	22 0f       	add	r18, r18
- 5ba:	33 1f       	adc	r19, r19
  5bc:	22 0f       	add	r18, r18
  5be:	33 1f       	adc	r19, r19
+ 5c0:	22 0f       	add	r18, r18
+ 5c2:	33 1f       	adc	r19, r19
 		// Chequeo si el flag de punto est? activado, de ser as?, extiendo la duraci?n en un 50%
 		if (dot_flag) calc_duration = (calc_duration*3)/2;
- 5c0:	ff 20       	and	r15, r15
- 5c2:	39 f0       	breq	.+14     	; 0x5d2 <__EEPROM_REGION_LENGTH__+0x1d2>
- 5c4:	b9 01       	movw	r22, r18
- 5c6:	66 0f       	add	r22, r22
- 5c8:	77 1f       	adc	r23, r23
- 5ca:	26 0f       	add	r18, r22
- 5cc:	37 1f       	adc	r19, r23
- 5ce:	36 95       	lsr	r19
- 5d0:	27 95       	ror	r18
+ 5c4:	ff 20       	and	r15, r15
+ 5c6:	39 f0       	breq	.+14     	; 0x5d6 <__EEPROM_REGION_LENGTH__+0x1d6>
+ 5c8:	b9 01       	movw	r22, r18
+ 5ca:	66 0f       	add	r22, r22
+ 5cc:	77 1f       	adc	r23, r23
+ 5ce:	26 0f       	add	r18, r22
+ 5d0:	37 1f       	adc	r19, r23
+ 5d2:	36 95       	lsr	r19
+ 5d4:	27 95       	ror	r18
 		// Si la nota actual NO es una pausa, reproduzco la nota usando la funci?n sound
 		if (current_note<255) sound(note[temp_octave-4][current_note],calc_duration);
- 5d2:	df 3f       	cpi	r29, 0xFF	; 255
- 5d4:	c1 f0       	breq	.+48     	; 0x606 <__EEPROM_REGION_LENGTH__+0x206>
- 5d6:	8c 2f       	mov	r24, r28
- 5d8:	90 e0       	ldi	r25, 0x00	; 0
- 5da:	04 97       	sbiw	r24, 0x04	; 4
- 5dc:	fc 01       	movw	r30, r24
- 5de:	ee 0f       	add	r30, r30
- 5e0:	ff 1f       	adc	r31, r31
- 5e2:	e8 0f       	add	r30, r24
- 5e4:	f9 1f       	adc	r31, r25
- 5e6:	ee 0f       	add	r30, r30
- 5e8:	ff 1f       	adc	r31, r31
+ 5d6:	df 3f       	cpi	r29, 0xFF	; 255
+ 5d8:	c1 f0       	breq	.+48     	; 0x60a <__EEPROM_REGION_LENGTH__+0x20a>
+ 5da:	8c 2f       	mov	r24, r28
+ 5dc:	90 e0       	ldi	r25, 0x00	; 0
+ 5de:	04 97       	sbiw	r24, 0x04	; 4
+ 5e0:	fc 01       	movw	r30, r24
+ 5e2:	ee 0f       	add	r30, r30
+ 5e4:	ff 1f       	adc	r31, r31
+ 5e6:	e8 0f       	add	r30, r24
+ 5e8:	f9 1f       	adc	r31, r25
  5ea:	ee 0f       	add	r30, r30
  5ec:	ff 1f       	adc	r31, r31
- 5ee:	ed 0f       	add	r30, r29
- 5f0:	f1 1d       	adc	r31, r1
- 5f2:	ee 0f       	add	r30, r30
- 5f4:	ff 1f       	adc	r31, r31
- 5f6:	e9 5f       	subi	r30, 0xF9	; 249
- 5f8:	fe 4f       	sbci	r31, 0xFE	; 254
- 5fa:	b9 01       	movw	r22, r18
- 5fc:	80 81       	ld	r24, Z
- 5fe:	91 81       	ldd	r25, Z+1	; 0x01
- 600:	0e 94 76 00 	call	0xec	; 0xec <sound>
- 604:	0a c0       	rjmp	.+20     	; 0x61a <__EEPROM_REGION_LENGTH__+0x21a>
+ 5ee:	ee 0f       	add	r30, r30
+ 5f0:	ff 1f       	adc	r31, r31
+ 5f2:	ed 0f       	add	r30, r29
+ 5f4:	f1 1d       	adc	r31, r1
+ 5f6:	ee 0f       	add	r30, r30
+ 5f8:	ff 1f       	adc	r31, r31
+ 5fa:	e7 5f       	subi	r30, 0xF7	; 247
+ 5fc:	fe 4f       	sbci	r31, 0xFE	; 254
+ 5fe:	b9 01       	movw	r22, r18
+ 600:	80 81       	ld	r24, Z
+ 602:	91 81       	ldd	r25, Z+1	; 0x01
+ 604:	0e 94 7b 00 	call	0xf6	; 0xf6 <sound>
+ 608:	0a c0       	rjmp	.+20     	; 0x61e <__EEPROM_REGION_LENGTH__+0x21e>
 		else
 		{ // Si la nota actual es una pausa (255), espero dicha cantidad de tiempo
 			duration_timer = calc_duration;
- 606:	30 93 c3 04 	sts	0x04C3, r19	; 0x8004c3 <duration_timer+0x1>
- 60a:	20 93 c2 04 	sts	0x04C2, r18	; 0x8004c2 <duration_timer>
+ 60a:	30 93 8b 05 	sts	0x058B, r19	; 0x80058b <duration_timer+0x1>
+ 60e:	20 93 8a 05 	sts	0x058A, r18	; 0x80058a <duration_timer>
 			sound_playing = 1;
- 60e:	81 e0       	ldi	r24, 0x01	; 1
- 610:	90 e0       	ldi	r25, 0x00	; 0
- 612:	90 93 bd 04 	sts	0x04BD, r25	; 0x8004bd <sound_playing+0x1>
- 616:	80 93 bc 04 	sts	0x04BC, r24	; 0x8004bc <sound_playing>
+ 612:	81 e0       	ldi	r24, 0x01	; 1
+ 614:	90 e0       	ldi	r25, 0x00	; 0
+ 616:	90 93 85 05 	sts	0x0585, r25	; 0x800585 <sound_playing+0x1>
+ 61a:	80 93 84 05 	sts	0x0584, r24	; 0x800584 <sound_playing>
 		}
 		while (sound_playing && song_playing);      // Espero a la que nota/pausa en curso finalice
- 61a:	80 91 bc 04 	lds	r24, 0x04BC	; 0x8004bc <sound_playing>
- 61e:	90 91 bd 04 	lds	r25, 0x04BD	; 0x8004bd <sound_playing+0x1>
- 622:	89 2b       	or	r24, r25
- 624:	21 f0       	breq	.+8      	; 0x62e <__EEPROM_REGION_LENGTH__+0x22e>
- 626:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 62a:	81 11       	cpse	r24, r1
- 62c:	f6 cf       	rjmp	.-20     	; 0x61a <__EEPROM_REGION_LENGTH__+0x21a>
+ 61e:	80 91 84 05 	lds	r24, 0x0584	; 0x800584 <sound_playing>
+ 622:	90 91 85 05 	lds	r25, 0x0585	; 0x800585 <sound_playing+0x1>
+ 626:	89 2b       	or	r24, r25
+ 628:	21 f0       	breq	.+8      	; 0x632 <__EEPROM_REGION_LENGTH__+0x232>
+ 62a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 62e:	81 11       	cpse	r24, r1
+ 630:	f6 cf       	rjmp	.-20     	; 0x61e <__EEPROM_REGION_LENGTH__+0x21e>
 		}
 		while (*song == ',' && song_playing) song++;    // Salteo ','
 	}
 	song++;                       // Avanzo al pr?ximo caracter
 	// read the musical notes
 	while (*song && song_playing)                 // Repito hasta que el caracter sea null
- 62e:	e0 91 ba 04 	lds	r30, 0x04BA	; 0x8004ba <__data_end>
- 632:	f0 91 bb 04 	lds	r31, 0x04BB	; 0x8004bb <__data_end+0x1>
- 636:	80 81       	ld	r24, Z
- 638:	88 23       	and	r24, r24
- 63a:	21 f0       	breq	.+8      	; 0x644 <__EEPROM_REGION_LENGTH__+0x244>
- 63c:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 640:	91 11       	cpse	r25, r1
- 642:	15 cf       	rjmp	.-470    	; 0x46e <__EEPROM_REGION_LENGTH__+0x6e>
+ 632:	e0 91 82 05 	lds	r30, 0x0582	; 0x800582 <__data_end>
+ 636:	f0 91 83 05 	lds	r31, 0x0583	; 0x800583 <__data_end+0x1>
+ 63a:	80 81       	ld	r24, Z
+ 63c:	88 23       	and	r24, r24
+ 63e:	21 f0       	breq	.+8      	; 0x648 <__EEPROM_REGION_LENGTH__+0x248>
+ 640:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 644:	91 11       	cpse	r25, r1
+ 646:	15 cf       	rjmp	.-470    	; 0x472 <__EEPROM_REGION_LENGTH__+0x72>
 			duration_timer = calc_duration;
 			sound_playing = 1;
 		}
 		while (sound_playing && song_playing);      // Espero a la que nota/pausa en curso finalice
 	}
 }
- 644:	df 91       	pop	r29
- 646:	cf 91       	pop	r28
- 648:	0f 91       	pop	r16
- 64a:	ff 90       	pop	r15
- 64c:	08 95       	ret
+ 648:	df 91       	pop	r29
+ 64a:	cf 91       	pop	r28
+ 64c:	0f 91       	pop	r16
+ 64e:	ff 90       	pop	r15
+ 650:	08 95       	ret
 
-0000064e <__vector_14>:
-#include "UART/UART.h"
-#include "Menu/Menu.h"
+00000652 <__vector_14>:
+#include <avr/interrupt.h>
+#include <string.h>
 
 // Control de la duraci?n del sonido
 ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 {
- 64e:	1f 92       	push	r1
- 650:	0f 92       	push	r0
- 652:	0f b6       	in	r0, 0x3f	; 63
+ 652:	1f 92       	push	r1
  654:	0f 92       	push	r0
- 656:	11 24       	eor	r1, r1
- 658:	2f 93       	push	r18
- 65a:	3f 93       	push	r19
- 65c:	4f 93       	push	r20
- 65e:	5f 93       	push	r21
- 660:	6f 93       	push	r22
- 662:	7f 93       	push	r23
- 664:	8f 93       	push	r24
- 666:	9f 93       	push	r25
- 668:	af 93       	push	r26
- 66a:	bf 93       	push	r27
- 66c:	ef 93       	push	r30
- 66e:	ff 93       	push	r31
+ 656:	0f b6       	in	r0, 0x3f	; 63
+ 658:	0f 92       	push	r0
+ 65a:	11 24       	eor	r1, r1
+ 65c:	2f 93       	push	r18
+ 65e:	3f 93       	push	r19
+ 660:	4f 93       	push	r20
+ 662:	5f 93       	push	r21
+ 664:	6f 93       	push	r22
+ 666:	7f 93       	push	r23
+ 668:	8f 93       	push	r24
+ 66a:	9f 93       	push	r25
+ 66c:	af 93       	push	r26
+ 66e:	bf 93       	push	r27
+ 670:	ef 93       	push	r30
+ 672:	ff 93       	push	r31
 	unsigned int duration_timer = get_duration_timer();
- 670:	0e 94 71 00 	call	0xe2	; 0xe2 <get_duration_timer>
+ 674:	0e 94 76 00 	call	0xec	; 0xec <get_duration_timer>
 	if (duration_timer) {
- 674:	00 97       	sbiw	r24, 0x00	; 0
- 676:	21 f0       	breq	.+8      	; 0x680 <__vector_14+0x32>
+ 678:	00 97       	sbiw	r24, 0x00	; 0
+ 67a:	21 f0       	breq	.+8      	; 0x684 <__vector_14+0x32>
 		duration_timer--; // Decremento el timer si > 0
 		set_duration_timer(duration_timer);
- 678:	01 97       	sbiw	r24, 0x01	; 1
- 67a:	0e 94 67 00 	call	0xce	; 0xce <set_duration_timer>
- 67e:	06 c0       	rjmp	.+12     	; 0x68c <__vector_14+0x3e>
+ 67c:	01 97       	sbiw	r24, 0x01	; 1
+ 67e:	0e 94 6c 00 	call	0xd8	; 0xd8 <set_duration_timer>
+ 682:	06 c0       	rjmp	.+12     	; 0x690 <__vector_14+0x3e>
 	}
 	else                                  // si timer es = 0
 	{
 		TCCR1A=0;	// Desactivo el timer 1
- 680:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+ 684:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
 		set_sound_playing(0);                  // Borro el flag para avisar que no hay una nota sonando
- 684:	80 e0       	ldi	r24, 0x00	; 0
- 686:	90 e0       	ldi	r25, 0x00	; 0
- 688:	0e 94 6c 00 	call	0xd8	; 0xd8 <set_sound_playing>
+ 688:	80 e0       	ldi	r24, 0x00	; 0
+ 68a:	90 e0       	ldi	r25, 0x00	; 0
+ 68c:	0e 94 71 00 	call	0xe2	; 0xe2 <set_sound_playing>
 	}
 }
- 68c:	ff 91       	pop	r31
- 68e:	ef 91       	pop	r30
- 690:	bf 91       	pop	r27
- 692:	af 91       	pop	r26
- 694:	9f 91       	pop	r25
- 696:	8f 91       	pop	r24
- 698:	7f 91       	pop	r23
- 69a:	6f 91       	pop	r22
- 69c:	5f 91       	pop	r21
- 69e:	4f 91       	pop	r20
- 6a0:	3f 91       	pop	r19
- 6a2:	2f 91       	pop	r18
- 6a4:	0f 90       	pop	r0
- 6a6:	0f be       	out	0x3f, r0	; 63
+ 690:	ff 91       	pop	r31
+ 692:	ef 91       	pop	r30
+ 694:	bf 91       	pop	r27
+ 696:	af 91       	pop	r26
+ 698:	9f 91       	pop	r25
+ 69a:	8f 91       	pop	r24
+ 69c:	7f 91       	pop	r23
+ 69e:	6f 91       	pop	r22
+ 6a0:	5f 91       	pop	r21
+ 6a2:	4f 91       	pop	r20
+ 6a4:	3f 91       	pop	r19
+ 6a6:	2f 91       	pop	r18
  6a8:	0f 90       	pop	r0
- 6aa:	1f 90       	pop	r1
- 6ac:	18 95       	reti
+ 6aa:	0f be       	out	0x3f, r0	; 63
+ 6ac:	0f 90       	pop	r0
+ 6ae:	1f 90       	pop	r1
+ 6b0:	18 95       	reti
 
-000006ae <main>:
+000006b2 <main>:
 
 
 	// ------------------------ Timer 0 ------------------------
 
 	// Configuro una interrupci?n cada 1 mseg
 	OCR0A = 248;			//124 para 8MHz y 248 para 16MHz
- 6ae:	88 ef       	ldi	r24, 0xF8	; 248
- 6b0:	87 bd       	out	0x27, r24	; 39
+ 6b2:	88 ef       	ldi	r24, 0xF8	; 248
+ 6b4:	87 bd       	out	0x27, r24	; 39
 	TCCR0A = (1<<WGM01);   // Modo CTC, clock interno, prescalador 64
- 6b2:	82 e0       	ldi	r24, 0x02	; 2
- 6b4:	84 bd       	out	0x24, r24	; 36
+ 6b6:	82 e0       	ldi	r24, 0x02	; 2
+ 6b8:	84 bd       	out	0x24, r24	; 36
 	TCCR0B = (1<<CS01)|(1<<CS00);   // Modo CTC, clock interno, prescalador 64
- 6b6:	93 e0       	ldi	r25, 0x03	; 3
- 6b8:	95 bd       	out	0x25, r25	; 37
+ 6ba:	93 e0       	ldi	r25, 0x03	; 3
+ 6bc:	95 bd       	out	0x25, r25	; 37
 	TIMSK0 = (1<<OCIE0A);   // Habilito Timer 0 en modo de interrupci?n de comparaci?n
- 6ba:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
+ 6be:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
 
 
 	// // ------------------------ Timer 1 ------------------------
 
 	TCCR1A|=(1<<COM1A0);// Configuro Timer1 para clk con prescaler P=1, modo CTC y salida por pin
- 6be:	e0 e8       	ldi	r30, 0x80	; 128
- 6c0:	f0 e0       	ldi	r31, 0x00	; 0
- 6c2:	80 81       	ld	r24, Z
- 6c4:	80 64       	ori	r24, 0x40	; 64
- 6c6:	80 83       	st	Z, r24
+ 6c2:	e0 e8       	ldi	r30, 0x80	; 128
+ 6c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 6c6:	80 81       	ld	r24, Z
+ 6c8:	80 64       	ori	r24, 0x40	; 64
+ 6ca:	80 83       	st	Z, r24
 	TCCR1B|=(1<<WGM12)|(1<<CS10);
- 6c8:	e1 e8       	ldi	r30, 0x81	; 129
- 6ca:	f0 e0       	ldi	r31, 0x00	; 0
- 6cc:	80 81       	ld	r24, Z
- 6ce:	89 60       	ori	r24, 0x09	; 9
- 6d0:	80 83       	st	Z, r24
+ 6cc:	e1 e8       	ldi	r30, 0x81	; 129
+ 6ce:	f0 e0       	ldi	r31, 0x00	; 0
+ 6d0:	80 81       	ld	r24, Z
+ 6d2:	89 60       	ori	r24, 0x09	; 9
+ 6d4:	80 83       	st	Z, r24
 	DDRB|=(1<<PINB1); // El PIN1 del PORTB ser? el pin de salida
- 6d2:	84 b1       	in	r24, 0x04	; 4
- 6d4:	82 60       	ori	r24, 0x02	; 2
- 6d6:	84 b9       	out	0x04, r24	; 4
+ 6d6:	84 b1       	in	r24, 0x04	; 4
+ 6d8:	82 60       	ori	r24, 0x02	; 2
+ 6da:	84 b9       	out	0x04, r24	; 4
 	char MENU_flag=0;
 
 
 	//Habilito la mAscara de interrupciones
 
 	Buffer_Init();
- 6d8:	0e 94 87 04 	call	0x90e	; 0x90e <Buffer_Init>
+ 6dc:	0e 94 e2 04 	call	0x9c4	; 0x9c4 <Buffer_Init>
 	SerialPort_Init(103); // 9600 baudios para 16MHz
- 6dc:	87 e6       	ldi	r24, 0x67	; 103
- 6de:	0e 94 5f 04 	call	0x8be	; 0x8be <SerialPort_Init>
+ 6e0:	87 e6       	ldi	r24, 0x67	; 103
+ 6e2:	90 e0       	ldi	r25, 0x00	; 0
+ 6e4:	0e 94 74 04 	call	0x8e8	; 0x8e8 <SerialPort_Init>
 	SerialPort_TX_Enable();
- 6e2:	0e 94 69 04 	call	0x8d2	; 0x8d2 <SerialPort_TX_Enable>
+ 6e8:	0e 94 7e 04 	call	0x8fc	; 0x8fc <SerialPort_TX_Enable>
 	SerialPort_RX_Enable();
- 6e6:	0e 94 7b 04 	call	0x8f6	; 0x8f6 <SerialPort_RX_Enable>
+ 6ec:	0e 94 90 04 	call	0x920	; 0x920 <SerialPort_RX_Enable>
 	SerialPort_RX_Interrupt_Enable();
- 6ea:	0e 94 81 04 	call	0x902	; 0x902 <SerialPort_RX_Interrupt_Enable>
+ 6f0:	0e 94 96 04 	call	0x92c	; 0x92c <SerialPort_RX_Interrupt_Enable>
 
-	sei();
- 6ee:	78 94       	sei
 	MENU_display_options_bienvenida();
- 6f0:	0e 94 98 03 	call	0x730	; 0x730 <MENU_display_options_bienvenida>
+ 6f4:	0e 94 a1 03 	call	0x742	; 0x742 <MENU_display_options_bienvenida>
 	MENU_display_options();
- 6f4:	0e 94 87 03 	call	0x70e	; 0x70e <MENU_display_options>
+ 6f8:	0e 94 90 03 	call	0x720	; 0x720 <MENU_display_options>
+	sei();
+ 6fc:	78 94       	sei
+	
 	while(1)
 	{
 		if (get_FLAG_datos_recibidos() == 1) {
- 6f8:	0e 94 1f 05 	call	0xa3e	; 0xa3e <get_FLAG_datos_recibidos>
- 6fc:	81 30       	cpi	r24, 0x01	; 1
- 6fe:	e1 f7       	brne	.-8      	; 0x6f8 <main+0x4a>
+ 6fe:	0e 94 40 05 	call	0xa80	; 0xa80 <get_FLAG_datos_recibidos>
+ 702:	01 97       	sbiw	r24, 0x01	; 1
+ 704:	e1 f7       	brne	.-8      	; 0x6fe <main+0x4c>
 			//cli();
 			set_FLAG_datos_recibidos(0);
- 700:	80 e0       	ldi	r24, 0x00	; 0
- 702:	0e 94 22 05 	call	0xa44	; 0xa44 <set_FLAG_datos_recibidos>
+ 706:	80 e0       	ldi	r24, 0x00	; 0
+ 708:	90 e0       	ldi	r25, 0x00	; 0
+ 70a:	0e 94 43 05 	call	0xa86	; 0xa86 <set_FLAG_datos_recibidos>
 			
 			// procesamiento BUffer_Rx
 			MENU_process_inpt();
- 706:	0e 94 3b 04 	call	0x876	; 0x876 <MENU_process_inpt>
+ 70e:	0e 94 50 04 	call	0x8a0	; 0x8a0 <MENU_process_inpt>
 			
 			sei();
- 70a:	78 94       	sei
- 70c:	f5 cf       	rjmp	.-22     	; 0x6f8 <main+0x4a>
+ 712:	78 94       	sei
+ 714:	f4 cf       	rjmp	.-24     	; 0x6fe <main+0x4c>
 
-0000070e <MENU_display_options>:
+00000716 <MENU_display_songs>:
 #define LONG_NUM 56
-const char msjReset[] ="RESET: Reinicia el sistema al estado inicial\n";
+const char msjReset[] = "    ==> RESET: Reinicia el sistema al estado inicial\n";
 #define LONG_RESET 44
 
-void MENU_display_options(void){
-	UART_Write_String_To_Buffer(msjPlay);
- 70e:	83 e5       	ldi	r24, 0x53	; 83
- 710:	94 e0       	ldi	r25, 0x04	; 4
- 712:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
-	UART_Write_String_To_Buffer(msjStop);
- 716:	81 e2       	ldi	r24, 0x21	; 33
- 718:	94 e0       	ldi	r25, 0x04	; 4
- 71a:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
-	UART_Write_String_To_Buffer(msjNum);
- 71e:	88 ee       	ldi	r24, 0xE8	; 232
- 720:	93 e0       	ldi	r25, 0x03	; 3
- 722:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
-	UART_Write_String_To_Buffer(msjReset);
- 726:	8a eb       	ldi	r24, 0xBA	; 186
- 728:	93 e0       	ldi	r25, 0x03	; 3
- 72a:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
- 72e:	08 95       	ret
+void MENU_display_songs(void){
+	const char * songs = AUDIO_get_songs_menu();
+ 716:	0e 94 5a 00 	call	0xb4	; 0xb4 <AUDIO_get_songs_menu>
+	UART_Write_String_To_Buffer(songs);
+ 71a:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+ 71e:	08 95       	ret
 
-00000730 <MENU_display_options_bienvenida>:
+00000720 <MENU_display_options>:
+}
+
+void MENU_display_options(){
+	UART_Write_String_To_Buffer(msjPlay);
+ 720:	84 e1       	ldi	r24, 0x14	; 20
+ 722:	95 e0       	ldi	r25, 0x05	; 5
+ 724:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+	UART_Write_String_To_Buffer(msjStop);
+ 728:	8a ed       	ldi	r24, 0xDA	; 218
+ 72a:	94 e0       	ldi	r25, 0x04	; 4
+ 72c:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+	UART_Write_String_To_Buffer(msjNum);
+ 730:	89 e9       	ldi	r24, 0x99	; 153
+ 732:	94 e0       	ldi	r25, 0x04	; 4
+ 734:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+	UART_Write_String_To_Buffer(msjReset);
+ 738:	83 e6       	ldi	r24, 0x63	; 99
+ 73a:	94 e0       	ldi	r25, 0x04	; 4
+ 73c:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+ 740:	08 95       	ret
+
+00000742 <MENU_display_options_bienvenida>:
 }
 
 void MENU_display_options_bienvenida(){
 	UART_Write_String_To_Buffer(msjBienvenida);
- 730:	8b e7       	ldi	r24, 0x7B	; 123
- 732:	94 e0       	ldi	r25, 0x04	; 4
- 734:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
- 738:	08 95       	ret
+ 742:	84 e4       	ldi	r24, 0x44	; 68
+ 744:	95 e0       	ldi	r25, 0x05	; 5
+ 746:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+	MENU_display_songs();
+ 74a:	0e 94 8b 03 	call	0x716	; 0x716 <MENU_display_songs>
+	UART_Write_String_To_Buffer("\n");
+ 74e:	81 e6       	ldi	r24, 0x61	; 97
+ 750:	94 e0       	ldi	r25, 0x04	; 4
+ 752:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+	UART_Write_String_To_Buffer("Comandos:");
+ 756:	8a ec       	ldi	r24, 0xCA	; 202
+ 758:	93 e0       	ldi	r25, 0x03	; 3
+ 75a:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+ 75e:	08 95       	ret
 
-0000073a <create_substring>:
+00000760 <create_substring>:
+	
 }
 
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
- 73a:	cf 92       	push	r12
- 73c:	df 92       	push	r13
- 73e:	ef 92       	push	r14
- 740:	ff 92       	push	r15
- 742:	0f 93       	push	r16
- 744:	1f 93       	push	r17
- 746:	cf 93       	push	r28
- 748:	df 93       	push	r29
- 74a:	8c 01       	movw	r16, r24
- 74c:	7b 01       	movw	r14, r22
+ 760:	cf 92       	push	r12
+ 762:	df 92       	push	r13
+ 764:	ef 92       	push	r14
+ 766:	ff 92       	push	r15
+ 768:	0f 93       	push	r16
+ 76a:	1f 93       	push	r17
+ 76c:	cf 93       	push	r28
+ 76e:	df 93       	push	r29
+ 770:	8c 01       	movw	r16, r24
+ 772:	7b 01       	movw	r14, r22
 	uint16_t j = 0;
- 74e:	c0 e0       	ldi	r28, 0x00	; 0
- 750:	d0 e0       	ldi	r29, 0x00	; 0
+ 774:	c0 e0       	ldi	r28, 0x00	; 0
+ 776:	d0 e0       	ldi	r29, 0x00	; 0
 	
 	while (buffer->data[buffer->index_lectura] != '\r') {
- 752:	0a c0       	rjmp	.+20     	; 0x768 <create_substring+0x2e>
+ 778:	0a c0       	rjmp	.+20     	; 0x78e <create_substring+0x2e>
 		substring[j++] = buffer->data[buffer->index_lectura];
- 754:	6e 01       	movw	r12, r28
- 756:	9f ef       	ldi	r25, 0xFF	; 255
- 758:	c9 1a       	sub	r12, r25
- 75a:	d9 0a       	sbc	r13, r25
- 75c:	ce 0d       	add	r28, r14
- 75e:	df 1d       	adc	r29, r15
- 760:	88 83       	st	Y, r24
+ 77a:	6e 01       	movw	r12, r28
+ 77c:	9f ef       	ldi	r25, 0xFF	; 255
+ 77e:	c9 1a       	sub	r12, r25
+ 780:	d9 0a       	sbc	r13, r25
+ 782:	ce 0d       	add	r28, r14
+ 784:	df 1d       	adc	r29, r15
+ 786:	88 83       	st	Y, r24
 		inc_RX_index_lectura();
- 762:	0e 94 df 04 	call	0x9be	; 0x9be <inc_RX_index_lectura>
+ 788:	0e 94 24 05 	call	0xa48	; 0xa48 <inc_RX_index_lectura>
 
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	uint16_t j = 0;
 	
 	while (buffer->data[buffer->index_lectura] != '\r') {
 		substring[j++] = buffer->data[buffer->index_lectura];
- 766:	e6 01       	movw	r28, r12
+ 78c:	e6 01       	movw	r28, r12
 }
 
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	uint16_t j = 0;
 	
 	while (buffer->data[buffer->index_lectura] != '\r') {
- 768:	f8 01       	movw	r30, r16
- 76a:	ee 56       	subi	r30, 0x6E	; 110
- 76c:	fe 4f       	sbci	r31, 0xFE	; 254
- 76e:	01 90       	ld	r0, Z+
- 770:	f0 81       	ld	r31, Z
- 772:	e0 2d       	mov	r30, r0
- 774:	e0 0f       	add	r30, r16
- 776:	f1 1f       	adc	r31, r17
- 778:	80 81       	ld	r24, Z
- 77a:	8d 30       	cpi	r24, 0x0D	; 13
- 77c:	59 f7       	brne	.-42     	; 0x754 <create_substring+0x1a>
+ 78e:	f8 01       	movw	r30, r16
+ 790:	ea 59       	subi	r30, 0x9A	; 154
+ 792:	ff 4f       	sbci	r31, 0xFF	; 255
+ 794:	01 90       	ld	r0, Z+
+ 796:	f0 81       	ld	r31, Z
+ 798:	e0 2d       	mov	r30, r0
+ 79a:	e0 0f       	add	r30, r16
+ 79c:	f1 1f       	adc	r31, r17
+ 79e:	80 81       	ld	r24, Z
+ 7a0:	8d 30       	cpi	r24, 0x0D	; 13
+ 7a2:	59 f7       	brne	.-42     	; 0x77a <create_substring+0x1a>
 		substring[j++] = buffer->data[buffer->index_lectura];
 		inc_RX_index_lectura();
 	}
 	inc_RX_index_lectura();
- 77e:	0e 94 df 04 	call	0x9be	; 0x9be <inc_RX_index_lectura>
+ 7a4:	0e 94 24 05 	call	0xa48	; 0xa48 <inc_RX_index_lectura>
 	inc_RX_index_lectura();
- 782:	0e 94 df 04 	call	0x9be	; 0x9be <inc_RX_index_lectura>
+ 7a8:	0e 94 24 05 	call	0xa48	; 0xa48 <inc_RX_index_lectura>
 	substring[j] = '\0'; // append null character at the end
- 786:	ce 0d       	add	r28, r14
- 788:	df 1d       	adc	r29, r15
- 78a:	18 82       	st	Y, r1
+ 7ac:	ce 0d       	add	r28, r14
+ 7ae:	df 1d       	adc	r29, r15
+ 7b0:	18 82       	st	Y, r1
 }
- 78c:	df 91       	pop	r29
- 78e:	cf 91       	pop	r28
- 790:	1f 91       	pop	r17
- 792:	0f 91       	pop	r16
- 794:	ff 90       	pop	r15
- 796:	ef 90       	pop	r14
- 798:	df 90       	pop	r13
- 79a:	cf 90       	pop	r12
- 79c:	08 95       	ret
+ 7b2:	df 91       	pop	r29
+ 7b4:	cf 91       	pop	r28
+ 7b6:	1f 91       	pop	r17
+ 7b8:	0f 91       	pop	r16
+ 7ba:	ff 90       	pop	r15
+ 7bc:	ef 90       	pop	r14
+ 7be:	df 90       	pop	r13
+ 7c0:	cf 90       	pop	r12
+ 7c2:	08 95       	ret
 
-0000079e <MENU_select_option>:
-	UART_Write_String_To_Buffer(substring);
-	MENU_select_option(substring);
-}
+000007c4 <MENU_select_option>:
 
 
 void MENU_select_option(char * inpt){
- 79e:	0f 93       	push	r16
- 7a0:	1f 93       	push	r17
- 7a2:	cf 93       	push	r28
- 7a4:	df 93       	push	r29
- 7a6:	00 d0       	rcall	.+0      	; 0x7a8 <MENU_select_option+0xa>
- 7a8:	cd b7       	in	r28, 0x3d	; 61
- 7aa:	de b7       	in	r29, 0x3e	; 62
- 7ac:	8c 01       	movw	r16, r24
+ 7c4:	0f 93       	push	r16
+ 7c6:	1f 93       	push	r17
+ 7c8:	cf 93       	push	r28
+ 7ca:	df 93       	push	r29
+ 7cc:	00 d0       	rcall	.+0      	; 0x7ce <MENU_select_option+0xa>
+ 7ce:	cd b7       	in	r28, 0x3d	; 61
+ 7d0:	de b7       	in	r29, 0x3e	; 62
+ 7d2:	8c 01       	movw	r16, r24
 	if (strcmp(inpt, "PLAY") == 0){
- 7ae:	6b e2       	ldi	r22, 0x2B	; 43
- 7b0:	73 e0       	ldi	r23, 0x03	; 3
- 7b2:	0e 94 65 06 	call	0xcca	; 0xcca <strcmp>
- 7b6:	89 2b       	or	r24, r25
- 7b8:	39 f4       	brne	.+14     	; 0x7c8 <MENU_select_option+0x2a>
+ 7d4:	64 ed       	ldi	r22, 0xD4	; 212
+ 7d6:	73 e0       	ldi	r23, 0x03	; 3
+ 7d8:	0e 94 5f 06 	call	0xcbe	; 0xcbe <strcmp>
+ 7dc:	89 2b       	or	r24, r25
+ 7de:	39 f4       	brne	.+14     	; 0x7ee <MENU_select_option+0x2a>
 		
 		UART_Write_String_To_Buffer("Playing song\n");
- 7ba:	80 e3       	ldi	r24, 0x30	; 48
- 7bc:	93 e0       	ldi	r25, 0x03	; 3
- 7be:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
+ 7e0:	89 ed       	ldi	r24, 0xD9	; 217
+ 7e2:	93 e0       	ldi	r25, 0x03	; 3
+ 7e4:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
 		play_song();
- 7c2:	0e 94 ab 00 	call	0x156	; 0x156 <play_song>
- 7c6:	50 c0       	rjmp	.+160    	; 0x868 <__DATA_REGION_LENGTH__+0x68>
+ 7e8:	0e 94 b0 00 	call	0x160	; 0x160 <play_song>
+ 7ec:	52 c0       	rjmp	.+164    	; 0x892 <__DATA_REGION_LENGTH__+0x92>
 		
 	}
 	else if (strcmp(inpt, "STOP") == 0){
- 7c8:	6e e3       	ldi	r22, 0x3E	; 62
- 7ca:	73 e0       	ldi	r23, 0x03	; 3
- 7cc:	c8 01       	movw	r24, r16
- 7ce:	0e 94 65 06 	call	0xcca	; 0xcca <strcmp>
- 7d2:	89 2b       	or	r24, r25
- 7d4:	39 f4       	brne	.+14     	; 0x7e4 <MENU_select_option+0x46>
+ 7ee:	67 ee       	ldi	r22, 0xE7	; 231
+ 7f0:	73 e0       	ldi	r23, 0x03	; 3
+ 7f2:	c8 01       	movw	r24, r16
+ 7f4:	0e 94 5f 06 	call	0xcbe	; 0xcbe <strcmp>
+ 7f8:	89 2b       	or	r24, r25
+ 7fa:	39 f4       	brne	.+14     	; 0x80a <__DATA_REGION_LENGTH__+0xa>
 		
 		stop_song();
- 7d6:	0e 94 9f 00 	call	0x13e	; 0x13e <stop_song>
+ 7fc:	0e 94 a4 00 	call	0x148	; 0x148 <stop_song>
 		UART_Write_String_To_Buffer("Stopped song\n");
- 7da:	83 e4       	ldi	r24, 0x43	; 67
- 7dc:	93 e0       	ldi	r25, 0x03	; 3
- 7de:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
- 7e2:	42 c0       	rjmp	.+132    	; 0x868 <__DATA_REGION_LENGTH__+0x68>
+ 800:	8c ee       	ldi	r24, 0xEC	; 236
+ 802:	93 e0       	ldi	r25, 0x03	; 3
+ 804:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+ 808:	44 c0       	rjmp	.+136    	; 0x892 <__DATA_REGION_LENGTH__+0x92>
 		
 	}
 	else if (strncmp(inpt, "NUM", 3) == 0){
- 7e4:	43 e0       	ldi	r20, 0x03	; 3
- 7e6:	50 e0       	ldi	r21, 0x00	; 0
- 7e8:	61 e5       	ldi	r22, 0x51	; 81
- 7ea:	73 e0       	ldi	r23, 0x03	; 3
- 7ec:	c8 01       	movw	r24, r16
- 7ee:	0e 94 6e 06 	call	0xcdc	; 0xcdc <strncmp>
- 7f2:	89 2b       	or	r24, r25
- 7f4:	11 f5       	brne	.+68     	; 0x83a <__DATA_REGION_LENGTH__+0x3a>
+ 80a:	43 e0       	ldi	r20, 0x03	; 3
+ 80c:	50 e0       	ldi	r21, 0x00	; 0
+ 80e:	6a ef       	ldi	r22, 0xFA	; 250
+ 810:	73 e0       	ldi	r23, 0x03	; 3
+ 812:	c8 01       	movw	r24, r16
+ 814:	0e 94 68 06 	call	0xcd0	; 0xcd0 <strncmp>
+ 818:	89 2b       	or	r24, r25
+ 81a:	19 f5       	brne	.+70     	; 0x862 <__DATA_REGION_LENGTH__+0x62>
 		
 		// Si el formato es "NUM X"
 		if (inpt[3] == ' ' && inpt[5] == '\0') {
- 7f6:	f8 01       	movw	r30, r16
- 7f8:	83 81       	ldd	r24, Z+3	; 0x03
- 7fa:	80 32       	cpi	r24, 0x20	; 32
- 7fc:	c9 f4       	brne	.+50     	; 0x830 <__DATA_REGION_LENGTH__+0x30>
- 7fe:	85 81       	ldd	r24, Z+5	; 0x05
- 800:	81 11       	cpse	r24, r1
- 802:	16 c0       	rjmp	.+44     	; 0x830 <__DATA_REGION_LENGTH__+0x30>
+ 81c:	f8 01       	movw	r30, r16
+ 81e:	83 81       	ldd	r24, Z+3	; 0x03
+ 820:	80 32       	cpi	r24, 0x20	; 32
+ 822:	d1 f4       	brne	.+52     	; 0x858 <__DATA_REGION_LENGTH__+0x58>
+ 824:	85 81       	ldd	r24, Z+5	; 0x05
+ 826:	81 11       	cpse	r24, r1
+ 828:	17 c0       	rjmp	.+46     	; 0x858 <__DATA_REGION_LENGTH__+0x58>
 
 			// value contiene el valor "X"
 			char str[2] = "";
- 804:	1a 82       	std	Y+2, r1	; 0x02
- 806:	19 82       	std	Y+1, r1	; 0x01
+ 82a:	1a 82       	std	Y+2, r1	; 0x02
+ 82c:	19 82       	std	Y+1, r1	; 0x01
 			str[0] = inpt[4];
- 808:	84 81       	ldd	r24, Z+4	; 0x04
- 80a:	89 83       	std	Y+1, r24	; 0x01
+ 82e:	84 81       	ldd	r24, Z+4	; 0x04
+ 830:	89 83       	std	Y+1, r24	; 0x01
 			uint8_t value = inpt[4] - '0';
- 80c:	10 ed       	ldi	r17, 0xD0	; 208
- 80e:	18 0f       	add	r17, r24
+ 832:	10 ed       	ldi	r17, 0xD0	; 208
+ 834:	18 0f       	add	r17, r24
 			
 			
 
 			UART_Write_String_To_Buffer_No_NewLine("Song selected: ");
- 810:	85 e5       	ldi	r24, 0x55	; 85
- 812:	93 e0       	ldi	r25, 0x03	; 3
- 814:	0e 94 bc 05 	call	0xb78	; 0xb78 <UART_Write_String_To_Buffer_No_NewLine>
+ 836:	8e ef       	ldi	r24, 0xFE	; 254
+ 838:	93 e0       	ldi	r25, 0x03	; 3
+ 83a:	0e 94 e0 05 	call	0xbc0	; 0xbc0 <UART_Write_String_To_Buffer_No_NewLine>
 			UART_Write_String_To_Buffer(str);
- 818:	ce 01       	movw	r24, r28
- 81a:	01 96       	adiw	r24, 0x01	; 1
- 81c:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
+ 83e:	ce 01       	movw	r24, r28
+ 840:	01 96       	adiw	r24, 0x01	; 1
+ 842:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
 			UART_Write_String_To_Buffer("\n");
- 820:	88 eb       	ldi	r24, 0xB8	; 184
- 822:	93 e0       	ldi	r25, 0x03	; 3
- 824:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
+ 846:	81 e6       	ldi	r24, 0x61	; 97
+ 848:	94 e0       	ldi	r25, 0x04	; 4
+ 84a:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
 			
 			set_song(value);
- 828:	81 2f       	mov	r24, r17
- 82a:	0e 94 5a 00 	call	0xb4	; 0xb4 <set_song>
+ 84e:	81 2f       	mov	r24, r17
+ 850:	90 e0       	ldi	r25, 0x00	; 0
+ 852:	0e 94 5f 00 	call	0xbe	; 0xbe <set_song>
 		
 	}
 	else if (strncmp(inpt, "NUM", 3) == 0){
 		
 		// Si el formato es "NUM X"
 		if (inpt[3] == ' ' && inpt[5] == '\0') {
- 82e:	1c c0       	rjmp	.+56     	; 0x868 <__DATA_REGION_LENGTH__+0x68>
+ 856:	1d c0       	rjmp	.+58     	; 0x892 <__DATA_REGION_LENGTH__+0x92>
 
 		}
 		else {
 			
 			// Si el formato no es "NUM X"
 			UART_Write_String_To_Buffer("Command usage: NUM [number of song]\n");
- 830:	85 e6       	ldi	r24, 0x65	; 101
- 832:	93 e0       	ldi	r25, 0x03	; 3
- 834:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
- 838:	17 c0       	rjmp	.+46     	; 0x868 <__DATA_REGION_LENGTH__+0x68>
+ 858:	8e e0       	ldi	r24, 0x0E	; 14
+ 85a:	94 e0       	ldi	r25, 0x04	; 4
+ 85c:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+ 860:	18 c0       	rjmp	.+48     	; 0x892 <__DATA_REGION_LENGTH__+0x92>
 			
 		}
 	}
 	else if (strcmp(inpt, "RESET") == 0){
- 83a:	6a e8       	ldi	r22, 0x8A	; 138
- 83c:	73 e0       	ldi	r23, 0x03	; 3
- 83e:	c8 01       	movw	r24, r16
- 840:	0e 94 65 06 	call	0xcca	; 0xcca <strcmp>
- 844:	89 2b       	or	r24, r25
- 846:	61 f4       	brne	.+24     	; 0x860 <__DATA_REGION_LENGTH__+0x60>
+ 862:	63 e3       	ldi	r22, 0x33	; 51
+ 864:	74 e0       	ldi	r23, 0x04	; 4
+ 866:	c8 01       	movw	r24, r16
+ 868:	0e 94 5f 06 	call	0xcbe	; 0xcbe <strcmp>
+ 86c:	89 2b       	or	r24, r25
+ 86e:	69 f4       	brne	.+26     	; 0x88a <__DATA_REGION_LENGTH__+0x8a>
 		UART_Write_String_To_Buffer("RESETTING system\n");
- 848:	80 e9       	ldi	r24, 0x90	; 144
- 84a:	93 e0       	ldi	r25, 0x03	; 3
- 84c:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
+ 870:	89 e3       	ldi	r24, 0x39	; 57
+ 872:	94 e0       	ldi	r25, 0x04	; 4
+ 874:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
 		stop_song();
- 850:	0e 94 9f 00 	call	0x13e	; 0x13e <stop_song>
+ 878:	0e 94 a4 00 	call	0x148	; 0x148 <stop_song>
 		set_song(0);
- 854:	80 e0       	ldi	r24, 0x00	; 0
- 856:	0e 94 5a 00 	call	0xb4	; 0xb4 <set_song>
+ 87c:	80 e0       	ldi	r24, 0x00	; 0
+ 87e:	90 e0       	ldi	r25, 0x00	; 0
+ 880:	0e 94 5f 00 	call	0xbe	; 0xbe <set_song>
 		Buffer_Init();
 		sei();
 		UART_Write_String_To_Buffer("RESETTING system\n");
 		*/
 		// Reimprime el menu
 		MENU_display_options();
- 85a:	0e 94 87 03 	call	0x70e	; 0x70e <MENU_display_options>
- 85e:	04 c0       	rjmp	.+8      	; 0x868 <__DATA_REGION_LENGTH__+0x68>
+ 884:	0e 94 90 03 	call	0x720	; 0x720 <MENU_display_options>
+ 888:	04 c0       	rjmp	.+8      	; 0x892 <__DATA_REGION_LENGTH__+0x92>
 		
 	}
 	else{
 		UART_Write_String_To_Buffer("Comando no encontrado\r\n");
- 860:	82 ea       	ldi	r24, 0xA2	; 162
- 862:	93 e0       	ldi	r25, 0x03	; 3
- 864:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
+ 88a:	8b e4       	ldi	r24, 0x4B	; 75
+ 88c:	94 e0       	ldi	r25, 0x04	; 4
+ 88e:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
 	}
 	
-	
 }
- 868:	0f 90       	pop	r0
- 86a:	0f 90       	pop	r0
- 86c:	df 91       	pop	r29
- 86e:	cf 91       	pop	r28
- 870:	1f 91       	pop	r17
- 872:	0f 91       	pop	r16
- 874:	08 95       	ret
+ 892:	0f 90       	pop	r0
+ 894:	0f 90       	pop	r0
+ 896:	df 91       	pop	r29
+ 898:	cf 91       	pop	r28
+ 89a:	1f 91       	pop	r17
+ 89c:	0f 91       	pop	r16
+ 89e:	08 95       	ret
 
-00000876 <MENU_process_inpt>:
-	inc_RX_index_lectura();
-	inc_RX_index_lectura();
-	substring[j] = '\0'; // append null character at the end
-}
+000008a0 <MENU_process_inpt>:
 
 void MENU_process_inpt(){
- 876:	cf 93       	push	r28
- 878:	df 93       	push	r29
- 87a:	cd b7       	in	r28, 0x3d	; 61
- 87c:	de b7       	in	r29, 0x3e	; 62
- 87e:	c0 59       	subi	r28, 0x90	; 144
- 880:	d1 40       	sbci	r29, 0x01	; 1
- 882:	0f b6       	in	r0, 0x3f	; 63
- 884:	f8 94       	cli
- 886:	de bf       	out	0x3e, r29	; 62
- 888:	0f be       	out	0x3f, r0	; 63
- 88a:	cd bf       	out	0x3d, r28	; 61
+ 8a0:	cf 93       	push	r28
+ 8a2:	df 93       	push	r29
+ 8a4:	cd b7       	in	r28, 0x3d	; 61
+ 8a6:	de b7       	in	r29, 0x3e	; 62
+ 8a8:	c4 56       	subi	r28, 0x64	; 100
+ 8aa:	d1 09       	sbc	r29, r1
+ 8ac:	0f b6       	in	r0, 0x3f	; 63
+ 8ae:	f8 94       	cli
+ 8b0:	de bf       	out	0x3e, r29	; 62
+ 8b2:	0f be       	out	0x3f, r0	; 63
+ 8b4:	cd bf       	out	0x3d, r28	; 61
 	uint8_t substring[BUFFER_RX_LEN];
 	
 	create_substring(get_RX_data(), substring);
- 88c:	0e 94 a6 04 	call	0x94c	; 0x94c <get_RX_data>
- 890:	be 01       	movw	r22, r28
- 892:	6f 5f       	subi	r22, 0xFF	; 255
- 894:	7f 4f       	sbci	r23, 0xFF	; 255
- 896:	0e 94 9d 03 	call	0x73a	; 0x73a <create_substring>
+ 8b6:	0e 94 fb 04 	call	0x9f6	; 0x9f6 <get_RX_data>
+ 8ba:	be 01       	movw	r22, r28
+ 8bc:	6f 5f       	subi	r22, 0xFF	; 255
+ 8be:	7f 4f       	sbci	r23, 0xFF	; 255
+ 8c0:	0e 94 b0 03 	call	0x760	; 0x760 <create_substring>
 	UART_Write_String_To_Buffer(substring);
- 89a:	ce 01       	movw	r24, r28
- 89c:	01 96       	adiw	r24, 0x01	; 1
- 89e:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
+ 8c4:	ce 01       	movw	r24, r28
+ 8c6:	01 96       	adiw	r24, 0x01	; 1
+ 8c8:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
 	MENU_select_option(substring);
- 8a2:	ce 01       	movw	r24, r28
- 8a4:	01 96       	adiw	r24, 0x01	; 1
- 8a6:	0e 94 cf 03 	call	0x79e	; 0x79e <MENU_select_option>
+ 8cc:	ce 01       	movw	r24, r28
+ 8ce:	01 96       	adiw	r24, 0x01	; 1
+ 8d0:	0e 94 e2 03 	call	0x7c4	; 0x7c4 <MENU_select_option>
 }
- 8aa:	c0 57       	subi	r28, 0x70	; 112
- 8ac:	de 4f       	sbci	r29, 0xFE	; 254
- 8ae:	0f b6       	in	r0, 0x3f	; 63
- 8b0:	f8 94       	cli
- 8b2:	de bf       	out	0x3e, r29	; 62
- 8b4:	0f be       	out	0x3f, r0	; 63
- 8b6:	cd bf       	out	0x3d, r28	; 61
- 8b8:	df 91       	pop	r29
- 8ba:	cf 91       	pop	r28
- 8bc:	08 95       	ret
+ 8d4:	cc 59       	subi	r28, 0x9C	; 156
+ 8d6:	df 4f       	sbci	r29, 0xFF	; 255
+ 8d8:	0f b6       	in	r0, 0x3f	; 63
+ 8da:	f8 94       	cli
+ 8dc:	de bf       	out	0x3e, r29	; 62
+ 8de:	0f be       	out	0x3f, r0	; 63
+ 8e0:	cd bf       	out	0x3d, r28	; 61
+ 8e2:	df 91       	pop	r29
+ 8e4:	cf 91       	pop	r28
+ 8e6:	08 95       	ret
 
-000008be <SerialPort_Init>:
+000008e8 <SerialPort_Init>:
 // Inicialización de Puerto Serie
 
 void SerialPort_Init(uint8_t config){
 	// config = 0x33 ==> Configuro UART 9600bps, 8 bit data, 1 stop @ F_CPU = 8MHz.
 	// config = 0x25 ==> Configuro UART 9600bps, 8 bit data, 1 stop @ F_CPU = 4Hz.
 	UCSR0B = 0;
- 8be:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+ 8e8:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
 	UCSR0C = (1<<UCSZ01) | (1<<UCSZ00);
- 8c2:	96 e0       	ldi	r25, 0x06	; 6
- 8c4:	90 93 c2 00 	sts	0x00C2, r25	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+ 8ec:	96 e0       	ldi	r25, 0x06	; 6
+ 8ee:	90 93 c2 00 	sts	0x00C2, r25	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
 	UBRR0H = (unsigned char)(config>>8);
- 8c8:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+ 8f2:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
 	UBRR0L = (unsigned char)config;
- 8cc:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
- 8d0:	08 95       	ret
+ 8f6:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+ 8fa:	08 95       	ret
 
-000008d2 <SerialPort_TX_Enable>:
+000008fc <SerialPort_TX_Enable>:
 
 
 // Inicialización de Transmisor
 
 void SerialPort_TX_Enable(void){
 	UCSR0B |= (1<<TXEN0);
- 8d2:	e1 ec       	ldi	r30, 0xC1	; 193
- 8d4:	f0 e0       	ldi	r31, 0x00	; 0
- 8d6:	80 81       	ld	r24, Z
- 8d8:	88 60       	ori	r24, 0x08	; 8
- 8da:	80 83       	st	Z, r24
- 8dc:	08 95       	ret
+ 8fc:	e1 ec       	ldi	r30, 0xC1	; 193
+ 8fe:	f0 e0       	ldi	r31, 0x00	; 0
+ 900:	80 81       	ld	r24, Z
+ 902:	88 60       	ori	r24, 0x08	; 8
+ 904:	80 83       	st	Z, r24
+ 906:	08 95       	ret
 
-000008de <SerialPort_TX_Interrupt_Enable>:
+00000908 <SerialPort_TX_Interrupt_Enable>:
 }
 
 void SerialPort_TX_Interrupt_Enable(void){
 	UCSR0B |= (1<<UDRIE0);
- 8de:	e1 ec       	ldi	r30, 0xC1	; 193
- 8e0:	f0 e0       	ldi	r31, 0x00	; 0
- 8e2:	80 81       	ld	r24, Z
- 8e4:	80 62       	ori	r24, 0x20	; 32
- 8e6:	80 83       	st	Z, r24
- 8e8:	08 95       	ret
+ 908:	e1 ec       	ldi	r30, 0xC1	; 193
+ 90a:	f0 e0       	ldi	r31, 0x00	; 0
+ 90c:	80 81       	ld	r24, Z
+ 90e:	80 62       	ori	r24, 0x20	; 32
+ 910:	80 83       	st	Z, r24
+ 912:	08 95       	ret
 
-000008ea <SerialPort_TX_Interrupt_Disable>:
+00000914 <SerialPort_TX_Interrupt_Disable>:
 }
 
 void SerialPort_TX_Interrupt_Disable(void)
 {
 	UCSR0B &=~(1<<UDRIE0);
- 8ea:	e1 ec       	ldi	r30, 0xC1	; 193
- 8ec:	f0 e0       	ldi	r31, 0x00	; 0
- 8ee:	80 81       	ld	r24, Z
- 8f0:	8f 7d       	andi	r24, 0xDF	; 223
- 8f2:	80 83       	st	Z, r24
- 8f4:	08 95       	ret
+ 914:	e1 ec       	ldi	r30, 0xC1	; 193
+ 916:	f0 e0       	ldi	r31, 0x00	; 0
+ 918:	80 81       	ld	r24, Z
+ 91a:	8f 7d       	andi	r24, 0xDF	; 223
+ 91c:	80 83       	st	Z, r24
+ 91e:	08 95       	ret
 
-000008f6 <SerialPort_RX_Enable>:
+00000920 <SerialPort_RX_Enable>:
 
 
 // Inicialización de Receptor
 
 void SerialPort_RX_Enable(void){
 	UCSR0B |= (1<<RXEN0);
- 8f6:	e1 ec       	ldi	r30, 0xC1	; 193
- 8f8:	f0 e0       	ldi	r31, 0x00	; 0
- 8fa:	80 81       	ld	r24, Z
- 8fc:	80 61       	ori	r24, 0x10	; 16
- 8fe:	80 83       	st	Z, r24
- 900:	08 95       	ret
+ 920:	e1 ec       	ldi	r30, 0xC1	; 193
+ 922:	f0 e0       	ldi	r31, 0x00	; 0
+ 924:	80 81       	ld	r24, Z
+ 926:	80 61       	ori	r24, 0x10	; 16
+ 928:	80 83       	st	Z, r24
+ 92a:	08 95       	ret
 
-00000902 <SerialPort_RX_Interrupt_Enable>:
+0000092c <SerialPort_RX_Interrupt_Enable>:
 }
 
 void SerialPort_RX_Interrupt_Enable(void){
 	UCSR0B |= (1<<RXCIE0);
- 902:	e1 ec       	ldi	r30, 0xC1	; 193
- 904:	f0 e0       	ldi	r31, 0x00	; 0
- 906:	80 81       	ld	r24, Z
- 908:	80 68       	ori	r24, 0x80	; 128
- 90a:	80 83       	st	Z, r24
- 90c:	08 95       	ret
+ 92c:	e1 ec       	ldi	r30, 0xC1	; 193
+ 92e:	f0 e0       	ldi	r31, 0x00	; 0
+ 930:	80 81       	ld	r24, Z
+ 932:	80 68       	ori	r24, 0x80	; 128
+ 934:	80 83       	st	Z, r24
+ 936:	08 95       	ret
 
-0000090e <Buffer_Init>:
-		*dato=UDR0;
-		return 1;
-	}
-	else
-		return 0;
+00000938 <__vector_19>:
+void UART_Send_Char ( uint8_t dato) {
+	//long Timeout = 0;
+	//while ( ( ++Timeout ) && ((UCSR0A & (1<<UDRE0))==0));
+
+	//if (Timeout != 0)
+		UDR0 = dato;
+ 938:	1f 92       	push	r1
+ 93a:	0f 92       	push	r0
+ 93c:	0f b6       	in	r0, 0x3f	; 63
+ 93e:	0f 92       	push	r0
+ 940:	11 24       	eor	r1, r1
+ 942:	2f 93       	push	r18
+ 944:	3f 93       	push	r19
+ 946:	4f 93       	push	r20
+ 948:	5f 93       	push	r21
+ 94a:	6f 93       	push	r22
+ 94c:	7f 93       	push	r23
+ 94e:	8f 93       	push	r24
+ 950:	9f 93       	push	r25
+ 952:	af 93       	push	r26
+ 954:	bf 93       	push	r27
+ 956:	ef 93       	push	r30
+ 958:	ff 93       	push	r31
+ 95a:	20 91 51 07 	lds	r18, 0x0751	; 0x800751 <TX_buffer+0x1c4>
+ 95e:	30 91 52 07 	lds	r19, 0x0752	; 0x800752 <TX_buffer+0x1c5>
+ 962:	c9 01       	movw	r24, r18
+ 964:	62 ec       	ldi	r22, 0xC2	; 194
+ 966:	71 e0       	ldi	r23, 0x01	; 1
+ 968:	0e 94 f5 05 	call	0xbea	; 0xbea <__udivmodhi4>
+ 96c:	40 91 4f 07 	lds	r20, 0x074F	; 0x80074f <TX_buffer+0x1c2>
+ 970:	50 91 50 07 	lds	r21, 0x0750	; 0x800750 <TX_buffer+0x1c3>
+ 974:	84 17       	cp	r24, r20
+ 976:	95 07       	cpc	r25, r21
+ 978:	19 f4       	brne	.+6      	; 0x980 <__vector_19+0x48>
+ 97a:	0e 94 8a 04 	call	0x914	; 0x914 <SerialPort_TX_Interrupt_Disable>
+ 97e:	11 c0       	rjmp	.+34     	; 0x9a2 <__vector_19+0x6a>
+ 980:	f9 01       	movw	r30, r18
+ 982:	e3 57       	subi	r30, 0x73	; 115
+ 984:	fa 4f       	sbci	r31, 0xFA	; 250
+ 986:	80 81       	ld	r24, Z
+ 988:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ 98c:	e1 e5       	ldi	r30, 0x51	; 81
+ 98e:	f7 e0       	ldi	r31, 0x07	; 7
+ 990:	80 81       	ld	r24, Z
+ 992:	91 81       	ldd	r25, Z+1	; 0x01
+ 994:	01 96       	adiw	r24, 0x01	; 1
+ 996:	62 ec       	ldi	r22, 0xC2	; 194
+ 998:	71 e0       	ldi	r23, 0x01	; 1
+ 99a:	0e 94 f5 05 	call	0xbea	; 0xbea <__udivmodhi4>
+ 99e:	91 83       	std	Z+1, r25	; 0x01
+ 9a0:	80 83       	st	Z, r24
+ 9a2:	ff 91       	pop	r31
+ 9a4:	ef 91       	pop	r30
+ 9a6:	bf 91       	pop	r27
+ 9a8:	af 91       	pop	r26
+ 9aa:	9f 91       	pop	r25
+ 9ac:	8f 91       	pop	r24
+ 9ae:	7f 91       	pop	r23
+ 9b0:	6f 91       	pop	r22
+ 9b2:	5f 91       	pop	r21
+ 9b4:	4f 91       	pop	r20
+ 9b6:	3f 91       	pop	r19
+ 9b8:	2f 91       	pop	r18
+ 9ba:	0f 90       	pop	r0
+ 9bc:	0f be       	out	0x3f, r0	; 63
+ 9be:	0f 90       	pop	r0
+ 9c0:	1f 90       	pop	r1
+ 9c2:	18 95       	reti
+
+000009c4 <Buffer_Init>:
+ 9c4:	10 92 50 07 	sts	0x0750, r1	; 0x800750 <TX_buffer+0x1c3>
+ 9c8:	10 92 4f 07 	sts	0x074F, r1	; 0x80074f <TX_buffer+0x1c2>
+ 9cc:	10 92 52 07 	sts	0x0752, r1	; 0x800752 <TX_buffer+0x1c5>
+ 9d0:	10 92 51 07 	sts	0x0751, r1	; 0x800751 <TX_buffer+0x1c4>
+ 9d4:	10 92 b8 07 	sts	0x07B8, r1	; 0x8007b8 <RX_buffer+0x65>
+ 9d8:	10 92 b7 07 	sts	0x07B7, r1	; 0x8007b7 <RX_buffer+0x64>
+ 9dc:	10 92 ba 07 	sts	0x07BA, r1	; 0x8007ba <RX_buffer+0x67>
+ 9e0:	10 92 b9 07 	sts	0x07B9, r1	; 0x8007b9 <RX_buffer+0x66>
+ 9e4:	08 95       	ret
+
+000009e6 <get_RX_data_index_lectura>:
+ 9e6:	e0 91 b9 07 	lds	r30, 0x07B9	; 0x8007b9 <RX_buffer+0x66>
+ 9ea:	f0 91 ba 07 	lds	r31, 0x07BA	; 0x8007ba <RX_buffer+0x67>
+ 9ee:	ed 5a       	subi	r30, 0xAD	; 173
+ 9f0:	f8 4f       	sbci	r31, 0xF8	; 248
+ 9f2:	80 81       	ld	r24, Z
+ 9f4:	08 95       	ret
+
+000009f6 <get_RX_data>:
+ 9f6:	83 e5       	ldi	r24, 0x53	; 83
+ 9f8:	97 e0       	ldi	r25, 0x07	; 7
+ 9fa:	08 95       	ret
+
+000009fc <set_RX_data_UDR0>:
+ 9fc:	e0 91 b7 07 	lds	r30, 0x07B7	; 0x8007b7 <RX_buffer+0x64>
+ a00:	f0 91 b8 07 	lds	r31, 0x07B8	; 0x8007b8 <RX_buffer+0x65>
+ a04:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ a08:	ed 5a       	subi	r30, 0xAD	; 173
+ a0a:	f8 4f       	sbci	r31, 0xF8	; 248
+ a0c:	80 83       	st	Z, r24
+ a0e:	08 95       	ret
+
+00000a10 <inc_RX_index_escritura>:
+ a10:	e7 eb       	ldi	r30, 0xB7	; 183
+ a12:	f7 e0       	ldi	r31, 0x07	; 7
+ a14:	40 81       	ld	r20, Z
+ a16:	51 81       	ldd	r21, Z+1	; 0x01
+ a18:	4f 5f       	subi	r20, 0xFF	; 255
+ a1a:	5f 4f       	sbci	r21, 0xFF	; 255
+ a1c:	9a 01       	movw	r18, r20
+ a1e:	36 95       	lsr	r19
+ a20:	27 95       	ror	r18
+ a22:	36 95       	lsr	r19
+ a24:	27 95       	ror	r18
+ a26:	ab e7       	ldi	r26, 0x7B	; 123
+ a28:	b4 e1       	ldi	r27, 0x14	; 20
+ a2a:	0e 94 2e 06 	call	0xc5c	; 0xc5c <__umulhisi3>
+ a2e:	96 95       	lsr	r25
+ a30:	87 95       	ror	r24
+ a32:	64 e6       	ldi	r22, 0x64	; 100
+ a34:	68 9f       	mul	r22, r24
+ a36:	90 01       	movw	r18, r0
+ a38:	69 9f       	mul	r22, r25
+ a3a:	30 0d       	add	r19, r0
+ a3c:	11 24       	eor	r1, r1
+ a3e:	42 1b       	sub	r20, r18
+ a40:	53 0b       	sbc	r21, r19
+ a42:	51 83       	std	Z+1, r21	; 0x01
+ a44:	40 83       	st	Z, r20
+ a46:	08 95       	ret
+
+00000a48 <inc_RX_index_lectura>:
+ a48:	e9 eb       	ldi	r30, 0xB9	; 185
+ a4a:	f7 e0       	ldi	r31, 0x07	; 7
+ a4c:	40 81       	ld	r20, Z
+ a4e:	51 81       	ldd	r21, Z+1	; 0x01
+ a50:	4f 5f       	subi	r20, 0xFF	; 255
+ a52:	5f 4f       	sbci	r21, 0xFF	; 255
+ a54:	9a 01       	movw	r18, r20
+ a56:	36 95       	lsr	r19
+ a58:	27 95       	ror	r18
+ a5a:	36 95       	lsr	r19
+ a5c:	27 95       	ror	r18
+ a5e:	ab e7       	ldi	r26, 0x7B	; 123
+ a60:	b4 e1       	ldi	r27, 0x14	; 20
+ a62:	0e 94 2e 06 	call	0xc5c	; 0xc5c <__umulhisi3>
+ a66:	96 95       	lsr	r25
+ a68:	87 95       	ror	r24
+ a6a:	64 e6       	ldi	r22, 0x64	; 100
+ a6c:	68 9f       	mul	r22, r24
+ a6e:	90 01       	movw	r18, r0
+ a70:	69 9f       	mul	r22, r25
+ a72:	30 0d       	add	r19, r0
+ a74:	11 24       	eor	r1, r1
+ a76:	42 1b       	sub	r20, r18
+ a78:	53 0b       	sbc	r21, r19
+ a7a:	51 83       	std	Z+1, r21	; 0x01
+ a7c:	40 83       	st	Z, r20
+ a7e:	08 95       	ret
+
+00000a80 <get_FLAG_datos_recibidos>:
+ a80:	80 91 86 05 	lds	r24, 0x0586	; 0x800586 <FLAG_datos_recibidos>
+ a84:	08 95       	ret
+
+00000a86 <set_FLAG_datos_recibidos>:
+ a86:	80 93 86 05 	sts	0x0586, r24	; 0x800586 <FLAG_datos_recibidos>
+ a8a:	08 95       	ret
+
+00000a8c <UART_Write_Char_To_Buffer>:
+		// TX_UART did not respond ï¿½ error
+	//}
 }
- 90e:	10 92 56 06 	sts	0x0656, r1	; 0x800656 <TX_buffer+0x191>
- 912:	10 92 55 06 	sts	0x0655, r1	; 0x800655 <TX_buffer+0x190>
- 916:	10 92 58 06 	sts	0x0658, r1	; 0x800658 <TX_buffer+0x193>
- 91a:	10 92 57 06 	sts	0x0657, r1	; 0x800657 <TX_buffer+0x192>
- 91e:	10 92 ea 07 	sts	0x07EA, r1	; 0x8007ea <RX_buffer+0x191>
- 922:	10 92 e9 07 	sts	0x07E9, r1	; 0x8007e9 <RX_buffer+0x190>
- 926:	10 92 ec 07 	sts	0x07EC, r1	; 0x8007ec <RX_buffer+0x193>
- 92a:	10 92 eb 07 	sts	0x07EB, r1	; 0x8007eb <RX_buffer+0x192>
- 92e:	08 95       	ret
 
-00000930 <get_TX_data>:
- 930:	e8 2f       	mov	r30, r24
- 932:	f0 e0       	ldi	r31, 0x00	; 0
- 934:	eb 53       	subi	r30, 0x3B	; 59
- 936:	fb 4f       	sbci	r31, 0xFB	; 251
- 938:	80 81       	ld	r24, Z
- 93a:	08 95       	ret
-
-0000093c <get_RX_data_index_lectura>:
- 93c:	e0 91 eb 07 	lds	r30, 0x07EB	; 0x8007eb <RX_buffer+0x192>
- 940:	f0 91 ec 07 	lds	r31, 0x07EC	; 0x8007ec <RX_buffer+0x193>
- 944:	e7 5a       	subi	r30, 0xA7	; 167
- 946:	f9 4f       	sbci	r31, 0xF9	; 249
- 948:	80 81       	ld	r24, Z
- 94a:	08 95       	ret
-
-0000094c <get_RX_data>:
- 94c:	89 e5       	ldi	r24, 0x59	; 89
- 94e:	96 e0       	ldi	r25, 0x06	; 6
- 950:	08 95       	ret
-
-00000952 <set_RX_data_UDR0>:
- 952:	e0 91 e9 07 	lds	r30, 0x07E9	; 0x8007e9 <RX_buffer+0x190>
- 956:	f0 91 ea 07 	lds	r31, 0x07EA	; 0x8007ea <RX_buffer+0x191>
- 95a:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
- 95e:	e7 5a       	subi	r30, 0xA7	; 167
- 960:	f9 4f       	sbci	r31, 0xF9	; 249
- 962:	80 83       	st	Z, r24
- 964:	08 95       	ret
-
-00000966 <get_TX_index_lectura>:
- 966:	80 91 57 06 	lds	r24, 0x0657	; 0x800657 <TX_buffer+0x192>
- 96a:	08 95       	ret
-
-0000096c <reset_TX_index>:
- 96c:	10 92 58 06 	sts	0x0658, r1	; 0x800658 <TX_buffer+0x193>
- 970:	10 92 57 06 	sts	0x0657, r1	; 0x800657 <TX_buffer+0x192>
- 974:	10 92 56 06 	sts	0x0656, r1	; 0x800656 <TX_buffer+0x191>
- 978:	10 92 55 06 	sts	0x0655, r1	; 0x800655 <TX_buffer+0x190>
- 97c:	08 95       	ret
-
-0000097e <inc_RX_index_escritura>:
- 97e:	e9 ee       	ldi	r30, 0xE9	; 233
- 980:	f7 e0       	ldi	r31, 0x07	; 7
- 982:	40 81       	ld	r20, Z
- 984:	51 81       	ldd	r21, Z+1	; 0x01
- 986:	4f 5f       	subi	r20, 0xFF	; 255
- 988:	5f 4f       	sbci	r21, 0xFF	; 255
- 98a:	9a 01       	movw	r18, r20
- 98c:	32 95       	swap	r19
- 98e:	22 95       	swap	r18
- 990:	2f 70       	andi	r18, 0x0F	; 15
- 992:	23 27       	eor	r18, r19
- 994:	3f 70       	andi	r19, 0x0F	; 15
- 996:	23 27       	eor	r18, r19
- 998:	ae e3       	ldi	r26, 0x3E	; 62
- 99a:	ba e0       	ldi	r27, 0x0A	; 10
- 99c:	0e 94 34 06 	call	0xc68	; 0xc68 <__umulhisi3>
- 9a0:	20 e9       	ldi	r18, 0x90	; 144
- 9a2:	31 e0       	ldi	r19, 0x01	; 1
- 9a4:	bc 01       	movw	r22, r24
- 9a6:	62 9f       	mul	r22, r18
- 9a8:	c0 01       	movw	r24, r0
- 9aa:	63 9f       	mul	r22, r19
- 9ac:	90 0d       	add	r25, r0
- 9ae:	72 9f       	mul	r23, r18
- 9b0:	90 0d       	add	r25, r0
- 9b2:	11 24       	eor	r1, r1
- 9b4:	48 1b       	sub	r20, r24
- 9b6:	59 0b       	sbc	r21, r25
- 9b8:	51 83       	std	Z+1, r21	; 0x01
- 9ba:	40 83       	st	Z, r20
- 9bc:	08 95       	ret
-
-000009be <inc_RX_index_lectura>:
- 9be:	eb ee       	ldi	r30, 0xEB	; 235
- 9c0:	f7 e0       	ldi	r31, 0x07	; 7
- 9c2:	40 81       	ld	r20, Z
- 9c4:	51 81       	ldd	r21, Z+1	; 0x01
- 9c6:	4f 5f       	subi	r20, 0xFF	; 255
- 9c8:	5f 4f       	sbci	r21, 0xFF	; 255
- 9ca:	9a 01       	movw	r18, r20
- 9cc:	32 95       	swap	r19
- 9ce:	22 95       	swap	r18
- 9d0:	2f 70       	andi	r18, 0x0F	; 15
- 9d2:	23 27       	eor	r18, r19
- 9d4:	3f 70       	andi	r19, 0x0F	; 15
- 9d6:	23 27       	eor	r18, r19
- 9d8:	ae e3       	ldi	r26, 0x3E	; 62
- 9da:	ba e0       	ldi	r27, 0x0A	; 10
- 9dc:	0e 94 34 06 	call	0xc68	; 0xc68 <__umulhisi3>
- 9e0:	20 e9       	ldi	r18, 0x90	; 144
- 9e2:	31 e0       	ldi	r19, 0x01	; 1
- 9e4:	bc 01       	movw	r22, r24
- 9e6:	62 9f       	mul	r22, r18
- 9e8:	c0 01       	movw	r24, r0
- 9ea:	63 9f       	mul	r22, r19
- 9ec:	90 0d       	add	r25, r0
- 9ee:	72 9f       	mul	r23, r18
- 9f0:	90 0d       	add	r25, r0
- 9f2:	11 24       	eor	r1, r1
- 9f4:	48 1b       	sub	r20, r24
- 9f6:	59 0b       	sbc	r21, r25
- 9f8:	51 83       	std	Z+1, r21	; 0x01
- 9fa:	40 83       	st	Z, r20
- 9fc:	08 95       	ret
-
-000009fe <inc_TX_index_lectura>:
- 9fe:	e7 e5       	ldi	r30, 0x57	; 87
- a00:	f6 e0       	ldi	r31, 0x06	; 6
- a02:	40 81       	ld	r20, Z
- a04:	51 81       	ldd	r21, Z+1	; 0x01
- a06:	4f 5f       	subi	r20, 0xFF	; 255
- a08:	5f 4f       	sbci	r21, 0xFF	; 255
- a0a:	9a 01       	movw	r18, r20
- a0c:	32 95       	swap	r19
- a0e:	22 95       	swap	r18
- a10:	2f 70       	andi	r18, 0x0F	; 15
- a12:	23 27       	eor	r18, r19
- a14:	3f 70       	andi	r19, 0x0F	; 15
- a16:	23 27       	eor	r18, r19
- a18:	ae e3       	ldi	r26, 0x3E	; 62
- a1a:	ba e0       	ldi	r27, 0x0A	; 10
- a1c:	0e 94 34 06 	call	0xc68	; 0xc68 <__umulhisi3>
- a20:	20 e9       	ldi	r18, 0x90	; 144
- a22:	31 e0       	ldi	r19, 0x01	; 1
- a24:	bc 01       	movw	r22, r24
- a26:	62 9f       	mul	r22, r18
- a28:	c0 01       	movw	r24, r0
- a2a:	63 9f       	mul	r22, r19
- a2c:	90 0d       	add	r25, r0
- a2e:	72 9f       	mul	r23, r18
- a30:	90 0d       	add	r25, r0
- a32:	11 24       	eor	r1, r1
- a34:	48 1b       	sub	r20, r24
- a36:	59 0b       	sbc	r21, r25
- a38:	51 83       	std	Z+1, r21	; 0x01
- a3a:	40 83       	st	Z, r20
- a3c:	08 95       	ret
-
-00000a3e <get_FLAG_datos_recibidos>:
- a3e:	80 91 be 04 	lds	r24, 0x04BE	; 0x8004be <FLAG_datos_recibidos>
- a42:	08 95       	ret
-
-00000a44 <set_FLAG_datos_recibidos>:
- a44:	80 93 be 04 	sts	0x04BE, r24	; 0x8004be <FLAG_datos_recibidos>
- a48:	08 95       	ret
-
-00000a4a <UART_Write_Char_To_Buffer>:
- a4a:	cf 93       	push	r28
- a4c:	20 91 55 06 	lds	r18, 0x0655	; 0x800655 <TX_buffer+0x190>
- a50:	30 91 56 06 	lds	r19, 0x0656	; 0x800656 <TX_buffer+0x191>
- a54:	20 39       	cpi	r18, 0x90	; 144
- a56:	31 40       	sbci	r19, 0x01	; 1
- a58:	88 f4       	brcc	.+34     	; 0xa7c <UART_Write_Char_To_Buffer+0x32>
- a5a:	c8 2f       	mov	r28, r24
- a5c:	0e 94 75 04 	call	0x8ea	; 0x8ea <SerialPort_TX_Interrupt_Disable>
- a60:	e5 e5       	ldi	r30, 0x55	; 85
- a62:	f6 e0       	ldi	r31, 0x06	; 6
- a64:	80 81       	ld	r24, Z
- a66:	91 81       	ldd	r25, Z+1	; 0x01
- a68:	dc 01       	movw	r26, r24
- a6a:	ab 53       	subi	r26, 0x3B	; 59
- a6c:	bb 4f       	sbci	r27, 0xFB	; 251
- a6e:	cc 93       	st	X, r28
- a70:	01 96       	adiw	r24, 0x01	; 1
- a72:	91 83       	std	Z+1, r25	; 0x01
- a74:	80 83       	st	Z, r24
- a76:	0e 94 6f 04 	call	0x8de	; 0x8de <SerialPort_TX_Interrupt_Enable>
- a7a:	01 c0       	rjmp	.+2      	; 0xa7e <UART_Write_Char_To_Buffer+0x34>
- a7c:	8f ef       	ldi	r24, 0xFF	; 255
- a7e:	cf 91       	pop	r28
- a80:	08 95       	ret
-
-00000a82 <UART_Write_String_To_Buffer>:
- a82:	0f 93       	push	r16
- a84:	1f 93       	push	r17
- a86:	cf 93       	push	r28
- a88:	8c 01       	movw	r16, r24
- a8a:	c0 e0       	ldi	r28, 0x00	; 0
- a8c:	03 c0       	rjmp	.+6      	; 0xa94 <UART_Write_String_To_Buffer+0x12>
- a8e:	0e 94 25 05 	call	0xa4a	; 0xa4a <UART_Write_Char_To_Buffer>
- a92:	cf 5f       	subi	r28, 0xFF	; 255
- a94:	f8 01       	movw	r30, r16
- a96:	ec 0f       	add	r30, r28
- a98:	f1 1d       	adc	r31, r1
- a9a:	80 81       	ld	r24, Z
- a9c:	81 11       	cpse	r24, r1
- a9e:	f7 cf       	rjmp	.-18     	; 0xa8e <UART_Write_String_To_Buffer+0xc>
- aa0:	8d e0       	ldi	r24, 0x0D	; 13
- aa2:	0e 94 25 05 	call	0xa4a	; 0xa4a <UART_Write_Char_To_Buffer>
- aa6:	8a e0       	ldi	r24, 0x0A	; 10
- aa8:	0e 94 25 05 	call	0xa4a	; 0xa4a <UART_Write_Char_To_Buffer>
- aac:	cf 91       	pop	r28
- aae:	1f 91       	pop	r17
- ab0:	0f 91       	pop	r16
- ab2:	08 95       	ret
-
-00000ab4 <__vector_18>:
- ab4:	1f 92       	push	r1
- ab6:	0f 92       	push	r0
- ab8:	0f b6       	in	r0, 0x3f	; 63
- aba:	0f 92       	push	r0
- abc:	11 24       	eor	r1, r1
- abe:	2f 93       	push	r18
- ac0:	3f 93       	push	r19
- ac2:	4f 93       	push	r20
- ac4:	5f 93       	push	r21
- ac6:	6f 93       	push	r22
- ac8:	7f 93       	push	r23
- aca:	8f 93       	push	r24
- acc:	9f 93       	push	r25
- ace:	af 93       	push	r26
- ad0:	bf 93       	push	r27
- ad2:	ef 93       	push	r30
- ad4:	ff 93       	push	r31
- ad6:	cf 93       	push	r28
- ad8:	df 93       	push	r29
- ada:	cd b7       	in	r28, 0x3d	; 61
- adc:	de b7       	in	r29, 0x3e	; 62
- ade:	c0 59       	subi	r28, 0x90	; 144
- ae0:	d1 40       	sbci	r29, 0x01	; 1
- ae2:	de bf       	out	0x3e, r29	; 62
- ae4:	cd bf       	out	0x3d, r28	; 61
- ae6:	0e 94 a9 04 	call	0x952	; 0x952 <set_RX_data_UDR0>
- aea:	e0 91 e9 07 	lds	r30, 0x07E9	; 0x8007e9 <RX_buffer+0x190>
- aee:	f0 91 ea 07 	lds	r31, 0x07EA	; 0x8007ea <RX_buffer+0x191>
- af2:	e7 5a       	subi	r30, 0xA7	; 167
- af4:	f9 4f       	sbci	r31, 0xF9	; 249
- af6:	80 81       	ld	r24, Z
- af8:	8a 30       	cpi	r24, 0x0A	; 10
- afa:	11 f5       	brne	.+68     	; 0xb40 <__vector_18+0x8c>
- afc:	81 e0       	ldi	r24, 0x01	; 1
- afe:	80 93 be 04 	sts	0x04BE, r24	; 0x8004be <FLAG_datos_recibidos>
- b02:	0e 94 9e 04 	call	0x93c	; 0x93c <get_RX_data_index_lectura>
- b06:	83 35       	cpi	r24, 0x53	; 83
- b08:	d9 f4       	brne	.+54     	; 0xb40 <__vector_18+0x8c>
- b0a:	0e 94 a6 04 	call	0x94c	; 0x94c <get_RX_data>
- b0e:	be 01       	movw	r22, r28
- b10:	6f 5f       	subi	r22, 0xFF	; 255
- b12:	7f 4f       	sbci	r23, 0xFF	; 255
- b14:	0e 94 9d 03 	call	0x73a	; 0x73a <create_substring>
- b18:	ce 01       	movw	r24, r28
- b1a:	01 96       	adiw	r24, 0x01	; 1
- b1c:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
- b20:	6e e3       	ldi	r22, 0x3E	; 62
- b22:	73 e0       	ldi	r23, 0x03	; 3
- b24:	ce 01       	movw	r24, r28
- b26:	01 96       	adiw	r24, 0x01	; 1
- b28:	0e 94 65 06 	call	0xcca	; 0xcca <strcmp>
- b2c:	89 2b       	or	r24, r25
- b2e:	41 f4       	brne	.+16     	; 0xb40 <__vector_18+0x8c>
- b30:	0e 94 9f 00 	call	0x13e	; 0x13e <stop_song>
- b34:	83 e4       	ldi	r24, 0x43	; 67
- b36:	93 e0       	ldi	r25, 0x03	; 3
- b38:	0e 94 41 05 	call	0xa82	; 0xa82 <UART_Write_String_To_Buffer>
- b3c:	10 92 be 04 	sts	0x04BE, r1	; 0x8004be <FLAG_datos_recibidos>
- b40:	0e 94 bf 04 	call	0x97e	; 0x97e <inc_RX_index_escritura>
- b44:	c0 57       	subi	r28, 0x70	; 112
- b46:	de 4f       	sbci	r29, 0xFE	; 254
- b48:	0f b6       	in	r0, 0x3f	; 63
- b4a:	f8 94       	cli
- b4c:	de bf       	out	0x3e, r29	; 62
- b4e:	0f be       	out	0x3f, r0	; 63
- b50:	cd bf       	out	0x3d, r28	; 61
- b52:	df 91       	pop	r29
- b54:	cf 91       	pop	r28
- b56:	ff 91       	pop	r31
- b58:	ef 91       	pop	r30
- b5a:	bf 91       	pop	r27
- b5c:	af 91       	pop	r26
- b5e:	9f 91       	pop	r25
- b60:	8f 91       	pop	r24
- b62:	7f 91       	pop	r23
- b64:	6f 91       	pop	r22
- b66:	5f 91       	pop	r21
- b68:	4f 91       	pop	r20
- b6a:	3f 91       	pop	r19
- b6c:	2f 91       	pop	r18
- b6e:	0f 90       	pop	r0
- b70:	0f be       	out	0x3f, r0	; 63
- b72:	0f 90       	pop	r0
- b74:	1f 90       	pop	r1
- b76:	18 95       	reti
-
-00000b78 <UART_Write_String_To_Buffer_No_NewLine>:
- b78:	0f 93       	push	r16
- b7a:	1f 93       	push	r17
- b7c:	cf 93       	push	r28
- b7e:	8c 01       	movw	r16, r24
- b80:	c0 e0       	ldi	r28, 0x00	; 0
- b82:	03 c0       	rjmp	.+6      	; 0xb8a <UART_Write_String_To_Buffer_No_NewLine+0x12>
- b84:	0e 94 25 05 	call	0xa4a	; 0xa4a <UART_Write_Char_To_Buffer>
- b88:	cf 5f       	subi	r28, 0xFF	; 255
- b8a:	f8 01       	movw	r30, r16
- b8c:	ec 0f       	add	r30, r28
- b8e:	f1 1d       	adc	r31, r1
- b90:	80 81       	ld	r24, Z
- b92:	81 11       	cpse	r24, r1
- b94:	f7 cf       	rjmp	.-18     	; 0xb84 <UART_Write_String_To_Buffer_No_NewLine+0xc>
- b96:	cf 91       	pop	r28
- b98:	1f 91       	pop	r17
- b9a:	0f 91       	pop	r16
- b9c:	08 95       	ret
-
-00000b9e <hay_datos_TX_buffer>:
-		TX_buffer.index_escritura = 0;
+uint8_t UART_Write_Char_To_Buffer (uint8_t data)
+{
+ a8c:	48 2f       	mov	r20, r24
+	{
+		// Write buffer is full
+		return ERROR_UART_FULL_BUFF;
+	}*/
+	
+	if ((TX_buffer.index_escritura + 1) % BUFFER_TX_LEN == TX_buffer.index_lectura){
+ a8e:	20 91 4f 07 	lds	r18, 0x074F	; 0x80074f <TX_buffer+0x1c2>
+ a92:	30 91 50 07 	lds	r19, 0x0750	; 0x800750 <TX_buffer+0x1c3>
+ a96:	c9 01       	movw	r24, r18
+ a98:	01 96       	adiw	r24, 0x01	; 1
+ a9a:	62 ec       	ldi	r22, 0xC2	; 194
+ a9c:	71 e0       	ldi	r23, 0x01	; 1
+ a9e:	0e 94 f5 05 	call	0xbea	; 0xbea <__udivmodhi4>
+ aa2:	60 91 51 07 	lds	r22, 0x0751	; 0x800751 <TX_buffer+0x1c4>
+ aa6:	70 91 52 07 	lds	r23, 0x0752	; 0x800752 <TX_buffer+0x1c5>
+ aaa:	86 17       	cp	r24, r22
+ aac:	97 07       	cpc	r25, r23
+ aae:	51 f0       	breq	.+20     	; 0xac4 <UART_Write_Char_To_Buffer+0x38>
+		//Buffer lleno
+	}
+	else{
+		TX_buffer.data[TX_buffer.index_escritura] = data;
+ ab0:	f9 01       	movw	r30, r18
+ ab2:	e3 57       	subi	r30, 0x73	; 115
+ ab4:	fa 4f       	sbci	r31, 0xFA	; 250
+ ab6:	40 83       	st	Z, r20
+		TX_buffer.index_escritura = (TX_buffer.index_escritura+1)%BUFFER_TX_LEN;		
+ ab8:	90 93 50 07 	sts	0x0750, r25	; 0x800750 <TX_buffer+0x1c3>
+ abc:	80 93 4f 07 	sts	0x074F, r24	; 0x80074f <TX_buffer+0x1c2>
+		SerialPort_TX_Interrupt_Enable();
+ ac0:	0e 94 84 04 	call	0x908	; 0x908 <SerialPort_TX_Interrupt_Enable>
+	
 	}
 }
+ ac4:	08 95       	ret
 
-char hay_datos_TX_buffer() {
-	return (TX_buffer.index_lectura < TX_buffer.index_escritura);
- b9e:	40 91 57 06 	lds	r20, 0x0657	; 0x800657 <TX_buffer+0x192>
- ba2:	50 91 58 06 	lds	r21, 0x0658	; 0x800658 <TX_buffer+0x193>
- ba6:	20 91 55 06 	lds	r18, 0x0655	; 0x800655 <TX_buffer+0x190>
- baa:	30 91 56 06 	lds	r19, 0x0656	; 0x800656 <TX_buffer+0x191>
- bae:	81 e0       	ldi	r24, 0x01	; 1
- bb0:	42 17       	cp	r20, r18
- bb2:	53 07       	cpc	r21, r19
- bb4:	08 f0       	brcs	.+2      	; 0xbb8 <hay_datos_TX_buffer+0x1a>
- bb6:	80 e0       	ldi	r24, 0x00	; 0
+00000ac6 <UART_Write_String_To_Buffer>:
+
+// h
+
+void UART_Write_String_To_Buffer(char* STR_PTR)
+{
+ ac6:	0f 93       	push	r16
+ ac8:	1f 93       	push	r17
+ aca:	cf 93       	push	r28
+ acc:	8c 01       	movw	r16, r24
+	uint8_t i = 0;
+ ace:	c0 e0       	ldi	r28, 0x00	; 0
+	//SerialPort_TX_Interrupt_Disable();
+	while ( STR_PTR [ i ] != '\0')
+ ad0:	03 c0       	rjmp	.+6      	; 0xad8 <UART_Write_String_To_Buffer+0x12>
+	{
+		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
+ ad2:	0e 94 46 05 	call	0xa8c	; 0xa8c <UART_Write_Char_To_Buffer>
+		i++;
+ ad6:	cf 5f       	subi	r28, 0xFF	; 255
+
+void UART_Write_String_To_Buffer(char* STR_PTR)
+{
+	uint8_t i = 0;
+	//SerialPort_TX_Interrupt_Disable();
+	while ( STR_PTR [ i ] != '\0')
+ ad8:	f8 01       	movw	r30, r16
+ ada:	ec 0f       	add	r30, r28
+ adc:	f1 1d       	adc	r31, r1
+ ade:	80 81       	ld	r24, Z
+ ae0:	81 11       	cpse	r24, r1
+ ae2:	f7 cf       	rjmp	.-18     	; 0xad2 <UART_Write_String_To_Buffer+0xc>
+	{
+		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
+		i++;
+	}
+	UART_Write_Char_To_Buffer ('\r');
+ ae4:	8d e0       	ldi	r24, 0x0D	; 13
+ ae6:	0e 94 46 05 	call	0xa8c	; 0xa8c <UART_Write_Char_To_Buffer>
+	UART_Write_Char_To_Buffer ('\n');
+ aea:	8a e0       	ldi	r24, 0x0A	; 10
+ aec:	0e 94 46 05 	call	0xa8c	; 0xa8c <UART_Write_Char_To_Buffer>
+	SerialPort_TX_Interrupt_Enable();
+ af0:	0e 94 84 04 	call	0x908	; 0x908 <SerialPort_TX_Interrupt_Enable>
+	
 }
- bb8:	08 95       	ret
+ af4:	cf 91       	pop	r28
+ af6:	1f 91       	pop	r17
+ af8:	0f 91       	pop	r16
+ afa:	08 95       	ret
 
-00000bba <__vector_19>:
+00000afc <__vector_18>:
+Buffer_TX TX_buffer;
+Buffer_RX RX_buffer;
+
+static uint8_t FLAG_datos_recibidos = 0;
+
+ISR(USART_RX_vect){
+ afc:	1f 92       	push	r1
+ afe:	0f 92       	push	r0
+ b00:	0f b6       	in	r0, 0x3f	; 63
+ b02:	0f 92       	push	r0
+ b04:	11 24       	eor	r1, r1
+ b06:	2f 93       	push	r18
+ b08:	3f 93       	push	r19
+ b0a:	4f 93       	push	r20
+ b0c:	5f 93       	push	r21
+ b0e:	6f 93       	push	r22
+ b10:	7f 93       	push	r23
+ b12:	8f 93       	push	r24
+ b14:	9f 93       	push	r25
+ b16:	af 93       	push	r26
+ b18:	bf 93       	push	r27
+ b1a:	ef 93       	push	r30
+ b1c:	ff 93       	push	r31
+ b1e:	cf 93       	push	r28
+ b20:	df 93       	push	r29
+ b22:	cd b7       	in	r28, 0x3d	; 61
+ b24:	de b7       	in	r29, 0x3e	; 62
+ b26:	c4 56       	subi	r28, 0x64	; 100
+ b28:	d1 09       	sbc	r29, r1
+ b2a:	de bf       	out	0x3e, r29	; 62
+ b2c:	cd bf       	out	0x3d, r28	; 61
+		//set_RX_data('\0');
+		FLAG_datos_recibidos=1;
+	}
+	inc_RX_index_escritura(); // index_escritura++
+*/
+	set_RX_data_UDR0(); // BufferRX[index_escritura]
+ b2e:	0e 94 fe 04 	call	0x9fc	; 0x9fc <set_RX_data_UDR0>
+	if ((RX_buffer.data[RX_buffer.index_escritura]) == '\n')
+ b32:	e0 91 b7 07 	lds	r30, 0x07B7	; 0x8007b7 <RX_buffer+0x64>
+ b36:	f0 91 b8 07 	lds	r31, 0x07B8	; 0x8007b8 <RX_buffer+0x65>
+ b3a:	ed 5a       	subi	r30, 0xAD	; 173
+ b3c:	f8 4f       	sbci	r31, 0xF8	; 248
+ b3e:	80 81       	ld	r24, Z
+ b40:	8a 30       	cpi	r24, 0x0A	; 10
+ b42:	11 f5       	brne	.+68     	; 0xb88 <__vector_18+0x8c>
+	{
+		//set_RX_data('\0');
+		FLAG_datos_recibidos = 1;
+ b44:	81 e0       	ldi	r24, 0x01	; 1
+ b46:	80 93 86 05 	sts	0x0586, r24	; 0x800586 <FLAG_datos_recibidos>
+		if (get_RX_data_index_lectura() == 'S') {
+ b4a:	0e 94 f3 04 	call	0x9e6	; 0x9e6 <get_RX_data_index_lectura>
+ b4e:	83 35       	cpi	r24, 0x53	; 83
+ b50:	d9 f4       	brne	.+54     	; 0xb88 <__vector_18+0x8c>
+			uint8_t substring[BUFFER_RX_LEN];
+			create_substring(get_RX_data(), substring);
+ b52:	0e 94 fb 04 	call	0x9f6	; 0x9f6 <get_RX_data>
+ b56:	be 01       	movw	r22, r28
+ b58:	6f 5f       	subi	r22, 0xFF	; 255
+ b5a:	7f 4f       	sbci	r23, 0xFF	; 255
+ b5c:	0e 94 b0 03 	call	0x760	; 0x760 <create_substring>
+			UART_Write_String_To_Buffer(substring);
+ b60:	ce 01       	movw	r24, r28
+ b62:	01 96       	adiw	r24, 0x01	; 1
+ b64:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+			if (strcmp(substring, "STOP") == 0){
+ b68:	67 ee       	ldi	r22, 0xE7	; 231
+ b6a:	73 e0       	ldi	r23, 0x03	; 3
+ b6c:	ce 01       	movw	r24, r28
+ b6e:	01 96       	adiw	r24, 0x01	; 1
+ b70:	0e 94 5f 06 	call	0xcbe	; 0xcbe <strcmp>
+ b74:	89 2b       	or	r24, r25
+ b76:	41 f4       	brne	.+16     	; 0xb88 <__vector_18+0x8c>
+				stop_song();
+ b78:	0e 94 a4 00 	call	0x148	; 0x148 <stop_song>
+				UART_Write_String_To_Buffer("Stopped song\n");
+ b7c:	8c ee       	ldi	r24, 0xEC	; 236
+ b7e:	93 e0       	ldi	r25, 0x03	; 3
+ b80:	0e 94 63 05 	call	0xac6	; 0xac6 <UART_Write_String_To_Buffer>
+				FLAG_datos_recibidos = 0;
+ b84:	10 92 86 05 	sts	0x0586, r1	; 0x800586 <FLAG_datos_recibidos>
+			}
+		
 		}
 	}
 	inc_RX_index_escritura();
+ b88:	0e 94 08 05 	call	0xa10	; 0xa10 <inc_RX_index_escritura>
+}
+ b8c:	cc 59       	subi	r28, 0x9C	; 156
+ b8e:	df 4f       	sbci	r29, 0xFF	; 255
+ b90:	0f b6       	in	r0, 0x3f	; 63
+ b92:	f8 94       	cli
+ b94:	de bf       	out	0x3e, r29	; 62
+ b96:	0f be       	out	0x3f, r0	; 63
+ b98:	cd bf       	out	0x3d, r28	; 61
+ b9a:	df 91       	pop	r29
+ b9c:	cf 91       	pop	r28
+ b9e:	ff 91       	pop	r31
+ ba0:	ef 91       	pop	r30
+ ba2:	bf 91       	pop	r27
+ ba4:	af 91       	pop	r26
+ ba6:	9f 91       	pop	r25
+ ba8:	8f 91       	pop	r24
+ baa:	7f 91       	pop	r23
+ bac:	6f 91       	pop	r22
+ bae:	5f 91       	pop	r21
+ bb0:	4f 91       	pop	r20
+ bb2:	3f 91       	pop	r19
+ bb4:	2f 91       	pop	r18
+ bb6:	0f 90       	pop	r0
+ bb8:	0f be       	out	0x3f, r0	; 63
+ bba:	0f 90       	pop	r0
+ bbc:	1f 90       	pop	r1
+ bbe:	18 95       	reti
+
+00000bc0 <UART_Write_String_To_Buffer_No_NewLine>:
+	SerialPort_TX_Interrupt_Enable();
+	
 }
 
-ISR(USART_UDRE_vect){
- bba:	1f 92       	push	r1
- bbc:	0f 92       	push	r0
- bbe:	0f b6       	in	r0, 0x3f	; 63
- bc0:	0f 92       	push	r0
- bc2:	11 24       	eor	r1, r1
- bc4:	2f 93       	push	r18
- bc6:	3f 93       	push	r19
- bc8:	4f 93       	push	r20
- bca:	5f 93       	push	r21
- bcc:	6f 93       	push	r22
- bce:	7f 93       	push	r23
- bd0:	8f 93       	push	r24
- bd2:	9f 93       	push	r25
- bd4:	af 93       	push	r26
- bd6:	bf 93       	push	r27
- bd8:	ef 93       	push	r30
- bda:	ff 93       	push	r31
-	UDR0 = get_TX_data(get_TX_index_lectura()); // BufferTX[index_lectura]
- bdc:	0e 94 b3 04 	call	0x966	; 0x966 <get_TX_index_lectura>
- be0:	0e 94 98 04 	call	0x930	; 0x930 <get_TX_data>
- be4:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
-	inc_TX_index_lectura();						// index_lectura++
- be8:	0e 94 ff 04 	call	0x9fe	; 0x9fe <inc_TX_index_lectura>
-	if (!hay_datos_TX_buffer()) {	// buffer_len = 8
- bec:	0e 94 cf 05 	call	0xb9e	; 0xb9e <hay_datos_TX_buffer>
- bf0:	81 11       	cpse	r24, r1
- bf2:	04 c0       	rjmp	.+8      	; 0xbfc <__vector_19+0x42>
-		reset_TX_index();
- bf4:	0e 94 b6 04 	call	0x96c	; 0x96c <reset_TX_index>
-		SerialPort_TX_Interrupt_Disable();
- bf8:	0e 94 75 04 	call	0x8ea	; 0x8ea <SerialPort_TX_Interrupt_Disable>
+void UART_Write_String_To_Buffer_No_NewLine(char* STR_PTR)
+{
+ bc0:	0f 93       	push	r16
+ bc2:	1f 93       	push	r17
+ bc4:	cf 93       	push	r28
+ bc6:	8c 01       	movw	r16, r24
+	uint8_t i = 0;
+ bc8:	c0 e0       	ldi	r28, 0x00	; 0
+	//SerialPort_TX_Interrupt_Disable();
+	while ( STR_PTR [ i ] != '\0')
+ bca:	03 c0       	rjmp	.+6      	; 0xbd2 <UART_Write_String_To_Buffer_No_NewLine+0x12>
+	{
+		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
+ bcc:	0e 94 46 05 	call	0xa8c	; 0xa8c <UART_Write_Char_To_Buffer>
+		i++;
+ bd0:	cf 5f       	subi	r28, 0xFF	; 255
+
+void UART_Write_String_To_Buffer_No_NewLine(char* STR_PTR)
+{
+	uint8_t i = 0;
+	//SerialPort_TX_Interrupt_Disable();
+	while ( STR_PTR [ i ] != '\0')
+ bd2:	f8 01       	movw	r30, r16
+ bd4:	ec 0f       	add	r30, r28
+ bd6:	f1 1d       	adc	r31, r1
+ bd8:	80 81       	ld	r24, Z
+ bda:	81 11       	cpse	r24, r1
+ bdc:	f7 cf       	rjmp	.-18     	; 0xbcc <UART_Write_String_To_Buffer_No_NewLine+0xc>
+	{
+		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
+		i++;
 	}
+	SerialPort_TX_Interrupt_Enable();
+ bde:	0e 94 84 04 	call	0x908	; 0x908 <SerialPort_TX_Interrupt_Enable>
 }
- bfc:	ff 91       	pop	r31
- bfe:	ef 91       	pop	r30
- c00:	bf 91       	pop	r27
- c02:	af 91       	pop	r26
- c04:	9f 91       	pop	r25
- c06:	8f 91       	pop	r24
- c08:	7f 91       	pop	r23
- c0a:	6f 91       	pop	r22
- c0c:	5f 91       	pop	r21
- c0e:	4f 91       	pop	r20
- c10:	3f 91       	pop	r19
- c12:	2f 91       	pop	r18
- c14:	0f 90       	pop	r0
- c16:	0f be       	out	0x3f, r0	; 63
- c18:	0f 90       	pop	r0
- c1a:	1f 90       	pop	r1
- c1c:	18 95       	reti
+ be2:	cf 91       	pop	r28
+ be4:	1f 91       	pop	r17
+ be6:	0f 91       	pop	r16
+ be8:	08 95       	ret
 
-00000c1e <__divmodsi4>:
- c1e:	05 2e       	mov	r0, r21
- c20:	97 fb       	bst	r25, 7
- c22:	1e f4       	brtc	.+6      	; 0xc2a <__divmodsi4+0xc>
- c24:	00 94       	com	r0
- c26:	0e 94 26 06 	call	0xc4c	; 0xc4c <__negsi2>
- c2a:	57 fd       	sbrc	r21, 7
- c2c:	07 d0       	rcall	.+14     	; 0xc3c <__divmodsi4_neg2>
- c2e:	0e 94 43 06 	call	0xc86	; 0xc86 <__udivmodsi4>
- c32:	07 fc       	sbrc	r0, 7
- c34:	03 d0       	rcall	.+6      	; 0xc3c <__divmodsi4_neg2>
- c36:	4e f4       	brtc	.+18     	; 0xc4a <__divmodsi4_exit>
- c38:	0c 94 26 06 	jmp	0xc4c	; 0xc4c <__negsi2>
+00000bea <__udivmodhi4>:
+ bea:	aa 1b       	sub	r26, r26
+ bec:	bb 1b       	sub	r27, r27
+ bee:	51 e1       	ldi	r21, 0x11	; 17
+ bf0:	07 c0       	rjmp	.+14     	; 0xc00 <__udivmodhi4_ep>
 
-00000c3c <__divmodsi4_neg2>:
- c3c:	50 95       	com	r21
- c3e:	40 95       	com	r20
- c40:	30 95       	com	r19
- c42:	21 95       	neg	r18
- c44:	3f 4f       	sbci	r19, 0xFF	; 255
- c46:	4f 4f       	sbci	r20, 0xFF	; 255
- c48:	5f 4f       	sbci	r21, 0xFF	; 255
+00000bf2 <__udivmodhi4_loop>:
+ bf2:	aa 1f       	adc	r26, r26
+ bf4:	bb 1f       	adc	r27, r27
+ bf6:	a6 17       	cp	r26, r22
+ bf8:	b7 07       	cpc	r27, r23
+ bfa:	10 f0       	brcs	.+4      	; 0xc00 <__udivmodhi4_ep>
+ bfc:	a6 1b       	sub	r26, r22
+ bfe:	b7 0b       	sbc	r27, r23
 
-00000c4a <__divmodsi4_exit>:
- c4a:	08 95       	ret
+00000c00 <__udivmodhi4_ep>:
+ c00:	88 1f       	adc	r24, r24
+ c02:	99 1f       	adc	r25, r25
+ c04:	5a 95       	dec	r21
+ c06:	a9 f7       	brne	.-22     	; 0xbf2 <__udivmodhi4_loop>
+ c08:	80 95       	com	r24
+ c0a:	90 95       	com	r25
+ c0c:	bc 01       	movw	r22, r24
+ c0e:	cd 01       	movw	r24, r26
+ c10:	08 95       	ret
 
-00000c4c <__negsi2>:
- c4c:	90 95       	com	r25
- c4e:	80 95       	com	r24
- c50:	70 95       	com	r23
- c52:	61 95       	neg	r22
- c54:	7f 4f       	sbci	r23, 0xFF	; 255
- c56:	8f 4f       	sbci	r24, 0xFF	; 255
- c58:	9f 4f       	sbci	r25, 0xFF	; 255
- c5a:	08 95       	ret
+00000c12 <__divmodsi4>:
+ c12:	05 2e       	mov	r0, r21
+ c14:	97 fb       	bst	r25, 7
+ c16:	1e f4       	brtc	.+6      	; 0xc1e <__divmodsi4+0xc>
+ c18:	00 94       	com	r0
+ c1a:	0e 94 20 06 	call	0xc40	; 0xc40 <__negsi2>
+ c1e:	57 fd       	sbrc	r21, 7
+ c20:	07 d0       	rcall	.+14     	; 0xc30 <__divmodsi4_neg2>
+ c22:	0e 94 3d 06 	call	0xc7a	; 0xc7a <__udivmodsi4>
+ c26:	07 fc       	sbrc	r0, 7
+ c28:	03 d0       	rcall	.+6      	; 0xc30 <__divmodsi4_neg2>
+ c2a:	4e f4       	brtc	.+18     	; 0xc3e <__divmodsi4_exit>
+ c2c:	0c 94 20 06 	jmp	0xc40	; 0xc40 <__negsi2>
 
-00000c5c <__tablejump2__>:
- c5c:	ee 0f       	add	r30, r30
- c5e:	ff 1f       	adc	r31, r31
- c60:	05 90       	lpm	r0, Z+
- c62:	f4 91       	lpm	r31, Z
- c64:	e0 2d       	mov	r30, r0
- c66:	09 94       	ijmp
+00000c30 <__divmodsi4_neg2>:
+ c30:	50 95       	com	r21
+ c32:	40 95       	com	r20
+ c34:	30 95       	com	r19
+ c36:	21 95       	neg	r18
+ c38:	3f 4f       	sbci	r19, 0xFF	; 255
+ c3a:	4f 4f       	sbci	r20, 0xFF	; 255
+ c3c:	5f 4f       	sbci	r21, 0xFF	; 255
 
-00000c68 <__umulhisi3>:
- c68:	a2 9f       	mul	r26, r18
- c6a:	b0 01       	movw	r22, r0
- c6c:	b3 9f       	mul	r27, r19
- c6e:	c0 01       	movw	r24, r0
- c70:	a3 9f       	mul	r26, r19
- c72:	70 0d       	add	r23, r0
- c74:	81 1d       	adc	r24, r1
- c76:	11 24       	eor	r1, r1
- c78:	91 1d       	adc	r25, r1
- c7a:	b2 9f       	mul	r27, r18
- c7c:	70 0d       	add	r23, r0
- c7e:	81 1d       	adc	r24, r1
- c80:	11 24       	eor	r1, r1
- c82:	91 1d       	adc	r25, r1
- c84:	08 95       	ret
+00000c3e <__divmodsi4_exit>:
+ c3e:	08 95       	ret
 
-00000c86 <__udivmodsi4>:
- c86:	a1 e2       	ldi	r26, 0x21	; 33
- c88:	1a 2e       	mov	r1, r26
- c8a:	aa 1b       	sub	r26, r26
- c8c:	bb 1b       	sub	r27, r27
- c8e:	fd 01       	movw	r30, r26
- c90:	0d c0       	rjmp	.+26     	; 0xcac <__udivmodsi4_ep>
+00000c40 <__negsi2>:
+ c40:	90 95       	com	r25
+ c42:	80 95       	com	r24
+ c44:	70 95       	com	r23
+ c46:	61 95       	neg	r22
+ c48:	7f 4f       	sbci	r23, 0xFF	; 255
+ c4a:	8f 4f       	sbci	r24, 0xFF	; 255
+ c4c:	9f 4f       	sbci	r25, 0xFF	; 255
+ c4e:	08 95       	ret
 
-00000c92 <__udivmodsi4_loop>:
- c92:	aa 1f       	adc	r26, r26
- c94:	bb 1f       	adc	r27, r27
- c96:	ee 1f       	adc	r30, r30
- c98:	ff 1f       	adc	r31, r31
- c9a:	a2 17       	cp	r26, r18
- c9c:	b3 07       	cpc	r27, r19
- c9e:	e4 07       	cpc	r30, r20
- ca0:	f5 07       	cpc	r31, r21
- ca2:	20 f0       	brcs	.+8      	; 0xcac <__udivmodsi4_ep>
- ca4:	a2 1b       	sub	r26, r18
- ca6:	b3 0b       	sbc	r27, r19
- ca8:	e4 0b       	sbc	r30, r20
- caa:	f5 0b       	sbc	r31, r21
+00000c50 <__tablejump2__>:
+ c50:	ee 0f       	add	r30, r30
+ c52:	ff 1f       	adc	r31, r31
+ c54:	05 90       	lpm	r0, Z+
+ c56:	f4 91       	lpm	r31, Z
+ c58:	e0 2d       	mov	r30, r0
+ c5a:	09 94       	ijmp
 
-00000cac <__udivmodsi4_ep>:
- cac:	66 1f       	adc	r22, r22
- cae:	77 1f       	adc	r23, r23
- cb0:	88 1f       	adc	r24, r24
- cb2:	99 1f       	adc	r25, r25
- cb4:	1a 94       	dec	r1
- cb6:	69 f7       	brne	.-38     	; 0xc92 <__udivmodsi4_loop>
- cb8:	60 95       	com	r22
- cba:	70 95       	com	r23
- cbc:	80 95       	com	r24
- cbe:	90 95       	com	r25
- cc0:	9b 01       	movw	r18, r22
- cc2:	ac 01       	movw	r20, r24
- cc4:	bd 01       	movw	r22, r26
- cc6:	cf 01       	movw	r24, r30
- cc8:	08 95       	ret
+00000c5c <__umulhisi3>:
+ c5c:	a2 9f       	mul	r26, r18
+ c5e:	b0 01       	movw	r22, r0
+ c60:	b3 9f       	mul	r27, r19
+ c62:	c0 01       	movw	r24, r0
+ c64:	a3 9f       	mul	r26, r19
+ c66:	70 0d       	add	r23, r0
+ c68:	81 1d       	adc	r24, r1
+ c6a:	11 24       	eor	r1, r1
+ c6c:	91 1d       	adc	r25, r1
+ c6e:	b2 9f       	mul	r27, r18
+ c70:	70 0d       	add	r23, r0
+ c72:	81 1d       	adc	r24, r1
+ c74:	11 24       	eor	r1, r1
+ c76:	91 1d       	adc	r25, r1
+ c78:	08 95       	ret
 
-00000cca <strcmp>:
- cca:	fb 01       	movw	r30, r22
- ccc:	dc 01       	movw	r26, r24
- cce:	8d 91       	ld	r24, X+
- cd0:	01 90       	ld	r0, Z+
- cd2:	80 19       	sub	r24, r0
- cd4:	01 10       	cpse	r0, r1
- cd6:	d9 f3       	breq	.-10     	; 0xcce <strcmp+0x4>
- cd8:	99 0b       	sbc	r25, r25
- cda:	08 95       	ret
+00000c7a <__udivmodsi4>:
+ c7a:	a1 e2       	ldi	r26, 0x21	; 33
+ c7c:	1a 2e       	mov	r1, r26
+ c7e:	aa 1b       	sub	r26, r26
+ c80:	bb 1b       	sub	r27, r27
+ c82:	fd 01       	movw	r30, r26
+ c84:	0d c0       	rjmp	.+26     	; 0xca0 <__udivmodsi4_ep>
 
-00000cdc <strncmp>:
- cdc:	fb 01       	movw	r30, r22
- cde:	dc 01       	movw	r26, r24
- ce0:	41 50       	subi	r20, 0x01	; 1
- ce2:	50 40       	sbci	r21, 0x00	; 0
- ce4:	30 f0       	brcs	.+12     	; 0xcf2 <strncmp+0x16>
- ce6:	8d 91       	ld	r24, X+
- ce8:	01 90       	ld	r0, Z+
- cea:	80 19       	sub	r24, r0
- cec:	19 f4       	brne	.+6      	; 0xcf4 <strncmp+0x18>
- cee:	00 20       	and	r0, r0
- cf0:	b9 f7       	brne	.-18     	; 0xce0 <strncmp+0x4>
- cf2:	88 1b       	sub	r24, r24
- cf4:	99 0b       	sbc	r25, r25
- cf6:	08 95       	ret
+00000c86 <__udivmodsi4_loop>:
+ c86:	aa 1f       	adc	r26, r26
+ c88:	bb 1f       	adc	r27, r27
+ c8a:	ee 1f       	adc	r30, r30
+ c8c:	ff 1f       	adc	r31, r31
+ c8e:	a2 17       	cp	r26, r18
+ c90:	b3 07       	cpc	r27, r19
+ c92:	e4 07       	cpc	r30, r20
+ c94:	f5 07       	cpc	r31, r21
+ c96:	20 f0       	brcs	.+8      	; 0xca0 <__udivmodsi4_ep>
+ c98:	a2 1b       	sub	r26, r18
+ c9a:	b3 0b       	sbc	r27, r19
+ c9c:	e4 0b       	sbc	r30, r20
+ c9e:	f5 0b       	sbc	r31, r21
 
-00000cf8 <_exit>:
- cf8:	f8 94       	cli
+00000ca0 <__udivmodsi4_ep>:
+ ca0:	66 1f       	adc	r22, r22
+ ca2:	77 1f       	adc	r23, r23
+ ca4:	88 1f       	adc	r24, r24
+ ca6:	99 1f       	adc	r25, r25
+ ca8:	1a 94       	dec	r1
+ caa:	69 f7       	brne	.-38     	; 0xc86 <__udivmodsi4_loop>
+ cac:	60 95       	com	r22
+ cae:	70 95       	com	r23
+ cb0:	80 95       	com	r24
+ cb2:	90 95       	com	r25
+ cb4:	9b 01       	movw	r18, r22
+ cb6:	ac 01       	movw	r20, r24
+ cb8:	bd 01       	movw	r22, r26
+ cba:	cf 01       	movw	r24, r30
+ cbc:	08 95       	ret
 
-00000cfa <__stop_program>:
- cfa:	ff cf       	rjmp	.-2      	; 0xcfa <__stop_program>
+00000cbe <strcmp>:
+ cbe:	fb 01       	movw	r30, r22
+ cc0:	dc 01       	movw	r26, r24
+ cc2:	8d 91       	ld	r24, X+
+ cc4:	01 90       	ld	r0, Z+
+ cc6:	80 19       	sub	r24, r0
+ cc8:	01 10       	cpse	r0, r1
+ cca:	d9 f3       	breq	.-10     	; 0xcc2 <strcmp+0x4>
+ ccc:	99 0b       	sbc	r25, r25
+ cce:	08 95       	ret
+
+00000cd0 <strncmp>:
+ cd0:	fb 01       	movw	r30, r22
+ cd2:	dc 01       	movw	r26, r24
+ cd4:	41 50       	subi	r20, 0x01	; 1
+ cd6:	50 40       	sbci	r21, 0x00	; 0
+ cd8:	30 f0       	brcs	.+12     	; 0xce6 <strncmp+0x16>
+ cda:	8d 91       	ld	r24, X+
+ cdc:	01 90       	ld	r0, Z+
+ cde:	80 19       	sub	r24, r0
+ ce0:	19 f4       	brne	.+6      	; 0xce8 <strncmp+0x18>
+ ce2:	00 20       	and	r0, r0
+ ce4:	b9 f7       	brne	.-18     	; 0xcd4 <strncmp+0x4>
+ ce6:	88 1b       	sub	r24, r24
+ ce8:	99 0b       	sbc	r25, r25
+ cea:	08 95       	ret
+
+00000cec <_exit>:
+ cec:	f8 94       	cli
+
+00000cee <__stop_program>:
+ cee:	ff cf       	rjmp	.-2      	; 0xcee <__stop_program>

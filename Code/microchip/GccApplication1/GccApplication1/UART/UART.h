@@ -7,9 +7,8 @@
 
 #ifndef UART_H_
 	
-	
-	#define BUFFER_TX_LEN 400
-	#define BUFFER_RX_LEN 400
+	#define BUFFER_TX_LEN 450UL
+	#define BUFFER_RX_LEN 100UL
 	#define ERROR_UART_FULL_BUFF 0xFF
 	#include <avr/io.h>
 	#include <util/delay.h>

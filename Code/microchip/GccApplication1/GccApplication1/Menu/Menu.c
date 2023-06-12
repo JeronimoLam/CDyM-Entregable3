@@ -9,16 +9,21 @@
 
 const char msjBienvenida [] = "Bienvenido al selector de ringtones! Canciones disponibles: \n";
 #define LONG_BIENVENIDA 59
-const char msjPlay[] = "PLAY: Reproduce la cancion seleccionada";
+const char msjPlay[] = "    ==> PLAY: Reproduce la cancion seleccionada";
 #define LONG_PLAY 39
-const char msjStop[] = "STOP: Detiene la reproduccion del sonido en curso";
+const char msjStop[] = "    ==> STOP: Detiene la reproduccion del sonido en curso";
 #define LONG_STOP 49
-const char msjNum[] = "NUM: Numero de cancion a seleccionar de la lista [1 a N]";
+const char msjNum[] = "    ==> NUM: Numero de cancion a seleccionar de la lista [1 a N]";
 #define LONG_NUM 56
-const char msjReset[] ="RESET: Reinicia el sistema al estado inicial\n";
+const char msjReset[] = "    ==> RESET: Reinicia el sistema al estado inicial\n";
 #define LONG_RESET 44
 
-void MENU_display_options(void){
+void MENU_display_songs(void){
+	const char * songs = AUDIO_get_songs_menu();
+	UART_Write_String_To_Buffer(songs);
+}
+
+void MENU_display_options(){
 	UART_Write_String_To_Buffer(msjPlay);
 	UART_Write_String_To_Buffer(msjStop);
 	UART_Write_String_To_Buffer(msjNum);
@@ -27,6 +32,10 @@ void MENU_display_options(void){
 
 void MENU_display_options_bienvenida(){
 	UART_Write_String_To_Buffer(msjBienvenida);
+	MENU_display_songs();
+	UART_Write_String_To_Buffer("\n");
+	UART_Write_String_To_Buffer("Comandos:");
+	
 }
 
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
@@ -39,14 +48,6 @@ void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	inc_RX_index_lectura();
 	inc_RX_index_lectura();
 	substring[j] = '\0'; // append null character at the end
-}
-
-void MENU_process_inpt(){
-	uint8_t substring[BUFFER_RX_LEN];
-	
-	create_substring(get_RX_data(), substring);
-	UART_Write_String_To_Buffer(substring);
-	MENU_select_option(substring);
 }
 
 
@@ -108,7 +109,14 @@ void MENU_select_option(char * inpt){
 		UART_Write_String_To_Buffer("Comando no encontrado\r\n");
 	}
 	
+}
+
+void MENU_process_inpt(){
+	uint8_t substring[BUFFER_RX_LEN];
 	
+	create_substring(get_RX_data(), substring);
+	UART_Write_String_To_Buffer(substring);
+	MENU_select_option(substring);
 }
 
 

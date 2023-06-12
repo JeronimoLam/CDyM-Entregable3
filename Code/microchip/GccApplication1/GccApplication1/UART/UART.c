@@ -42,11 +42,22 @@ ISR(USART_RX_vect){
 }
 
 ISR(USART_UDRE_vect){
-	UDR0 = get_TX_data(get_TX_index_lectura()); // BufferTX[index_lectura]
-	inc_TX_index_lectura();						// index_lectura++
+	/*UDR0 = get_TX_data(get_TX_index_lectura()); // BufferTX[index_lectura]
 	if (!hay_datos_TX_buffer()) {	// buffer_len = 8
-		reset_TX_index();
+		//reset_TX_index();
 		SerialPort_TX_Interrupt_Disable();
+	}
+	inc_TX_index_lectura();						// index_lectura++
+	*/
+	if((TX_buffer.index_lectura) % BUFFER_TX_LEN == TX_buffer.index_escritura){
+		SerialPort_TX_Interrupt_Disable();
+	}
+	else{
+		if (TX_buffer.data[TX_buffer.index_lectura] != '/0') {	// buffer_len = 8
+			UDR0 = TX_buffer.data[TX_buffer.index_lectura];
+		}
+		TX_buffer.index_lectura = (TX_buffer.index_lectura+1)%BUFFER_TX_LEN;
+
 	}
 }
 
@@ -143,9 +154,8 @@ void UART_Send_Char ( uint8_t dato) {
 
 uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 {
-	if (TX_buffer.index_escritura < BUFFER_TX_LEN)
+	/*if (TX_buffer.index_escritura != BUFFER_TX_LEN)
 	{
-		SerialPort_TX_Interrupt_Disable();
 		TX_buffer.data[TX_buffer.index_escritura] = data;
 		TX_buffer.index_escritura++;
 		SerialPort_TX_Interrupt_Enable();
@@ -154,6 +164,16 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 	{
 		// Write buffer is full
 		return ERROR_UART_FULL_BUFF;
+	}*/
+	
+	if ((TX_buffer.index_escritura + 1) % BUFFER_TX_LEN == TX_buffer.index_lectura){
+		//Buffer lleno
+	}
+	else{
+		TX_buffer.data[TX_buffer.index_escritura] = data;
+		TX_buffer.index_escritura = (TX_buffer.index_escritura+1)%BUFFER_TX_LEN;		
+		SerialPort_TX_Interrupt_Enable();
+	
 	}
 }
 
@@ -168,9 +188,10 @@ void UART_Write_String_To_Buffer(char* STR_PTR)
 		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
 		i++;
 	}
-	//SerialPort_TX_Interrupt_Enable();
 	UART_Write_Char_To_Buffer ('\r');
 	UART_Write_Char_To_Buffer ('\n');
+	SerialPort_TX_Interrupt_Enable();
+	
 }
 
 void UART_Write_String_To_Buffer_No_NewLine(char* STR_PTR)
@@ -182,7 +203,7 @@ void UART_Write_String_To_Buffer_No_NewLine(char* STR_PTR)
 		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
 		i++;
 	}
-	//SerialPort_TX_Interrupt_Enable();
+	SerialPort_TX_Interrupt_Enable();
 }
 
 uint8_t UART_Receive_data (uint8_t *dato)
@@ -211,7 +232,7 @@ void UART_Update (void)
 }
 
 char hay_datos_TX_buffer() {
-	return (TX_buffer.index_lectura < TX_buffer.index_escritura);
+	return (TX_buffer.index_lectura != TX_buffer.index_escritura);
 }
 
 char hay_datos_RX_buffer() {
