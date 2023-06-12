@@ -3,7 +3,7 @@
  *
  * Created: 6/5/2023 2:37:39 PM
  *  Author: franc
- */ 
+ */
 
 // Colecci?n de m?sica RTTL
 // 16 MHz
@@ -15,23 +15,23 @@ const char *rtttl_library[]=
 
 	"MissionImp:d=4,o=6,b=150:16d5,16d#5,16d5,16d#5,16d5,16d#5,16d5,16d5,16d#5,16e5,16f5,16f#5,16g5,8g5,4p,8g5,4p,8a#5,8p,8c6,8p,8g5,4p,8g5,4p,8f5,8p,8p,8g5,4p,4p,8a#5,8p,8c6,8p,8g5,4p,4p,8f5,8p,8f#5,8p,8a#5,8g5,1d5",
 
-	"Batman:d=8,o=5,b=160:16a,16g#,16g,16f#,16f,16f#,16g,16g#,4a.,p,d,d,c#,c#,c,c,c#,c#,d,d,c#,c#,c,c,c#,c#,d,d,c#,c#,c,c,c#,c#,g6,p,4g6",
+	"Batman:d=8,o=5,b=160:16a,16g#,16g,16f#,16f,16f#,16g,16g#,4a.,p,d,d,c#,c#,c,c,c#,c#,d,d,c#,c#,c,c,c#,c#,d,d,c#,c#,c,c,c#,c#,g6,p,4g6"
 
-	"Pinkpanther:d=16,o=5,b=160:8d#,8e,2p,8f#,8g,2p,8d#,8e,p,8f#,8g,p,8c6,8b,p,8d#,8e,p,8b,2a#,2p,a,g,e,d,2e",
+	// "Pinkpanther:d=16,o=5,b=160:8d#,8e,2p,8f#,8g,2p,8d#,8e,p,8f#,8g,p,8c6,8b,p,8d#,8e,p,8b,2a#,2p,a,g,e,d,2e",
 
-	"Adamsfamily:d=4,o=5,b=160:8c,f,8a,f,8c,b4,2g,8f,e,8g,e,8e4,a4,2f,8c,f,8a,f,8c,b4,2g,8f,e,8c,d,8e,1f,8c,8d,8e,8f,1p,8d,8e,8f#,8g,1p,8d,8e,8f#,8g,p,8d,8e,8f#,8g,p,8c,8d,8e,8f",
+	// "Adamsfamily:d=4,o=5,b=160:8c,f,8a,f,8c,b4,2g,8f,e,8g,e,8e4,a4,2f,8c,f,8a,f,8c,b4,2g,8f,e,8c,d,8e,1f,8c,8d,8e,8f,1p,8d,8e,8f#,8g,1p,8d,8e,8f#,8g,p,8d,8e,8f#,8g,p,8c,8d,8e,8f",
 
-	"Argentina:d=4,o=5,b=70:8e.4,8e4,8e4,8e.4,8f4,8g4,8a4,g4,8p,8g4,8a4,8a4,8g4,c,g4,8f4,e.4,8p,8e4,8f4,8g4,8d4,d4,8d4,8e4,8f4,c4,16p,8c4,8d4,8c4,8e4,g4,16p,8g4,8g4,8a4,c,16p",
+	// "Argentina:d=4,o=5,b=70:8e.4,8e4,8e4,8e.4,8f4,8g4,8a4,g4,8p,8g4,8a4,8a4,8g4,c,g4,8f4,e.4,8p,8e4,8f4,8g4,8d4,d4,8d4,8e4,8f4,c4,16p,8c4,8d4,8c4,8e4,g4,16p,8g4,8g4,8a4,c,16p",
 
-	"Indiana:d=4,o=5,b=250:e,8p,8f,8g,8p,1c6,8p.,d,8p,8e,1f,p.,g,8p,8a,8b,8p,1f6,p,a,8p,8b,2c6,2d6,2e6,e,8p,8f,8g,8p,1c6,p,d6,8p,8e6,1f.6,g,8p,8g,e.6,8p,d6,8p,8g,e.6,8p,d6,8p,8g,f.6,8p,e6,8p,8d6,2c6",
+	// "Indiana:d=4,o=5,b=250:e,8p,8f,8g,8p,1c6,8p.,d,8p,8e,1f,p.,g,8p,8a,8b,8p,1f6,p,a,8p,8b,2c6,2d6,2e6,e,8p,8f,8g,8p,1c6,p,d6,8p,8e6,1f.6,g,8p,8g,e.6,8p,d6,8p,8g,e.6,8p,d6,8p,8g,f.6,8p,e6,8p,8d6,2c6",
 
-	"killing me softly:d=4,o=5,b=90:p,8e,f,g,8a,a,8g,d,g.,p,8p,8a,g,8f,8e,8e,8f,2c,p,8e,f,g,8a,a,8g,a,b,8b,8c6,8b,16a,8g,16a,2a,2a.",
+	// "killing me softly:d=4,o=5,b=90:p,8e,f,g,8a,a,8g,d,g.,p,8p,8a,g,8f,8e,8e,8f,2c,p,8e,f,g,8a,a,8g,a,b,8b,8c6,8b,16a,8g,16a,2a,2a.",
 
-	"Wannabe: :d=4,o=5,b=125:16g,16g,16g,16g,8g,8a,8g,8e,8p,16c,16d,16c,8d,8d,8c,e,p,8g,8g,8g,8a,8g,8e,8p,c6,8c6,8b,8g,8a,16b,16a,g",
+	// "Wannabe: :d=4,o=5,b=125:16g,16g,16g,16g,8g,8a,8g,8e,8p,16c,16d,16c,8d,8d,8c,e,p,8g,8g,8g,8a,8g,8e,8p,c6,8c6,8b,8g,8a,16b,16a,g",
 
-	"Xfiles:d=4,o=5,b=125:e,b,a,b,d6,2b.,1p,e,b,a,b,e6,2b.,1p,g6,f#6,e6,d6,e6,2b.,1p,g6,f#6,e6,d6,f#6,2b.,1p,e,b,a,b,d6,2b.,1p,e,b,a,b,e6,2b.,1p,e6,2b.",
+	// "Xfiles:d=4,o=5,b=125:e,b,a,b,d6,2b.,1p,e,b,a,b,e6,2b.,1p,g6,f#6,e6,d6,e6,2b.,1p,g6,f#6,e6,d6,f#6,2b.,1p,e,b,a,b,d6,2b.,1p,e,b,a,b,e6,2b.,1p,e6,2b.",
 
-	"Zorba2:d=4,o=5,b=125:16c#6,2d6,2p,16c#6,2d6,2p,32e6,32d6,32c#6,2d6,2p,16c#6,2d6,2p,16b,2c6,2p,32d6,32c6,32b,2c6,2p,16a#,2b,p,8p,32c6,32b,32a,32g,32b,2a,2p,32a,32g,32f#,32a,1g,1p,8c#6,8d6,8d6,8d6,8d6,8d6,8d6,8d6,8c#6,8d6,8d6,8d6,8d6,8d6,16e6,16d6,16c#6,16e6,8c#6,8d6,8d6,8d6,8d6,8d6,8d6,8d6,8c#6,8d6,8d6,8d6,8d6,8d6"
+	// "Zorba2:d=4,o=5,b=125:16c#6,2d6,2p,16c#6,2d6,2p,32e6,32d6,32c#6,2d6,2p,16c#6,2d6,2p,16b,2c6,2p,32d6,32c6,32b,2c6,2p,16a#,2b,p,8p,32c6,32b,32a,32g,32b,2a,2p,32a,32g,32f#,32a,1g,1p,8c#6,8d6,8d6,8d6,8d6,8d6,8d6,8d6,8c#6,8d6,8d6,8d6,8d6,8d6,16e6,16d6,16c#6,16e6,8c#6,8d6,8d6,8d6,8d6,8d6,8d6,8d6,8c#6,8d6,8d6,8d6,8d6,8d6"
 };
 
 // La siguiente matriz almacena las frecuencias de las notas musicales
@@ -45,8 +45,14 @@ const unsigned int note[4][12] =
 
 unsigned int duration_timer;
 volatile unsigned int sound_playing=0;
+volatile unsigned char song_playing=1;
 unsigned char duration, octave;
 unsigned int tempo;
+char *song;
+
+void set_song(uint8_t song_num) {
+	song = rtttl_library[song_num];
+}
 
 // @brief *resumen*
 // @param  *parametrsoq que resumen*
@@ -90,12 +96,6 @@ int get_duration_timer() {
 	return duration_timer;
 }
 
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-unsigned int get_sound_playing() {
-	return sound_playing;
-}
 
 // @brief *resumen*
 // @param  *parametrsoq que resumen*
@@ -122,7 +122,7 @@ unsigned int get_tempo() {
 // Saco el sonido por el PIN5 del PORTD: freq en Hz, dur en ms
 void sound(unsigned int freq, unsigned int dur)
 {
-	while (sound_playing);      // Si hay alg?n sonido presente, espero a que termine
+	while (sound_playing && song_playing);      // Si hay alg?n sonido presente, espero a que termine
 
 	duration_timer = dur;       // Seteo el tiempo de duraci?n
 
@@ -135,24 +135,32 @@ void sound(unsigned int freq, unsigned int dur)
 	sound_playing = 1;          // Activo el flag para avisar que hay una nota sonando
 }
 
-// Esta funci?n reproduce una canci?n que se le pase en un string con formato RTTTL
-void play_song(char *song)
+void stop_song()
 {
+	song_playing = 0;           // Activo el flag para avisar que hay una nota sonando
+	sound_playing = 0;          // Activo el flag para avisar que hay una nota sonando
+	TCCR1A&=~(1<<COM1A0);       // Desactivo la salida
+}
+
+// Esta funci?n reproduce una canci?n que se le pase en un string con formato RTTTL
+void play_song()
+{
+	song_playing = 1;
 	unsigned char temp_duration, temp_octave, current_note, dot_flag;
 	unsigned int calc_duration;
 	duration = 4;                 // Duraci?n est?ndar = 4/4 = 1 beat
 	tempo = 63;                   // Tempo est?ndar = 63 bpm
 	octave = 6;                   // Octava est?ndar = 6th
-	while (*song != ':') song++;  // Busca el primer ':'
+	while (*song != ':' && song_playing) song++;  // Busca el primer ':'
 	song++;                       // Saltea el primer ':'
-	while (*song!=':')            // Repite hasta encontrar ':'
+	while (*song!=':' && song_playing)            // Repite hasta encontrar ':'
 	{
 		if (*song == 'd')           // Entra si es el seteo de la duraci?n
 		{
 			duration = 0;             // Seteo la duraci?n en cero (temporalmente)
 			song++;                   // Avanzo al pr?ximo caracter
-			while (*song == '=') song++;  // Salteo '='
-			while (*song == ' ') song++;  // Salteo los espacios
+			while (*song == '=' && song_playing) song++;  // Salteo '='
+			while (*song == ' ' && song_playing) song++;  // Salteo los espacios
 			// Si el caracter es un n?mero, seteo la duraci?n
 			if (*song>='0' && *song<='9') duration = *song - '0';
 			song++;                   // Avanzo al pr?ximo caracter
@@ -162,26 +170,26 @@ void play_song(char *song)
 				duration = duration*10 + (*song - '0');
 				song++;                 // Avanzo al pr?ximo caracter
 			}
-			while (*song == ',') song++;  // Salteo ','
+			while (*song == ',' && song_playing) song++;  // Salteo ','
 		}
 
 		if (*song == 'o')           // Entra si es el seteo de la octava
 		{
 			octave = 0;               // Seteo la octava en cero (temporalmente)
 			song++;                   // Avanzo al pr?ximo caracter
-			while (*song == '=') song++;  // Salteo '='
-			while (*song == ' ') song++;  // Salteo los espacios
+			while (*song == '=' && song_playing) song++;  // Salteo '='
+			while (*song == ' ' && song_playing) song++;  // Salteo los espacios
 			// Si el caracter es un n?mero, seteo la octava
 			if (*song>='0' && *song<='9') octave = *song - '0';
 			song++;                   // Avanzo al pr?ximo caracter
-			while (*song == ',') song++;  // Salteo ','
+			while (*song == ',' && song_playing) song++;  // Salteo ','
 		}
 		if (*song == 'b')           // Entra si es el seteo del tempo (beats por minuto)
 		{
 			tempo = 0;                // Seteo el tempo en cero (temporalmente)
 			song++;                   // Avanzo al pr?ximo caracter
-			while (*song == '=') song++;  // Salteo '='
-			while (*song == ' ') song++;  // Salteo los espacios
+			while (*song == '=' && song_playing) song++;  // Salteo '='
+			while (*song == ' ' && song_playing) song++;  // Salteo los espacios
 			// Ahora leo el seteo del tempo (puede tener 3 d?gitos de largo)
 			if (*song>='0' && *song<='9') tempo = *song - '0';
 			song++;                   // Avanzo al pr?ximo caracter
@@ -195,13 +203,13 @@ void play_song(char *song)
 					song++;               // Avanzo al pr?ximo caracter
 				}
 			}
-			while (*song == ',') song++;  // Salteo ','
+			while (*song == ',' && song_playing) song++;  // Salteo ','
 		}
-		while (*song == ',') song++;    // Salteo ','
+		while (*song == ',' && song_playing) song++;    // Salteo ','
 	}
 	song++;                       // Avanzo al pr?ximo caracter
 	// read the musical notes
-	while (*song)                 // Repito hasta que el caracter sea null
+	while (*song && song_playing)                 // Repito hasta que el caracter sea null
 	{
 		current_note = 255;         // Nota por defecto = pausa
 		temp_octave = octave;       // Seteo la octava a la por defecto de la canci?n
@@ -258,7 +266,7 @@ void play_song(char *song)
 			dot_flag = 1;             // Si se encuentra '.', seteo el flag
 			song++;                   // Avanzo al pr?ximo caracter
 		}
-		while (*song == ',') song++;    // Salteo ','
+		while (*song == ',' && song_playing) song++;    // Salteo ','
 		// Calculo la duraci?n de la nota
 		calc_duration = (60000/tempo)/(temp_duration);
 		calc_duration *= 4;         // La nota completa tiene cuatro beats
@@ -271,6 +279,6 @@ void play_song(char *song)
 			duration_timer = calc_duration;
 			sound_playing = 1;
 		}
-		while (sound_playing);      // Espero a la que nota/pausa en curso finalice
+		while (sound_playing && song_playing);      // Espero a la que nota/pausa en curso finalice
 	}
 }

@@ -13,7 +13,9 @@
 	#include <util/delay.h>
 	
 	void sound(unsigned int freq, unsigned int dur);
-	void play_song(char *song);
+	void play_song();
+	void stop_song();
+	void set_song(uint8_t num);
     
     // setters
     void set_duration_timer(int duration);

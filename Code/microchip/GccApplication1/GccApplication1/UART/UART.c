@@ -33,7 +33,6 @@ ISR(USART_UDRE_vect){
 }
 
 
-
 void Buffer_Init (void)
 {
 	TX_buffer.index_escritura = 0;
@@ -107,7 +106,7 @@ void inc_TX_index_lectura (void)
 
 uint8_t get_FLAG_datos_recibidos(void){
 	return FLAG_datos_recibidos;
-} 
+}
 
 void set_FLAG_datos_recibidos(uint8_t value){
 	FLAG_datos_recibidos = value;
@@ -187,4 +186,24 @@ char hay_datos_TX_buffer() {
 
 char hay_datos_RX_buffer() {
 	return (RX_buffer.index_lectura < RX_buffer.index_escritura);
+}
+
+const char msjBienvenida [] = "Bienvenido al selector de ringtones! Canciones disponibles: ";
+#define LONGBIENVENIDA 59
+const char msjPlay[] = "PLAY: Reproduce la cancion seleccionada";
+#define LONGPLAY 39
+const char msjStop[] = "STOP: Detiene la reproduccion del sonido en curso";
+#define LONGSTOP 49
+const char msjNum[] = "NUM: Numero de cancion a seleccionar de la lista [1 a N]";
+#define LONGNUM 56
+
+const char msjReset[] ="RESET: Reinicia el sistema al estado inicial";
+#define LONGRESET 44
+
+void UART_Write_Menu(void){
+	UART_Write_String_To_Buffer(msjBienvenida);
+	UART_Write_String_To_Buffer(msjPlay);
+	UART_Write_String_To_Buffer(msjStop);
+	UART_Write_String_To_Buffer(msjNum);
+	UART_Write_String_To_Buffer(msjReset);
 }

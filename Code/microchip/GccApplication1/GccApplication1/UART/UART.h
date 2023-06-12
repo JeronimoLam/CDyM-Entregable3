@@ -44,6 +44,7 @@
 	void set_FLAG_datos_recibidos(uint8_t value);
 	char hay_datos_TX_buffer();
 	void Buffer_Init();
+	void UART_Write_Menu(void);
 
 #define UART_H_
 
