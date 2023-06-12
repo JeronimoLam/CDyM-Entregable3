@@ -15,7 +15,7 @@ const char msjStop[] = "STOP: Detiene la reproduccion del sonido en curso";
 #define LONG_STOP 49
 const char msjNum[] = "NUM: Numero de cancion a seleccionar de la lista [1 a N]";
 #define LONG_NUM 56
-const char msjReset[] ="RESET: Reinicia el sistema al estado inicial";
+const char msjReset[] ="RESET: Reinicia el sistema al estado inicial\n";
 #define LONG_RESET 44
 
 void MENU_display_options(void){
@@ -30,7 +30,6 @@ void MENU_display_options_bienvenida(){
 }
 
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
-	uint16_t i = buffer->index_lectura;
 	uint16_t j = 0;
 	
 	while (buffer->data[buffer->index_lectura] != '\r') {
@@ -65,17 +64,23 @@ void MENU_select_option(char * inpt){
 		
 	}
 	else if (strncmp(inpt, "NUM", 3) == 0){
-		
+			UART_Write_String_To_Buffer("ok\n");
+			
 		uint8_t value;
 		// Si el formato es "NUM X"
 		if (sscanf(inpt, "NUM %d", &value) == 1) {
+			UART_Write_String_To_Buffer("ok 1\n");
+			
 			
 			// value contiene el valor "X"
+			
+			char msg[50];
+			UART_Write_String_To_Buffer("ok 2\n");
+			
+			sprintf(msg, "Song selected: %d\n", value);
+			UART_Write_String_To_Buffer(msg);
 			set_song(value);
 			
-			char msg[24];
-			sprintf(msg, "Song selected:  %d", value);
-			UART_Write_String_To_Buffer(msg);
 			
 		}
 		else {
@@ -86,13 +91,16 @@ void MENU_select_option(char * inpt){
 		}
 	}
 	else if (strcmp(inpt, "RESET") == 0){
-		
+		UART_Write_String_To_Buffer("RESETTING system\n");
+		stop_song();
+		set_song(1);
 		// Se resetean los buffers
+		/*
 		cli();
 		Buffer_Init();
 		sei();
 		UART_Write_String_To_Buffer("RESETTING system\n");
-		
+		*/
 		// Reimprime el menu
 		MENU_display_options();
 		
