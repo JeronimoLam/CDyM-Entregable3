@@ -26,13 +26,22 @@ ISR(USART_RX_vect){
 	{
 		//set_RX_data('\0');
 		FLAG_datos_recibidos = 1;
-		if (get_RX_data_index_lectura() == 'S') {
+		if (get_RX_data_index_lectura() == 'S' || get_RX_data_index_lectura()=='R') {
 			uint8_t substring[BUFFER_RX_LEN];
 			create_substring(get_RX_data(), substring);
 			UART_Write_String_To_Buffer(substring);
+			
 			if (strcmp(substring, "STOP") == 0){
 				stop_song();
 				UART_Write_String_To_Buffer("Stopped song\n");
+				FLAG_datos_recibidos = 0;
+			}
+			else if (strcmp(substring, "RESET") == 0){
+				UART_Write_String_To_Buffer("RESETTING system\n");
+				stop_song();
+				set_song(0);
+		
+				MENU_display_options();
 				FLAG_datos_recibidos = 0;
 			}
 		
