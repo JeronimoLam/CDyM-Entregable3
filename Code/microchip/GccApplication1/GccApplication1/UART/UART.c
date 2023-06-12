@@ -155,6 +155,18 @@ void UART_Write_String_To_Buffer(char* STR_PTR)
 	UART_Write_Char_To_Buffer ('\n');
 }
 
+void UART_Write_String_To_Buffer_No_NewLine(char* STR_PTR)
+{
+	uint8_t i = 0;
+	//SerialPort_TX_Interrupt_Disable();
+	while ( STR_PTR [ i ] != '\0')
+	{
+		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
+		i++;
+	}
+	//SerialPort_TX_Interrupt_Enable();
+}
+
 uint8_t UART_Receive_data (uint8_t *dato)
 {
 	if ( UCSR0A & (1<<RXC0) ) {

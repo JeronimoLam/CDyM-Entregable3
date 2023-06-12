@@ -64,32 +64,29 @@ void MENU_select_option(char * inpt){
 		
 	}
 	else if (strncmp(inpt, "NUM", 3) == 0){
-			UART_Write_String_To_Buffer("ok\n");
-			
-		uint8_t value;
+		
 		// Si el formato es "NUM X"
-		//sscanf(inpt, "NUM %d", &value);
-		switch (inpt[4]){
-			case '1': UART_Write_String_To_Buffer("Se ingreso el 1");
-			break;
-			case '2': UART_Write_String_To_Buffer("Se ingreso el 2");
-			break; 
-			default:
-				UART_Write_String_To_Buffer("Command usage: NUM [number of song]");
-		}
-	//	if (inpt[4]  == '1') {
-		//	UART_Write_String_To_Buffer("ok 1\n");
-			
-			
+		if (inpt[3] == ' ' && inpt[5] == '\0') {
+
 			// value contiene el valor "X"
+			uint8_t value = atoi(inpt[4]);
+			char str[2] = "";
+			str[0] = inpt[4];
 			
-			//char msg[50];
-			//UART_Write_String_To_Buffer("ok 2\n");
+
+			UART_Write_String_To_Buffer_No_NewLine("Song selected: ");
+			UART_Write_String_To_Buffer(str);
+			UART_Write_String_To_Buffer("\n");
 			
-			//sprintf(msg, "Song selected: %d\n", value);
-			//UART_Write_String_To_Buffer(msg);
 			set_song(value);
+
+		}
+		else {
 			
+			// Si el formato no es "NUM X"
+			UART_Write_String_To_Buffer("Command usage: NUM [number of song]\n");
+			
+		}
 	}
 	else if (strcmp(inpt, "RESET") == 0){
 		UART_Write_String_To_Buffer("RESETTING system\n");
@@ -109,4 +106,8 @@ void MENU_select_option(char * inpt){
 	else{
 		UART_Write_String_To_Buffer("Comando no encontrado\r\n");
 	}
+	
+	
 }
+
+

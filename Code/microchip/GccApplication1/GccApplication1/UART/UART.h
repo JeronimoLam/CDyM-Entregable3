@@ -31,6 +31,7 @@
 	void UART_Send_Char (uint8_t dato);
 	uint8_t UART_Write_Char_To_Buffer (uint8_t data);
 	void UART_Write_String_To_Buffer(char* STR_PTR);
+	void UART_Write_String_To_Buffer_No_NewLine(char* STR_PTR);
 	uint8_t UART_Receive_data (uint8_t *dato);
 	void UART_Update (void);
 	void inc_RX_index_escritura (void);
