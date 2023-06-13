@@ -21,12 +21,26 @@ ISR(USART_RX_vect){
 	}
 	inc_RX_index_escritura(); // index_escritura++
 */
+	//UART_Write_String_To_Buffer("Entre a la interrupcion");
 	set_RX_data_UDR0(); // BufferRX[index_escritura]
 	if ((RX_buffer.data[RX_buffer.index_escritura]) == '\n')
 	{
+		//UART_Write_String_To_Buffer("ENCONTRE UN /N");
+		//UART_Write_String_To_Buffer("PRIMER CHEQUEO");
+	
 		//set_RX_data('\0');
-		FLAG_datos_recibidos = 1;
+		set_FLAG_datos_recibidos(1);
+		/*if (get_FLAG_datos_recibidos() == 1){
+			UART_Write_String_To_Buffer("Flag en 1");
+			
+		}
+		else{
+			UART_Write_String_To_Buffer("Flag en 0");
+			
+		}*/
+		
 		if (get_RX_data_index_lectura() == 'S' || get_RX_data_index_lectura()=='R') {
+			UART_Write_String_To_Buffer("La primera letra es una S o una R");
 			uint8_t substring[BUFFER_RX_LEN];
 			create_substring(get_RX_data(), substring);
 			UART_Write_String_To_Buffer(substring);
@@ -34,7 +48,7 @@ ISR(USART_RX_vect){
 			if (strcmp(substring, "STOP") == 0){
 				stop_song();
 				UART_Write_String_To_Buffer("Stopped song\n");
-				FLAG_datos_recibidos = 0;
+				set_FLAG_datos_recibidos(0);
 			}
 			else if (strcmp(substring, "RESET") == 0){
 				UART_Write_String_To_Buffer("RESETTING system\n");
@@ -42,11 +56,22 @@ ISR(USART_RX_vect){
 				set_song(0);
 		
 				MENU_display_options();
-				FLAG_datos_recibidos = 0;
+				set_FLAG_datos_recibidos(0);
 			}
 		
 		}
+		//UART_Write_String_To_Buffer("SEGUNDO CHEQUEO");
+		
+		/*if (get_FLAG_datos_recibidos() == 1){
+			UART_Write_String_To_Buffer("Flag en 1");
+			
+		}
+		else{
+			UART_Write_String_To_Buffer("Flag en 0");
+			
+		}*/
 	}
+	
 	inc_RX_index_escritura();
 }
 
@@ -60,6 +85,7 @@ ISR(USART_UDRE_vect){
 	*/
 	if((TX_buffer.index_lectura) % BUFFER_TX_LEN == TX_buffer.index_escritura){
 		SerialPort_TX_Interrupt_Disable();
+		SerialPort_RX_Interrupt_Enable();
 	}
 	else{
 		if (TX_buffer.data[TX_buffer.index_lectura] != '/0') {	// buffer_len = 8

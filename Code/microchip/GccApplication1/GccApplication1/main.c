@@ -12,6 +12,8 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <string.h>
+#include "Menu/Menu.h"
+#include "UART/UART.h"
 
 // Control de la duraci?n del sonido
 ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
@@ -69,6 +71,7 @@ int main(void)
 	while(1)
 	{
 		if (get_FLAG_datos_recibidos() == 1) {
+			//UART_Write_String_To_Buffer("SE ENTRO A GESTIONAR EL FLAG");
 			//cli();
 			set_FLAG_datos_recibidos(0);
 			
