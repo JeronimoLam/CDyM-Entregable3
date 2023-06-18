@@ -61,12 +61,6 @@ void MENU_select_option(char * inpt){
 		play_song();
 		
 	}
-	else if (strcmp(inpt, "STOP") == 0){
-		
-		stop_song();
-		UART_Write_String_To_Buffer("Stopped song\n");
-		
-	}
 	else if (strncmp(inpt, "NUM", 3) == 0){
 		
 		// Si el formato es "NUM X"
@@ -89,35 +83,15 @@ void MENU_select_option(char * inpt){
 				MENU_display_songs();
 				UART_Write_String_To_Buffer("\n");
 			}
-			
-
 		}
 		else {
-			
 			// Si el formato no es "NUM X"
 			UART_Write_String_To_Buffer("Command usage: NUM [number of song]\n");
-			
 		}
-	}
-	else if (strcmp(inpt, "RESET") == 0){
-		UART_Write_String_To_Buffer("RESETTING system\n");
-		stop_song();
-		set_song(0);
-		// Se resetean los buffers
-		/*
-		cli();
-		Buffer_Init();
-		sei();
-		UART_Write_String_To_Buffer("RESETTING system\n");
-		*/
-		// Reimprime el menu
-		MENU_display_commands();
-		
 	}
 	else{
 		UART_Write_String_To_Buffer("Comando no encontrado\r\n");
 	}
-	
 }
 
 void MENU_process_inpt(){
@@ -125,7 +99,9 @@ void MENU_process_inpt(){
 	
 	create_substring(get_RX_data(), substring);
 	UART_Write_String_To_Buffer(substring);
-	MENU_select_option(substring);
+	if (strcmp(substring, "")){
+		MENU_select_option(substring);
+	}
 }
 
 

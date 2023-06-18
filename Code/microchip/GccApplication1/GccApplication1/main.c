@@ -1,12 +1,3 @@
-/*
- * EjemploTimerRingtone.c
- *
- * Created: 23/10/2020 08:26:59 p. m.
- * Autor:								Pereira F?bio (01/09/2008) - Para un microcontrolador Freescale HCS08
- * Autor migraci?n / modificaci?n:		Perri Victor
- * Asignatura:							Dise?o de Controladores Digitales
------------------------------------------------------------*/
-
 #define F_CPU 16000000UL
 #include <avr/io.h>
 #include <util/delay.h>
@@ -57,7 +48,6 @@ int main(void)
 
 
 	//Habilito la mAscara de interrupciones
-
 	Buffer_Init();
 	SerialPort_Init(103); // 9600 baudios para 16MHz
 	SerialPort_TX_Enable();
@@ -70,46 +60,13 @@ int main(void)
 	while(1)
 	{
 		if (get_FLAG_datos_recibidos() == 1) {
-			//UART_Write_String_To_Buffer("SE ENTRO A GESTIONAR EL FLAG");
-			//cli();
 			set_FLAG_datos_recibidos(0);
 			
 			// procesamiento BUffer_Rx
 			MENU_process_inpt();
-			
-			sei();
-			
 		}
-
-		//UART_Write_String_To_Buffer("hola");
-
-		//Main
-		// Send a string to the UART
-		//sprintf(string, "%d\r\n", i);
-		//i++;
-		//_delay_ms(500);
-
-		// if (UART_flag) {
-		// 	UART_flag=0;
-		// 	UART_Update();
-		// }
-		// if (MENU_flag) {
-		// 	MENU_flag=0;
-		// 	MENU_Command_Update();
-		// }
-	//	UART_Update();
-		// for (song_sel=0;song_sel<11;song_sel++)
-		// {
-		// 	play_song(rtttl_library[song_sel]); // Reproduzco la canci?n
-		// 	// Espero dos segundos antes de comenzar la siguiente canci?n
-		// 	set_duration_timer(2000);
-		// 	set_sound_playing(1);
-		// 	while (get_sound_playing());
-		// }
-		//i++;
 	}
-
-	return 0; // Nunca va a alcanzar esta parte
+	return 0;
 }
 
 
