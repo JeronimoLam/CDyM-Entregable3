@@ -12,6 +12,8 @@
 	#include <avr/interrupt.h>
 	#include <util/delay.h>
 	
+	#define CANT_SONGS 4
+	
 	void sound(unsigned int freq, unsigned int dur);
 	void play_song();
 	void stop_song();
@@ -30,7 +32,7 @@
     unsigned char get_duration();
     unsigned char get_octave();
     unsigned int get_tempo();
-	const char * AUDIO_get_songs_menu();
+	const char ** AUDIO_get_songs_menu();
 
 
     extern const char *rtttl_library[];

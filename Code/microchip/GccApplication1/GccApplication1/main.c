@@ -64,8 +64,7 @@ int main(void)
 	SerialPort_RX_Enable();
 	SerialPort_RX_Interrupt_Enable();
 
-	MENU_display_options_bienvenida();
-	MENU_display_options();
+	MENU_display_welcome();
 	sei();
 	
 	while(1)

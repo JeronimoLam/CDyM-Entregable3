@@ -40,7 +40,7 @@ ISR(USART_RX_vect){
 		}*/
 		
 		if (get_RX_data_index_lectura() == 'S' || get_RX_data_index_lectura()=='R') {
-			UART_Write_String_To_Buffer("La primera letra es una S o una R");
+			//UART_Write_String_To_Buffer("La primera letra es una S o una R");
 			uint8_t substring[BUFFER_RX_LEN];
 			create_substring(get_RX_data(), substring);
 			UART_Write_String_To_Buffer(substring);
@@ -55,7 +55,7 @@ ISR(USART_RX_vect){
 				stop_song();
 				set_song(0);
 		
-				MENU_display_options();
+				MENU_display_welcome();
 				set_FLAG_datos_recibidos(0);
 			}
 		

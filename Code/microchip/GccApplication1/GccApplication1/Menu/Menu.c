@@ -7,34 +7,37 @@
 
 #include "Menu.h"
 
-const char msjBienvenida [] = "Bienvenido al selector de ringtones! Canciones disponibles: \n";
-#define LONG_BIENVENIDA 59
+const char msjBienvenida [] = "Bienvenido al selector de ringtones! \n";
+const char msjSongs [] = "Canciones:";
+const char msjCommands [] = "Comandos:";
 const char msjPlay[] = "    ==> PLAY: Reproduce la cancion seleccionada";
-#define LONG_PLAY 39
 const char msjStop[] = "    ==> STOP: Detiene la reproduccion del sonido en curso";
-#define LONG_STOP 49
 const char msjNum[] = "    ==> NUM: Numero de cancion a seleccionar de la lista [1 a N]";
-#define LONG_NUM 56
 const char msjReset[] = "    ==> RESET: Reinicia el sistema al estado inicial\n";
-#define LONG_RESET 44
 
 void MENU_display_songs(void){
-	const char * songs = AUDIO_get_songs_menu();
-	UART_Write_String_To_Buffer(songs);
+	UART_Write_String_To_Buffer(msjSongs);
+	
+	const char ** songs = AUDIO_get_songs_menu();
+	for (int i = 0; i < CANT_SONGS; i++){
+		UART_Write_String_To_Buffer_No_NewLine("	");
+		UART_Write_String_To_Buffer(songs[i]);
+	}
 }
 
-void MENU_display_options(){
+void MENU_display_commands(){
+	UART_Write_String_To_Buffer(msjCommands);
 	UART_Write_String_To_Buffer(msjPlay);
 	UART_Write_String_To_Buffer(msjStop);
 	UART_Write_String_To_Buffer(msjNum);
 	UART_Write_String_To_Buffer(msjReset);
 }
 
-void MENU_display_options_bienvenida(){
+void MENU_display_welcome(){
 	UART_Write_String_To_Buffer(msjBienvenida);
 	MENU_display_songs();
-	UART_Write_String_To_Buffer("\n");
-	UART_Write_String_To_Buffer("Comandos:");
+	UART_Write_String_To_Buffer_No_NewLine("\n");
+	MENU_display_commands();
 	
 }
 
@@ -70,17 +73,23 @@ void MENU_select_option(char * inpt){
 		if (inpt[3] == ' ' && inpt[5] == '\0') {
 
 			// value contiene el valor "X"
-			char str[2] = "";
-			str[0] = inpt[4];
 			uint8_t value = inpt[4] - '0';
 			
+			if (value >= 0 && value < CANT_SONGS){
+				UART_Write_String_To_Buffer_No_NewLine("Song selected ");
+				const char ** songs = AUDIO_get_songs_menu();
+				UART_Write_String_To_Buffer(songs[value]);
+				
+				set_song(value);
+				UART_Write_String_To_Buffer("\n");
+				
+			}
+			else{
+				UART_Write_String_To_Buffer("Ingrese un numero adecuado");
+				MENU_display_songs();
+				UART_Write_String_To_Buffer("\n");
+			}
 			
-
-			UART_Write_String_To_Buffer_No_NewLine("Song selected: ");
-			UART_Write_String_To_Buffer(str);
-			UART_Write_String_To_Buffer("\n");
-			
-			set_song(value);
 
 		}
 		else {
@@ -102,7 +111,7 @@ void MENU_select_option(char * inpt){
 		UART_Write_String_To_Buffer("RESETTING system\n");
 		*/
 		// Reimprime el menu
-		MENU_display_options();
+		MENU_display_commands();
 		
 	}
 	else{

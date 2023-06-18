@@ -15,8 +15,8 @@
 	#include "../audio/audio.h"
 
 	void MENU_process_inpt(void);
-	void MENU_display_options_bienvenida(void);
-	void MENU_display_options(void);
+	void MENU_display_welcome(void);
+	void MENU_display_commands(void);
 	
 	
 #endif /* MENU_H_ */
