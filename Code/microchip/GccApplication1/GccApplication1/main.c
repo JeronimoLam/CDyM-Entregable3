@@ -31,6 +31,7 @@ int main(void)
 	while(1){
 
 		// Tarea para la lectura de palabras del buffer de recepcion
+		
 		if (UART_get_words_counter() > 0) {
 
 			SerialPort_RX_Interrupt_Disable();
