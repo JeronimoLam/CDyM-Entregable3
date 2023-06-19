@@ -3,13 +3,13 @@
  *
  * Created: 07/10/2020 03:02:18 p. m.
  *  Author: vfperri
- */ 
+ */
 
 #include "SerialPort.h"
 
-// ------ Definiciones de Funciones Públicas -------------------
+// ------ Definiciones de Funciones Publicas -------------------
 
-// Inicialización de Puerto Serie
+// Inicializaciï¿½n de Puerto Serie
 
 void SerialPort_Init(uint8_t config){
 	// config = 0x33 ==> Configuro UART 9600bps, 8 bit data, 1 stop @ F_CPU = 8MHz.
@@ -21,7 +21,7 @@ void SerialPort_Init(uint8_t config){
 }
 
 
-// Inicialización de Transmisor
+// Inicializaciï¿½n de Transmisor
 
 void SerialPort_TX_Enable(void){
 	UCSR0B |= (1<<TXEN0);
@@ -37,7 +37,7 @@ void SerialPort_TX_Interrupt_Disable(void)
 }
 
 
-// Inicialización de Receptor
+// Inicializaciï¿½n de Receptor
 
 void SerialPort_RX_Enable(void){
 	UCSR0B |= (1<<RXEN0);
@@ -47,8 +47,12 @@ void SerialPort_RX_Interrupt_Enable(void){
 	UCSR0B |= (1<<RXCIE0);
 }
 
+void SerialPort_RX_Interrupt_Disable(void){
+	UCSR0B &=~(1<<RXCIE0);
+}
 
-// Transmisión
+
+// Transmisiï¿½n
 
 // Espera hasta que el buffer de TX este libre.
 void SerialPort_Wait_For_TX_Buffer_Free(void){
@@ -64,14 +68,14 @@ void SerialPort_Send_String(char * msg){ //msg -> "Hola como andan hoy?" 20 ASCI
 	uint8_t i = 0;
 	//'\0' = 0x00
 	while(msg[i]){ // *(msg+i)
-		SerialPort_Wait_For_TX_Buffer_Free(); //9600bps formato 8N1, 10bits, 10.Tbit=10/9600=1ms 
+		SerialPort_Wait_For_TX_Buffer_Free(); //9600bps formato 8N1, 10bits, 10.Tbit=10/9600=1ms
 		SerialPort_Send_Data(msg[i]);
 		i++;
 	}
 }
 
 
-// Recepción
+// Recepciï¿½n
 
 // Espera hasta que el buffer de RX este completo.
 void SerialPort_Wait_Until_New_Data(void){
@@ -86,15 +90,15 @@ char SerialPort_Recive_Data(void){
 
 
 void SerialPort_Send_uint8_t(uint8_t num){
-	
+
 	SerialPort_Wait_For_TX_Buffer_Free();
 	SerialPort_Send_Data('0'+num/100);
-	
+
 	num-=100;
-	
+
 	SerialPort_Wait_For_TX_Buffer_Free();
 	SerialPort_Send_Data('0'+num/10);
-	
+
 	SerialPort_Wait_For_TX_Buffer_Free();
 	SerialPort_Send_Data('0'+ num%10);
 }

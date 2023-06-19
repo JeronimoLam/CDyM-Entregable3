@@ -3,9 +3,9 @@
  *
  * Created: 6/12/2023 1:53:19 AM
  *  Author: Jero
- */ 
+ */
 
-#include "Menu.h"
+#include "menu.h"
 
 const char msjBienvenida [] = "Bienvenido al selector de ringtones! \n";
 const char msjSongs [] = "Canciones:";
@@ -17,7 +17,7 @@ const char msjReset[] = "    ==> RESET: Reinicia el sistema al estado inicial\n"
 
 void MENU_display_songs(void){
 	UART_Write_String_To_Buffer(msjSongs);
-	
+
 	const char ** songs = AUDIO_get_songs_menu();
 	for (int i = 0; i < CANT_SONGS; i++){
 		UART_Write_String_To_Buffer_No_NewLine("	");
@@ -38,12 +38,12 @@ void MENU_display_welcome(){
 	MENU_display_songs();
 	UART_Write_String_To_Buffer_No_NewLine("\n");
 	MENU_display_commands();
-	
+
 }
 
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	uint16_t j = 0;
-	
+
 	while (buffer->data[buffer->index_lectura] != '\r') {
 		substring[j++] = buffer->data[buffer->index_lectura];
 		inc_RX_index_lectura();
@@ -56,27 +56,27 @@ void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 
 void MENU_select_option(char * inpt){
 	if (strcmp(inpt, "PLAY") == 0){
-		
+		start_song();
 		UART_Write_String_To_Buffer("Playing song\n");
-		play_song();
 		
+
 	}
 	else if (strncmp(inpt, "NUM", 3) == 0){
-		
+
 		// Si el formato es "NUM X"
 		if (inpt[3] == ' ' && inpt[5] == '\0') {
 
 			// value contiene el valor "X"
 			uint8_t value = inpt[4] - '0';
-			
+
 			if (value >= 0 && value < CANT_SONGS){
 				UART_Write_String_To_Buffer_No_NewLine("Song selected ");
 				const char ** songs = AUDIO_get_songs_menu();
 				UART_Write_String_To_Buffer(songs[value]);
-				
+
 				set_song(value);
 				UART_Write_String_To_Buffer("\n");
-				
+
 			}
 			else{
 				UART_Write_String_To_Buffer("Ingrese un numero adecuado");
@@ -89,6 +89,27 @@ void MENU_select_option(char * inpt){
 			UART_Write_String_To_Buffer("Command usage: NUM [number of song]\n");
 		}
 	}
+	else if (strcmp(inpt, "STOP") == 0){
+
+		stop_song();
+		UART_Write_String_To_Buffer("Stopped song\n");
+
+	}
+	else if (strcmp(inpt, "RESET") == 0){
+		UART_Write_String_To_Buffer("RESETTING system\n");
+		stop_song();
+		set_song(0);
+		// Se resetean los buffers
+		/*
+		cli();
+		Buffer_Init();
+		sei();
+		UART_Write_String_To_Buffer("RESETTING system\n");
+		*/
+		// Reimprime el menu
+		MENU_display_commands();
+
+	}
 	else{
 		UART_Write_String_To_Buffer("Comando no encontrado\r\n");
 	}
@@ -96,7 +117,7 @@ void MENU_select_option(char * inpt){
 
 void MENU_process_inpt(){
 	uint8_t substring[BUFFER_RX_LEN];
-	
+
 	create_substring(get_RX_data(), substring);
 	UART_Write_String_To_Buffer(substring);
 	if (strcmp(substring, "")){

@@ -139,19 +139,37 @@
     <Compile Include="audio\audio.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="functions\functions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="functions\sleep.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Menu\Menu.c">
+    <Compile Include="menu\menu.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Menu\Menu.h">
+    <Compile Include="menu\menu.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="serialPort\serialPort.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="serialPort\serialPort.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="TIMER\TIMER0.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="TIMER\TIMER0.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="TIMER\TIMER1.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="TIMER\TIMER1.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="UART\UART.c">
@@ -163,7 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="audio" />
-    <Folder Include="Menu" />
+    <Folder Include="menu" />
+    <Folder Include="functions" />
+    <Folder Include="TIMER" />
     <Folder Include="UART" />
     <Folder Include="serialPort" />
   </ItemGroup>

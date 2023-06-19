@@ -4,11 +4,17 @@
 
 audio\audio.c
 
+functions\sleep.c
+
 main.c
 
-Menu\Menu.c
+menu\menu.c
 
 serialPort\serialPort.c
+
+TIMER\TIMER0.c
+
+TIMER\TIMER1.c
 
 UART\UART.c
 
