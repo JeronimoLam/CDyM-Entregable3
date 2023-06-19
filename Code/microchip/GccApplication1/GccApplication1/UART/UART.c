@@ -6,14 +6,9 @@
  */
 #include "UART.h"
 
-// @brief	*resumen*
-// @param	*parametrsoq que resumen*
-// @return	*lo que retorna*
-
 Buffer_TX TX_buffer;
 Buffer_RX RX_buffer;
 
-static uint8_t FLAG_datos_recibidos = 0;
 static uint16_t words_counter = 0;
 
 // @brief	Handler de interrupcion para la transmision UART. Interrumpe cuando UDR0 esta vacio
@@ -39,7 +34,7 @@ ISR(USART_RX_vect){
 ISR(USART_UDRE_vect){
 	if(TX_buffer_is_full() == 1){
 		SerialPort_TX_Interrupt_Disable();
-		SerialPort_RX_Interrupt_Enable();
+		//SerialPort_RX_Interrupt_Enable();
 	}
 	// Se escribe en el buffer y se avanza en el indice de lectura
 	else{
@@ -153,11 +148,7 @@ uint8_t* get_RX_data()
 	return RX_buffer.data;
 }
 
-uint8_t set_RX_data (uint8_t dato){
-	RX_buffer.data[RX_buffer.index_escritura] = dato;
-}
-
-uint8_t set_RX_data_UDR0 (){
+void set_RX_data_UDR0 (){
 	RX_buffer.data[RX_buffer.index_escritura] = UDR0;
 }
 

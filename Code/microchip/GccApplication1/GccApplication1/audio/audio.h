@@ -7,7 +7,7 @@
 
 
 #ifndef AUDIO_H_
-	
+
 	#define F_CPU 16000000UL
     #include <avr/io.h>
 	#include <avr/interrupt.h>
@@ -35,7 +35,8 @@
     unsigned char get_octave();
     unsigned int get_tempo();
 	const char ** AUDIO_get_songs_menu();
-    unsigned char get_song_playing();
+    unsigned char get_is_song_playing();
+	char *get_song_playing();
 
 
     extern const char *rtttl_library[];

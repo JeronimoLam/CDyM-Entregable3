@@ -27,15 +27,11 @@ const char *rtttl_library[]=
 
 const char * songs_menu[] =
 {
-	"0: TheSimpsons",
-	"1: MissionImp",
-	"2: Indiana",
-	"3: Wannabe"
+	"Los Simpsons",
+	"Mision Imposible",
+	"Indiana Jones",
+	"Wannabe"
 };
-
-const char ** AUDIO_get_songs_menu(){
-	return songs_menu;
-}
 
 // La siguiente matriz almacena las frecuencias de las notas musicales
 const unsigned int note[4][12] =
@@ -48,7 +44,7 @@ const unsigned int note[4][12] =
 
 unsigned int duration_timer;
 volatile unsigned int sound_playing=0;
-volatile unsigned char song_playing=0;
+volatile unsigned char is_song_playing=0;
 unsigned char duration, octave;
 unsigned int tempo;
 volatile char *song;
@@ -57,105 +53,39 @@ static uint8_t current_song = 0;
 volatile unsigned char temp_duration, temp_octave, current_note, dot_flag;
 volatile unsigned int calc_duration;
 
-void set_song(uint8_t song_num) {
-	current_song = song_num;
-	song = rtttl_library[current_song];
-}
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-void set_duration_timer(int duration) {
-	duration_timer = duration;
-}
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-void set_sound_playing(unsigned int sound_playing_num) {
-	sound_playing = sound_playing_num;
-}
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-void set_duration(unsigned char duration_num) {
-	duration = duration_num;
-}
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-void set_octave(unsigned char octave_num) {
-	octave = octave_num;
-}
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-void set_tempo(unsigned int tempo_num) {
-	tempo = tempo_num;
-}
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-int get_duration_timer() {
-	return duration_timer;
-}
-
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-unsigned char get_duration() {
-	return duration;
-}
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-unsigned char get_octave() {
-	return octave;
-}
-
-// @brief *resumen*
-// @param  *parametrsoq que resumen*
-// @return *lo que retorna*
-unsigned int get_tempo() {
-	return tempo;
-}
-
-unsigned char get_song_playing(){
-	return song_playing;
-}
-
-
-// Saco el sonido por el PIN5 del PORTD: freq en Hz, dur en ms
+// @brief	Reproduce sonido por el PIN5 del PORTD
+// @param	freq: frecuencia en Hz del sonido; dur: duracion en ms del sonido
+// @return	void
 void sound(unsigned int freq, unsigned int dur)
 {
 	while (sound_playing);      // Si hay alg?n sonido presente, espero a que termine
-	
+
 	duration_timer = dur;       // Seteo el tiempo de duraci?n
-	
+
 	// Activo la salida y configuro el timer para que genere la se?al de la frecuencia apropiada
 	TCCR1A|=(1<<COM1A0);
-	
+
 	// Actualizo el valor de OCR1A para que produzca la nota adecuada
 	OCR1A=(8000000/(freq))-1;
-	
+
 	sound_playing = 1;          // Activo el flag para avisar que hay una nota sonando
 }
 
+// @brief	Para el sonido y la cancion en reproduccion
+// @param	void
+// @return	void
 void stop_song()
 {
-	song_playing = 0;           // Activo el flag para avisar que hay una nota sonando
+	is_song_playing = 0;           // Activo el flag para avisar que hay una nota sonando
 	sound_playing = 0;          // Activo el flag para avisar que hay una nota sonando
 	TCCR1A&=~(1<<COM1A0);       // Desactivo la salida
 }
 
+// @brief	Inicializa las variables necesarias para la reproduccion de la cancion seleccionada en current_song
+// @param	void
+// @return	void
 void start_song() {
-	song_playing = 1;
+	is_song_playing = 1;
 	song = rtttl_library[current_song];
 
 	while (*song != ':') song++;  // Busca el primer ':'
@@ -179,7 +109,7 @@ void start_song() {
 			}
 			while (*song == ',') song++;  // Salteo ','
 		}
-		
+
 		if (*song == 'o')           // Entra si es el seteo de la octava
 		{
 			octave = 0;               // Seteo la octava en cero (temporalmente)
@@ -217,13 +147,15 @@ void start_song() {
 	song++;                       // Avanzo al pr?ximo caracter
 }
 
-// Esta funci?n reproduce una canci?n que se le pase en un string con formato RTTTL
+// @brief	Reproduce una cancion con formato RTTTL almacenada en la string song
+// @param	void
+// @return	void
 void play_song()
 {
 	//UART_Write_Char_To_Buffer('a');
 //	                      // Avanzo al pr?ximo caracter
 	// read the musical notes
-	if (*song && song_playing)                 // Repito hasta que el caracter sea null
+	if (*song && is_song_playing)                 // Repito hasta que el caracter sea null
 	{
 		current_note = 255;         // Nota por defecto = pausa
 		temp_octave = octave;       // Seteo la octava a la por defecto de la canci?n
@@ -293,6 +225,60 @@ void play_song()
 		while (sound_playing);      // Espero a la que nota/pausa en curso finalice
 	}
 	else {
-		song_playing = 0;
+		is_song_playing = 0;
 	}
 }
+
+const char ** AUDIO_get_songs_menu(){
+	return songs_menu;
+}
+
+void set_song(uint8_t song_num) {
+	current_song = song_num;
+	song = rtttl_library[current_song];
+}
+
+void set_duration_timer(int duration) {
+	duration_timer = duration;
+}
+
+void set_sound_playing(unsigned int sound_playing_num) {
+	sound_playing = sound_playing_num;
+}
+
+void set_duration(unsigned char duration_num) {
+	duration = duration_num;
+}
+
+void set_octave(unsigned char octave_num) {
+	octave = octave_num;
+}
+
+void set_tempo(unsigned int tempo_num) {
+	tempo = tempo_num;
+}
+
+int get_duration_timer() {
+	return duration_timer;
+}
+
+unsigned char get_duration() {
+	return duration;
+}
+
+unsigned char get_octave() {
+	return octave;
+}
+
+unsigned int get_tempo() {
+	return tempo;
+}
+
+unsigned char get_is_song_playing(){
+	return is_song_playing;
+}
+
+char *get_song_playing(){
+	return songs_menu[current_song];
+}
+

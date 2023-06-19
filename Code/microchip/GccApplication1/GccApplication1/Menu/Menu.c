@@ -21,6 +21,9 @@ void MENU_display_songs(void){
 	const char ** songs = AUDIO_get_songs_menu();
 	for (int i = 0; i < CANT_SONGS; i++){
 		UART_Write_String_To_Buffer_No_NewLine("	");
+		uint8_t n = i+48;
+		UART_Write_Char_To_Buffer(n);
+		UART_Write_String_To_Buffer_No_NewLine(": ");
 		UART_Write_String_To_Buffer(songs[i]);
 	}
 }
@@ -57,11 +60,17 @@ void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 void MENU_select_option(char * inpt){
 	if (strcmp(inpt, "PLAY") == 0){
 		start_song();
-		UART_Write_String_To_Buffer("Playing song\n");
+		UART_Write_String_To_Buffer_No_NewLine("Reproduciendo: ");
+		UART_Write_String_To_Buffer_No_NewLine(get_song_playing());
+		UART_Write_String_To_Buffer("\r\n");
 		
-
 	}
 	else if (strncmp(inpt, "NUM", 3) == 0){
+
+		if (get_is_song_playing()) {
+			UART_Write_String_To_Buffer("ERROR: Hay una cancion en reproduccion\r\n");
+			return;
+		}
 
 		// Si el formato es "NUM X"
 		if (inpt[3] == ' ' && inpt[5] == '\0') {
@@ -70,13 +79,10 @@ void MENU_select_option(char * inpt){
 			uint8_t value = inpt[4] - '0';
 
 			if (value >= 0 && value < CANT_SONGS){
-				UART_Write_String_To_Buffer_No_NewLine("Song selected ");
-				const char ** songs = AUDIO_get_songs_menu();
-				UART_Write_String_To_Buffer(songs[value]);
-
 				set_song(value);
-				UART_Write_String_To_Buffer("\n");
-
+				UART_Write_String_To_Buffer_No_NewLine("Se selecciono: ");
+				UART_Write_String_To_Buffer(get_song_playing());
+				UART_Write_String_To_Buffer_No_NewLine("\n");
 			}
 			else{
 				UART_Write_String_To_Buffer("Ingrese un numero adecuado");
@@ -86,17 +92,23 @@ void MENU_select_option(char * inpt){
 		}
 		else {
 			// Si el formato no es "NUM X"
-			UART_Write_String_To_Buffer("Command usage: NUM [number of song]\n");
+			UART_Write_String_To_Buffer("Uso del comando: NUM [numero de cancion]\n");
 		}
 	}
 	else if (strcmp(inpt, "STOP") == 0){
 
+		if (get_is_song_playing()){
+			UART_Write_String_To_Buffer("Reproduccion detenida\n");
+		}
+		else {
+			UART_Write_String_To_Buffer("No hay cancion en reproduccion\n");
+		}
+		
 		stop_song();
-		UART_Write_String_To_Buffer("Stopped song\n");
 
 	}
 	else if (strcmp(inpt, "RESET") == 0){
-		UART_Write_String_To_Buffer("RESETTING system\n");
+		UART_Write_String_To_Buffer("Reestableciendo el sistema\n");
 		stop_song();
 		set_song(0);
 		// Se resetean los buffers
@@ -107,11 +119,12 @@ void MENU_select_option(char * inpt){
 		UART_Write_String_To_Buffer("RESETTING system\n");
 		*/
 		// Reimprime el menu
-		MENU_display_commands();
+		
+		MENU_display_welcome();
 
 	}
 	else{
-		UART_Write_String_To_Buffer("Comando no encontrado\r\n");
+		UART_Write_String_To_Buffer("ERROR: Comando no encontrado\r\n");
 	}
 }
 

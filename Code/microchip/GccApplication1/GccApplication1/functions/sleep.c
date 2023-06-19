@@ -7,6 +7,9 @@
 
 #include "functions.h"
 
+// @brief	Duerme al CPU en SLEEP_MODE_IDLE (permite interrupciones de la UART y de los TIMER0,1)
+// @param	void
+// @return	void
 void sleep(){
 	set_sleep_mode(SLEEP_MODE_IDLE);
 
