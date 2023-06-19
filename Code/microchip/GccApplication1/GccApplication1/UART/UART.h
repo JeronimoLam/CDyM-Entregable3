@@ -35,6 +35,7 @@
 	void UART_dec_words_counter(void);
 	uint16_t UART_get_words_counter(void);
 	char TX_buffer_is_full();
+	char RX_buffer_is_full();
 	
 	void inc_RX_index_escritura (void);
 	void inc_RX_index_lectura (void);

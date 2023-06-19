@@ -17,7 +17,7 @@ static uint16_t words_counter = 0;
 ISR(USART_RX_vect){
 	
 	// Se lee el dato de UDR0 al buffer de lectura
-	//if (!RX_buffer_is_full()) {
+	if (!RX_buffer_is_full()) {
 		set_RX_data_UDR0(); 
 	
 		// Si se encontro el final de una palabra
@@ -27,7 +27,10 @@ ISR(USART_RX_vect){
 			words_counter++;
 		}
 		inc_RX_index_escritura();
-	//}
+	}
+	else {
+		SerialPort_RX_Interrupt_Disable();
+	}
 }
 
 // @brief	Handler de interrupcion para la recepcion UART. Interrumpe cuando hay un dato en UDR0
@@ -124,7 +127,7 @@ char TX_buffer_is_full() {
 	return ((TX_buffer.index_lectura) % BUFFER_TX_LEN == TX_buffer.index_escritura);
 }
 
-void RX_buffer_is_full(void){
+char RX_buffer_is_full(){
 	return (((RX_buffer.index_lectura) % BUFFER_RX_LEN == RX_buffer.index_escritura)  && (words_counter > 0));
 }
 

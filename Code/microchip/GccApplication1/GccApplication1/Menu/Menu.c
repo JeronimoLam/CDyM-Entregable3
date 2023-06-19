@@ -47,7 +47,7 @@ void MENU_display_welcome(){
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	uint16_t j = 0;
 
-	while (buffer->data[buffer->index_lectura] != '\r') {
+	while (buffer->data[buffer->index_lectura] != '\r' && j < 7) {
 		substring[j++] = buffer->data[buffer->index_lectura];
 		inc_RX_index_lectura();
 	}
