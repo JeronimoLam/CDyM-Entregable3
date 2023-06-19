@@ -27,7 +27,7 @@ int main(void)
 	// Activacion global de interrupciones
 	sei();
 
-	// Bucle principal (TAREAS EN FOREGROUND)
+	// Bucle principal (TAREAS DE BACKGROUND)
 	while(1){
 
 		// Tarea para la lectura de palabras del buffer de recepcion
