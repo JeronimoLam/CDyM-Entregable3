@@ -1,9 +1,3 @@
-/*
- * serialPort.c
- *
- * Created: 07/10/2020 03:02:18 p. m.
- *  Author: vfperri
- */
 
 #include "SerialPort.h"
 

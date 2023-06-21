@@ -1,10 +1,3 @@
-/*
- * UART.h
- *
- * Created: 6/7/2023 3:34:14 PM
- *  Author: franc
- */
-
 #ifndef UART_H_
 
 	#define BUFFER_TX_LEN 500UL

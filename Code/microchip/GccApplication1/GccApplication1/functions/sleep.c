@@ -1,9 +1,3 @@
-/*
- * sleep.c
- *
- * Created: 6/19/2023 12:03:00 PM
- *  Author: franc
- */ 
 
 #include "functions.h"
 

@@ -1,10 +1,3 @@
-/*
- * TIMER0.c
- *
- * Created: 6/19/2023 11:54:59 AM
- *  Author: franc
- */ 
-
 #include "TIMER0.h"
 
 // Control de la duraci?n del sonido

@@ -1,10 +1,3 @@
-/*
- * TIMER1.h
- *
- * Created: 6/19/2023 11:55:21 AM
- *  Author: franc
- */ 
-
 
 #ifndef TIMER1_H_
 

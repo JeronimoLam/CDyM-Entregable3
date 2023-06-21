@@ -1,9 +1,3 @@
-/*
- * TIMER1.c
- *
- * Created: 6/19/2023 11:55:35 AM
- *  Author: franc
- */ 
 
 #include "TIMER1.h"
 

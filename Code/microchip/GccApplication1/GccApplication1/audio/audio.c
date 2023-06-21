@@ -1,9 +1,3 @@
-/*
- * audio.c
- *
- * Created: 6/5/2023 2:37:39 PM
- *  Author: franc
- */
 
 // Colecci?n de m?sica RTTL
 // 16 MHz

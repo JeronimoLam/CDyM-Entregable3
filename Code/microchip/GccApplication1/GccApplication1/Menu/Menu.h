@@ -3,6 +3,7 @@
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <string.h>
+	#include <avr/pgmspace.h>
 	#include "../UART/UART.h"
 	#include "../audio/audio.h"
 

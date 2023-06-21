@@ -1,9 +1,3 @@
-/*
- * UART.c
- *
- * Created: 6/7/2023 3:33:18 PM
- *  Author: franc
- */
 #include "UART.h"
 
 Buffer_TX TX_buffer;
