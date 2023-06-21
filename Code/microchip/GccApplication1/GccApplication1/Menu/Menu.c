@@ -7,16 +7,19 @@
 
 #include "menu.h"
 
-const char msjBienvenida [] = "Bienvenido al selector de ringtones! \n";
-const char msjSongs [] = "Canciones:";
-const char msjCommands [] = "Comandos:";
-const char msjPlay[] = "    ==> PLAY: Reproduce la cancion seleccionada";
-const char msjStop[] = "    ==> STOP: Detiene la reproduccion del sonido en curso";
-const char msjNum[] = "    ==> NUM: Numero de cancion a seleccionar de la lista [1 a N]";
-const char msjReset[] = "    ==> RESET: Reinicia el sistema al estado inicial\n";
+const char msjBienvenida [] PROGMEM = "Bienvenido al selector de ringtones! \n";
+const char msjSongs [] PROGMEM = "Canciones:";
+const char msjCommands [] PROGMEM = "Comandos:";
+const char msjPlay[] PROGMEM = "    ==> PLAY: Reproduce la cancion seleccionada";
+const char msjStop[] PROGMEM = "    ==> STOP: Detiene la reproduccion del sonido en curso";
+const char msjNum[] PROGMEM = "    ==> NUM: Numero de cancion a seleccionar de la lista [1 a N]";
+const char msjReset[] PROGMEM = "    ==> RESET: Reinicia el sistema al estado inicial\n";
+
+char tempBuffer[100]; // Adjust the size to the length of the longest string + 1
 
 void MENU_display_songs(void){
-	UART_Write_String_To_Buffer(msjSongs);
+	strcpy_P(tempBuffer, msjSongs);
+	UART_Write_String_To_Buffer(tempBuffer);
 
 	const char ** songs = AUDIO_get_songs_menu();
 	for (int i = 0; i < CANT_SONGS; i++){
@@ -29,15 +32,26 @@ void MENU_display_songs(void){
 }
 
 void MENU_display_commands(){
-	UART_Write_String_To_Buffer(msjCommands);
-	UART_Write_String_To_Buffer(msjPlay);
-	UART_Write_String_To_Buffer(msjStop);
-	UART_Write_String_To_Buffer(msjNum);
-	UART_Write_String_To_Buffer(msjReset);
+	strcpy_P(tempBuffer, msjCommands);
+	UART_Write_String_To_Buffer(tempBuffer);
+
+	strcpy_P(tempBuffer, msjPlay);
+	UART_Write_String_To_Buffer(tempBuffer);
+
+	strcpy_P(tempBuffer, msjStop);
+	UART_Write_String_To_Buffer(tempBuffer);
+
+	strcpy_P(tempBuffer, msjNum);
+	UART_Write_String_To_Buffer(tempBuffer);
+
+	strcpy_P(tempBuffer, msjReset);
+	UART_Write_String_To_Buffer(tempBuffer);
 }
 
 void MENU_display_welcome(){
-	UART_Write_String_To_Buffer(msjBienvenida);
+	strcpy_P(tempBuffer, msjBienvenida);
+	UART_Write_String_To_Buffer(tempBuffer);
+	
 	MENU_display_songs();
 	UART_Write_String_To_Buffer_No_NewLine("\n");
 	MENU_display_commands();
