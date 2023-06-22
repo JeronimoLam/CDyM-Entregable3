@@ -33,11 +33,11 @@ ISR(USART_RX_vect){
 ISR(USART_UDRE_vect){
 	if(TX_buffer_is_full() == 1){
 		SerialPort_TX_Interrupt_Disable();
-		//SerialPort_RX_Interrupt_Enable();
+		SerialPort_RX_Interrupt_Enable();
 	}
 	// Se escribe en el buffer y se avanza en el indice de lectura
 	else{
-		if (TX_buffer.data[TX_buffer.index_lectura] != '/0') {	
+		if (TX_buffer.data[TX_buffer.index_lectura] != '\0') {	
 			UDR0 = TX_buffer.data[TX_buffer.index_lectura];
 		}
 		inc_TX_index_lectura();
@@ -64,13 +64,17 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 {
 	if ((TX_buffer.index_escritura + 1) % BUFFER_TX_LEN == TX_buffer.index_lectura){
 		//Buffer lleno
-		return 1;
+		TX_buffer.data[TX_buffer.index_escritura] = '\n';
+		inc_TX_index_escritura();
+		words_counter++;
+		SerialPort_TX_Interrupt_Disable();
+		return 0;
 	}
 	else{
 		TX_buffer.data[TX_buffer.index_escritura] = data;
-		TX_buffer.index_escritura = (TX_buffer.index_escritura+1)%BUFFER_TX_LEN;
+		inc_TX_index_escritura();
 		SerialPort_TX_Interrupt_Enable();
-		return 0;
+		return 1;
 	}
 }
 
@@ -80,14 +84,16 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 void UART_Write_String_To_Buffer(char* STR_PTR)
 {
 	uint8_t i = 0;
-	while ( STR_PTR [ i ] != '\0'){
-		UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
+	uint8_t is_not_full = 1;
+	while ( STR_PTR [ i ] != '\0' && is_not_full){
+		is_not_full = UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
 		i++;
 	}
-	UART_Write_Char_To_Buffer ('\r');
-	UART_Write_Char_To_Buffer ('\n');
+	if (is_not_full){
+		UART_Write_Char_To_Buffer ('\r');
+		UART_Write_Char_To_Buffer ('\n');
+	}
 }
-
 // @brief	Escribe una string en buffer de transmision
 // @param	STR_PTR: string a escribir
 // @return	void
@@ -118,11 +124,11 @@ uint8_t UART_Receive_data (uint8_t *dato)
 // @param	void
 // @return	0: TX buffer no lleno; 1: TX buffer lleno
 char TX_buffer_is_full() {
-	return ((TX_buffer.index_lectura) % BUFFER_TX_LEN == TX_buffer.index_escritura);
+	return ((TX_buffer.index_lectura) == TX_buffer.index_escritura);
 }
 
 char RX_buffer_is_full(){
-	return (((RX_buffer.index_lectura) % BUFFER_RX_LEN == RX_buffer.index_escritura)  && (words_counter > 0));
+	return ((RX_buffer.index_lectura == RX_buffer.index_escritura)  && (words_counter > 0));
 }
 
 
