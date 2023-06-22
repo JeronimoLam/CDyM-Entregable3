@@ -9,43 +9,44 @@ const char msjStop[] PROGMEM = "    ==> STOP: Detiene la reproduccion del sonido
 const char msjNum[] PROGMEM = "    ==> NUM: Numero de cancion a seleccionar de la lista [1 a N]";
 const char msjReset[] PROGMEM = "    ==> RESET: Reinicia el sistema al estado inicial\n";
 
-char tempBuffer[100]; // Adjust the size to the length of the longest string + 1
-
+char msjBuffer[100]; // Adjust the size to the length of the longest string + 1
+char songBuffer[20];
 void MENU_display_songs(void){
 	
-	strcpy_P(tempBuffer, msjSongs);
-	UART_Write_String_To_Buffer(tempBuffer);
+	strcpy_P(msjBuffer, msjSongs);
+	UART_Write_String_To_Buffer(msjBuffer);
 
-	const char ** songs = AUDIO_get_songs_menu();
 	for (int i = 0; i < CANT_SONGS; i++){
 		UART_Write_String_To_Buffer_No_NewLine("	");
 		uint8_t n = i+48;
 		UART_Write_Char_To_Buffer(n);
 		UART_Write_String_To_Buffer_No_NewLine(": ");
-		UART_Write_String_To_Buffer(songs[i]);
+		
+		strcpy_P(songBuffer, get_song_from_menu(i));
+		UART_Write_String_To_Buffer(songBuffer);
 	}
 }
 
 void MENU_display_commands(){
-	strcpy_P(tempBuffer, msjCommands);
-	UART_Write_String_To_Buffer(tempBuffer);
+	strcpy_P(msjBuffer, msjCommands);
+	UART_Write_String_To_Buffer(msjBuffer);
 
-	strcpy_P(tempBuffer, msjPlay);
-	UART_Write_String_To_Buffer(tempBuffer);
+	strcpy_P(msjBuffer, msjPlay);
+	UART_Write_String_To_Buffer(msjBuffer);
 
-	strcpy_P(tempBuffer, msjStop);
-	UART_Write_String_To_Buffer(tempBuffer);
+	strcpy_P(msjBuffer, msjStop);
+	UART_Write_String_To_Buffer(msjBuffer);
 
-	strcpy_P(tempBuffer, msjNum);
-	UART_Write_String_To_Buffer(tempBuffer);
+	strcpy_P(msjBuffer, msjNum);
+	UART_Write_String_To_Buffer(msjBuffer);
 
-	strcpy_P(tempBuffer, msjReset);
-	UART_Write_String_To_Buffer(tempBuffer);
+	strcpy_P(msjBuffer, msjReset);
+	UART_Write_String_To_Buffer(msjBuffer);
 }
 
 void MENU_display_welcome(){
-	strcpy_P(tempBuffer, msjBienvenida);
-	UART_Write_String_To_Buffer(tempBuffer);
+	strcpy_P(msjBuffer, msjBienvenida);
+	UART_Write_String_To_Buffer(msjBuffer);
 	
 	MENU_display_songs();
 	UART_Write_String_To_Buffer_No_NewLine("\n");
@@ -70,7 +71,8 @@ void MENU_select_option(char * inpt){
 	if (strcmp(inpt, "PLAY") == 0){
 		start_song();
 		UART_Write_String_To_Buffer_No_NewLine("Reproduciendo: ");
-		UART_Write_String_To_Buffer_No_NewLine(get_song_playing());
+		strcpy_P(songBuffer, get_song_playing());
+		UART_Write_String_To_Buffer(songBuffer);
 		UART_Write_String_To_Buffer("\r\n");
 		
 	}
@@ -90,7 +92,8 @@ void MENU_select_option(char * inpt){
 			if (value >= 0 && value < CANT_SONGS){
 				set_song(value);
 				UART_Write_String_To_Buffer_No_NewLine("Se selecciono: ");
-				UART_Write_String_To_Buffer(get_song_playing());
+				strcpy_P(songBuffer, get_song_playing());
+				UART_Write_String_To_Buffer(songBuffer);
 				UART_Write_String_To_Buffer_No_NewLine("\n");
 			}
 			else{

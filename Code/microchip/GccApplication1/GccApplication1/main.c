@@ -2,9 +2,9 @@
 
 #include "menu/menu.h"
 #include "UART/UART.h"
-#include "TIMER/TIMER0.h"
-#include "TIMER/TIMER1.h"
-#include "functions/functions.h"
+#include "timer/TIMER0.h"
+#include "timer/TIMER1.h"
+#include "funciones/functions.h"
 
 int main(void)
 {

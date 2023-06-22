@@ -19,6 +19,12 @@ const char *rtttl_library[]=
 	// "Zorba2:d=4,o=5,b=125:16c#6,2d6,2p,16c#6,2d6,2p,32e6,32d6,32c#6,2d6,2p,16c#6,2d6,2p,16b,2c6,2p,32d6,32c6,32b,2c6,2p,16a#,2b,p,8p,32c6,32b,32a,32g,32b,2a,2p,32a,32g,32f#,32a,1g,1p,8c#6,8d6,8d6,8d6,8d6,8d6,8d6,8d6,8c#6,8d6,8d6,8d6,8d6,8d6,16e6,16d6,16c#6,16e6,8c#6,8d6,8d6,8d6,8d6,8d6,8d6,8d6,8c#6,8d6,8d6,8d6,8d6,8d6"
 };
 
+const char song1[] PROGMEM = "Los Simpsons";
+const char song2[] PROGMEM = "Mision Imposible";
+const char song3[] PROGMEM = "Indiana Jones";
+const char song4[] PROGMEM = "Wannabe";
+
+/*
 const char * songs_menu[] =
 {
 	"Los Simpsons",
@@ -26,6 +32,14 @@ const char * songs_menu[] =
 	"Indiana Jones",
 	"Wannabe"
 };
+*/
+const char* const songs_menu[] PROGMEM = {song1, song2, song3, song4};
+
+// The getter function for a song in songs_menu
+const char* get_song_from_menu(uint8_t index) {
+	return (PGM_P)pgm_read_word(&(songs_menu[index]));
+}
+
 
 // La siguiente matriz almacena las frecuencias de las notas musicales
 const unsigned int note[4][12] =
@@ -223,10 +237,6 @@ void play_song()
 	}
 }
 
-const char ** AUDIO_get_songs_menu(){
-	return songs_menu;
-}
-
 void set_song(uint8_t song_num) {
 	current_song = song_num;
 	song = rtttl_library[current_song];
@@ -272,7 +282,7 @@ unsigned char get_is_song_playing(){
 	return is_song_playing;
 }
 
-char *get_song_playing(){
-	return songs_menu[current_song];
+char* get_song_playing() {
+	return (PGM_P)pgm_read_word(&(songs_menu[current_song]));
 }
 

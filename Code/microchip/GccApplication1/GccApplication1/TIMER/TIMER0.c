@@ -8,9 +8,9 @@ ISR (TIMER0_COMPA_vect) // ISR para la interrupci?n de comparaci?n del Timer 0
 		duration_timer--; // Decremento el timer si > 0
 		set_duration_timer(duration_timer);
 	}
-	else                                  // si timer es = 0
+	else // si timer es = 0
 	{
-		TCCR1A=0;	// Desactivo el timer 1
+		TCCR1A=0;	// Desactivo el toggle del 1
 		set_sound_playing(0);                  // Borro el flag para avisar que no hay una nota sonando
 	}
 }

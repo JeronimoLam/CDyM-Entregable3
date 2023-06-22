@@ -139,10 +139,10 @@
     <Compile Include="audio\audio.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="functions\functions.h">
+    <Compile Include="funciones\functions.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="functions\sleep.c">
+    <Compile Include="funciones\sleep.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -182,7 +182,7 @@
   <ItemGroup>
     <Folder Include="audio" />
     <Folder Include="menu" />
-    <Folder Include="functions" />
+    <Folder Include="funciones" />
     <Folder Include="TIMER" />
     <Folder Include="UART" />
     <Folder Include="serialPort" />

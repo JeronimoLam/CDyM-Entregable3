@@ -5,6 +5,7 @@
     #include <avr/io.h>
 	#include <avr/interrupt.h>
 	#include <util/delay.h>
+	#include <avr/pgmspace.h>
 
 	#define CANT_SONGS 4
 
@@ -27,9 +28,10 @@
     unsigned char get_duration();
     unsigned char get_octave();
     unsigned int get_tempo();
-	const char ** AUDIO_get_songs_menu();
     unsigned char get_is_song_playing();
 	char *get_song_playing();
+	const char* get_song_from_menu(uint8_t index);
+
 
 
     extern const char *rtttl_library[];
