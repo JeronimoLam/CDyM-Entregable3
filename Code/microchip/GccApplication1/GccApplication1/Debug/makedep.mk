@@ -12,9 +12,9 @@ menu\menu.c
 
 serialPort\serialPort.c
 
-timer\TIMER0.c
+TIMER\TIMER0.c
 
-timer\TIMER1.c
+TIMER\TIMER1.c
 
 UART\UART.c
 

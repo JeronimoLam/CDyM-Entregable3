@@ -44,10 +44,10 @@ int main(void)
 		else if (get_is_song_playing() == 1){
 			play_song();
 		}
-
-		// Se duerme el CPU hasta la proxima interrupcion (IDLE_MODE)
-		sleep();
-
+		else {
+			// Se duerme el CPU hasta la proxima interrupcion (IDLE_MODE)
+			sleep();
+		}
 	}
 	return 0;
 }
