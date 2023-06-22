@@ -40,7 +40,7 @@ int main(void)
 
 			MENU_process_inpt();
 		}
-		// Tarea para la reproduccion de una nota de la cancions
+		// Tarea para la reproduccion de una nota de la canciones
 		else if (get_is_song_playing() == 1){
 			play_song();
 		}

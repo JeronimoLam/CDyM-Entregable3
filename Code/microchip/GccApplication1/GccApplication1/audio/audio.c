@@ -1,6 +1,3 @@
-
-// Colecci?n de m?sica RTTL
-// 16 MHz
 #include "audio.h"
 
 const char *rtttl_library[]=
@@ -24,18 +21,11 @@ const char song2[] PROGMEM = "Mision Imposible";
 const char song3[] PROGMEM = "Indiana Jones";
 const char song4[] PROGMEM = "Wannabe";
 
-/*
-const char * songs_menu[] =
-{
-	"Los Simpsons",
-	"Mision Imposible",
-	"Indiana Jones",
-	"Wannabe"
-};
-*/
 const char* const songs_menu[] PROGMEM = {song1, song2, song3, song4};
 
-// The getter function for a song in songs_menu
+// @brief	Obtiene una cancion del menu de canciones.
+// @param	index: indice de la cancion elegida en el arreglo.
+// @return	char*: string con el nombre de la canción
 const char* get_song_from_menu(uint8_t index) {
 	return (PGM_P)pgm_read_word(&(songs_menu[index]));
 }
@@ -236,6 +226,8 @@ void play_song()
 		is_song_playing = 0;
 	}
 }
+
+/* -------------------- GETTERS & SETTERS -------------------- */
 
 void set_song(uint8_t song_num) {
 	current_song = song_num;

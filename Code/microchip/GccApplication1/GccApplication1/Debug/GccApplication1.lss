@@ -13,21 +13,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001560  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000002d0  00000000  00000000  000015a0  2**0
+  5 .debug_aranges 000002b8  00000000  00000000  000015a0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000021c0  00000000  00000000  00001870  2**0
+  6 .debug_info   0000217a  00000000  00000000  00001858  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000d98  00000000  00000000  00003a30  2**0
+  7 .debug_abbrev 00000d6f  00000000  00000000  000039d2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001521  00000000  00000000  000047c8  2**0
+  8 .debug_line   000014d6  00000000  00000000  00004741  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000066c  00000000  00000000  00005cec  2**2
+  9 .debug_frame  0000063c  00000000  00000000  00005c18  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000a6d  00000000  00000000  00006358  2**0
+ 10 .debug_str    00000a34  00000000  00000000  00006254  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000ac4  00000000  00000000  00006dc5  2**0
+ 11 .debug_loc    00000ac4  00000000  00000000  00006c88  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000250  00000000  00000000  00007889  2**0
+ 12 .debug_ranges 00000238  00000000  00000000  0000774c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -871,7 +871,7 @@ int main(void)
      888:	0e 94 89 05 	call	0xb12	; 0xb12 <MENU_process_inpt>
      88c:	f3 cf       	rjmp	.-26     	; 0x874 <main+0x24>
 		}
-		// Tarea para la reproduccion de una nota de la cancions
+		// Tarea para la reproduccion de una nota de la canciones
 		else if (get_is_song_playing() == 1){
      88e:	0e 94 10 04 	call	0x820	; 0x820 <get_is_song_playing>
      892:	81 30       	cpi	r24, 0x01	; 1
@@ -887,11 +887,11 @@ int main(void)
      8a0:	e9 cf       	rjmp	.-46     	; 0x874 <main+0x24>
 
 000008a2 <MENU_display_songs>:
-const char msjNum[] PROGMEM = "    ==> NUM: Numero de cancion a seleccionar de la lista [1 a N]";
-const char msjReset[] PROGMEM = "    ==> RESET: Reinicia el sistema al estado inicial\n";
-
-char msjBuffer[100]; // Adjust the size to the length of the longest string + 1
 char songBuffer[20];
+
+// @brief	Utiliza las funciones de transmision de la UART para mostrar un menu de canciones disponibles
+// @param	void
+// @return	void
 void MENU_display_songs(void){
      8a2:	cf 93       	push	r28
      8a4:	df 93       	push	r29
@@ -958,6 +958,9 @@ void MENU_display_songs(void){
 
 000008fe <MENU_display_commands>:
 
+// @brief	Utiliza las funciones de transmision de la UART para mostrar un menu de comandos
+// @param	void
+// @return	void
 void MENU_display_commands(){
 	strcpy_P(msjBuffer, msjCommands);
      8fe:	65 ea       	ldi	r22, 0xA5	; 165
@@ -1016,8 +1019,10 @@ void MENU_display_commands(){
      962:	08 95       	ret
 
 00000964 <MENU_display_welcome>:
-}
 
+// @brief	Utiliza las funciones de transmision de la UART para mostrar un mensaje y un menu de bienvenida en consola
+// @param	void
+// @return	void
 void MENU_display_welcome(){
 	strcpy_P(msjBuffer, msjBienvenida);
      964:	6a eb       	ldi	r22, 0xBA	; 186
@@ -1041,9 +1046,11 @@ void MENU_display_welcome(){
      988:	08 95       	ret
 
 0000098a <create_substring>:
-
 }
 
+// @brief	A partir del buffer de recepcion crea una string utilizando como corte de una palabra el caracter \r
+// @param	buffer: Buffer de recepcion con el arreglo de caracteres; substring: donde se retornará la palabra creada
+// @return	void
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
      98a:	cf 92       	push	r12
      98c:	df 92       	push	r13
@@ -1071,15 +1078,15 @@ void create_substring(Buffer_RX* buffer, uint8_t* substring) {
      9b0:	88 83       	st	Y, r24
 		inc_RX_index_lectura();
      9b2:	0e 94 d2 06 	call	0xda4	; 0xda4 <inc_RX_index_lectura>
-
+// @return	void
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	uint16_t j = 0;
 
 	while (buffer->data[buffer->index_lectura] != '\r') {
 		substring[j++] = buffer->data[buffer->index_lectura];
      9b6:	e6 01       	movw	r28, r12
-}
-
+// @param	buffer: Buffer de recepcion con el arreglo de caracteres; substring: donde se retornará la palabra creada
+// @return	void
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	uint16_t j = 0;
 
@@ -1119,7 +1126,9 @@ void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 
 000009ee <MENU_select_option>:
 
-
+// @brief	Determina cuál ha sido el comando ingresado, o si es válido y qué acciones llevar a cabo.
+// @param	inpt: string con la cadena ingresada por el usuario.
+// @return	void
 void MENU_select_option(char * inpt){
      9ee:	cf 93       	push	r28
      9f0:	df 93       	push	r29
@@ -1146,10 +1155,10 @@ void MENU_select_option(char * inpt){
      a1a:	86 e7       	ldi	r24, 0x76	; 118
      a1c:	95 e0       	ldi	r25, 0x05	; 5
      a1e:	0e 94 4f 07 	call	0xe9e	; 0xe9e <UART_Write_String_To_Buffer>
-		UART_Write_String_To_Buffer("\r\n");
+		UART_Write_String_To_Buffer_No_NewLine("\r\n");
      a22:	88 e2       	ldi	r24, 0x28	; 40
      a24:	94 e0       	ldi	r25, 0x04	; 4
-     a26:	0e 94 4f 07 	call	0xe9e	; 0xe9e <UART_Write_String_To_Buffer>
+     a26:	0e 94 6e 07 	call	0xedc	; 0xedc <UART_Write_String_To_Buffer_No_NewLine>
      a2a:	70 c0       	rjmp	.+224    	; 0xb0c <MENU_select_option+0x11e>
 		
 	}
@@ -1283,10 +1292,6 @@ void MENU_select_option(char * inpt){
 		set_song(0);
      af8:	80 e0       	ldi	r24, 0x00	; 0
      afa:	0e 94 f2 03 	call	0x7e4	; 0x7e4 <set_song>
-		sei();
-		UART_Write_String_To_Buffer("RESETTING system\n");
-		*/
-		// Reimprime el menu
 		
 		MENU_display_welcome();
      afe:	0e 94 b2 04 	call	0x964	; 0x964 <MENU_display_welcome>
@@ -1306,6 +1311,9 @@ void MENU_select_option(char * inpt){
 
 00000b12 <MENU_process_inpt>:
 
+// @brief	Procesa la entrada del usuario por consola
+// @param	void
+// @return	void
 void MENU_process_inpt(){
      b12:	cf 93       	push	r28
      b14:	df 93       	push	r29
@@ -1549,12 +1557,12 @@ void TIMER1_Init(){
      c48:	08 95       	ret
 
 00000c4a <UART_Buffer_Init>:
-void reset_TX_index_lectura (void){
-	TX_buffer.index_lectura = 0;
+	return TX_buffer.index_escritura;
 }
 
-void reset_TX_index_escritura (void){
-	TX_buffer.index_escritura = 0;
+uint8_t get_TX_index_lectura (void){
+	return TX_buffer.index_lectura;
+}
      c4a:	10 92 7f 07 	sts	0x077F, r1	; 0x80077f <TX_buffer+0x1f5>
      c4e:	10 92 7e 07 	sts	0x077E, r1	; 0x80077e <TX_buffer+0x1f4>
      c52:	10 92 81 07 	sts	0x0781, r1	; 0x800781 <TX_buffer+0x1f7>
@@ -1624,7 +1632,6 @@ void reset_TX_index_escritura (void){
      cec:	08 95       	ret
 
 00000cee <inc_RX_index_escritura>:
-}
 
 void inc_RX_index_escritura (void){
 	RX_buffer.index_escritura = (RX_buffer.index_escritura+1)%BUFFER_RX_LEN;
@@ -1660,8 +1667,8 @@ void inc_RX_index_escritura (void){
 static uint16_t words_counter = 0;
 
 // @brief	Handler de interrupcion para la transmision UART. Interrumpe cuando UDR0 esta vacio
-// @param  
-// @return 
+// @param
+// @return
 ISR(USART_RX_vect){
      d26:	1f 92       	push	r1
      d28:	0f 92       	push	r0
@@ -1680,15 +1687,15 @@ ISR(USART_RX_vect){
      d42:	bf 93       	push	r27
      d44:	ef 93       	push	r30
      d46:	ff 93       	push	r31
-	
+
 	// Se lee el dato de UDR0 al buffer de lectura
 	if (!RX_buffer_is_full()) {
      d48:	0e 94 44 06 	call	0xc88	; 0xc88 <RX_buffer_is_full>
      d4c:	81 11       	cpse	r24, r1
      d4e:	17 c0       	rjmp	.+46     	; 0xd7e <__vector_18+0x58>
-		set_RX_data_UDR0(); 
+		set_RX_data_UDR0();
      d50:	0e 94 6d 06 	call	0xcda	; 0xcda <set_RX_data_UDR0>
-	
+
 		// Si se encontro el final de una palabra
 		if ((RX_buffer.data[RX_buffer.index_escritura]) == '\n')
      d54:	e0 91 e6 07 	lds	r30, 0x07E6	; 0x8007e6 <RX_buffer+0x64>
@@ -1712,7 +1719,7 @@ ISR(USART_RX_vect){
      d7c:	02 c0       	rjmp	.+4      	; 0xd82 <__vector_18+0x5c>
 	}
 	else {
-		// Se deshabilitan las interrupciones por RX en el caso de que el buffer RX esté lleno
+		// Se deshabilitan las interrupciones por RX en el caso de que el buffer RX estï¿½ lleno
 		SerialPort_RX_Interrupt_Disable();
      d7e:	0e 94 d8 05 	call	0xbb0	; 0xbb0 <SerialPort_RX_Interrupt_Disable>
 	}
@@ -1857,7 +1864,7 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
      e70:	82 17       	cp	r24, r18
      e72:	93 07       	cpc	r25, r19
      e74:	49 f4       	brne	.+18     	; 0xe88 <UART_Write_Char_To_Buffer+0x66>
-		
+
 		// Se escribe en el mismo el caracter de salto de linea
 		TX_buffer.data[TX_buffer.index_escritura] = '\n';
      e76:	fa 01       	movw	r30, r20
@@ -1867,7 +1874,7 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
      e7e:	80 83       	st	Z, r24
 		inc_TX_index_escritura();
      e80:	0e 94 ee 06 	call	0xddc	; 0xddc <inc_TX_index_escritura>
-		
+
 		// Se retorna "false", indicando que no se pueden enviar mas bytes.
 		return 0;
      e84:	80 e0       	ldi	r24, 0x00	; 0
@@ -1883,7 +1890,7 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
      e8e:	c0 83       	st	Z, r28
 		inc_TX_index_escritura();
      e90:	0e 94 ee 06 	call	0xddc	; 0xddc <inc_TX_index_escritura>
-		
+
 		// Se habilitan las interrupciones por TX para que data sea enviado
 		SerialPort_TX_Interrupt_Enable();
      e94:	0e 94 c0 05 	call	0xb80	; 0xb80 <SerialPort_TX_Interrupt_Enable>
@@ -2045,8 +2052,8 @@ void inc_TX_index_lectura (void)
 }
 
 // @brief	Handler de interrupcion para la recepcion UART. Interrumpe cuando hay un dato en UDR0
-// @param	
-// @return	
+// @param
+// @return
 ISR(USART_UDRE_vect){
      f48:	1f 92       	push	r1
      f4a:	0f 92       	push	r0
@@ -2065,7 +2072,7 @@ ISR(USART_UDRE_vect){
      f64:	bf 93       	push	r27
      f66:	ef 93       	push	r30
      f68:	ff 93       	push	r31
-	// Si el buffer TX está lleno se deshabilitan las interrupciones por TX
+	// Si el buffer TX estï¿½ lleno se deshabilitan las interrupciones por TX
 	if(TX_buffer_is_full() == 1){
      f6a:	0e 94 36 06 	call	0xc6c	; 0xc6c <TX_buffer_is_full>
      f6e:	81 30       	cpi	r24, 0x01	; 1
@@ -2076,7 +2083,7 @@ ISR(USART_UDRE_vect){
 	}
 	// Se escribe en el buffer y se avanza en el indice de lectura
 	else{
-		if (TX_buffer.data[TX_buffer.index_lectura] != '\0') {	
+		if (TX_buffer.data[TX_buffer.index_lectura] != '\0') {
      f78:	e0 91 80 07 	lds	r30, 0x0780	; 0x800780 <TX_buffer+0x1f6>
      f7c:	f0 91 81 07 	lds	r31, 0x0781	; 0x800781 <TX_buffer+0x1f7>
      f80:	e6 57       	subi	r30, 0x76	; 118

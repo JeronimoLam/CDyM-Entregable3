@@ -1,4 +1,3 @@
-
 #include "menu.h"
 
 const char msjBienvenida [] PROGMEM = "Bienvenido al selector de ringtones! \n";
@@ -11,6 +10,10 @@ const char msjReset[] PROGMEM = "    ==> RESET: Reinicia el sistema al estado in
 
 char msjBuffer[100]; // Adjust the size to the length of the longest string + 1
 char songBuffer[20];
+
+// @brief	Utiliza las funciones de transmision de la UART para mostrar un menu de canciones disponibles
+// @param	void
+// @return	void
 void MENU_display_songs(void){
 	
 	strcpy_P(msjBuffer, msjSongs);
@@ -27,6 +30,9 @@ void MENU_display_songs(void){
 	}
 }
 
+// @brief	Utiliza las funciones de transmision de la UART para mostrar un menu de comandos
+// @param	void
+// @return	void
 void MENU_display_commands(){
 	strcpy_P(msjBuffer, msjCommands);
 	UART_Write_String_To_Buffer(msjBuffer);
@@ -44,6 +50,9 @@ void MENU_display_commands(){
 	UART_Write_String_To_Buffer(msjBuffer);
 }
 
+// @brief	Utiliza las funciones de transmision de la UART para mostrar un mensaje y un menu de bienvenida en consola
+// @param	void
+// @return	void
 void MENU_display_welcome(){
 	strcpy_P(msjBuffer, msjBienvenida);
 	UART_Write_String_To_Buffer(msjBuffer);
@@ -51,9 +60,11 @@ void MENU_display_welcome(){
 	MENU_display_songs();
 	UART_Write_String_To_Buffer_No_NewLine("\n");
 	MENU_display_commands();
-
 }
 
+// @brief	A partir del buffer de recepcion crea una string utilizando como corte de una palabra el caracter \r
+// @param	buffer: Buffer de recepcion con el arreglo de caracteres; substring: donde se retornará la palabra creada
+// @return	void
 void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	uint16_t j = 0;
 
@@ -66,14 +77,16 @@ void create_substring(Buffer_RX* buffer, uint8_t* substring) {
 	substring[j] = '\0'; // append null character at the end
 }
 
-
+// @brief	Determina cuál ha sido el comando ingresado, o si es válido y qué acciones llevar a cabo.
+// @param	inpt: string con la cadena ingresada por el usuario.
+// @return	void
 void MENU_select_option(char * inpt){
 	if (strcmp(inpt, "PLAY") == 0){
 		start_song();
 		UART_Write_String_To_Buffer_No_NewLine("Reproduciendo: ");
 		strcpy_P(songBuffer, get_song_playing());
 		UART_Write_String_To_Buffer(songBuffer);
-		UART_Write_String_To_Buffer("\r\n");
+		UART_Write_String_To_Buffer_No_NewLine("\r\n");
 		
 	}
 	else if (strncmp(inpt, "NUM", 3) == 0){
@@ -123,14 +136,6 @@ void MENU_select_option(char * inpt){
 		UART_Write_String_To_Buffer("Reestableciendo el sistema\n");
 		stop_song();
 		set_song(0);
-		// Se resetean los buffers
-		/*
-		cli();
-		Buffer_Init();
-		sei();
-		UART_Write_String_To_Buffer("RESETTING system\n");
-		*/
-		// Reimprime el menu
 		
 		MENU_display_welcome();
 
@@ -140,6 +145,9 @@ void MENU_select_option(char * inpt){
 	}
 }
 
+// @brief	Procesa la entrada del usuario por consola
+// @param	void
+// @return	void
 void MENU_process_inpt(){
 	uint8_t substring[BUFFER_RX_LEN];
 

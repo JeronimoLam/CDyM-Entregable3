@@ -6,14 +6,14 @@ Buffer_RX RX_buffer;
 static uint16_t words_counter = 0;
 
 // @brief	Handler de interrupcion para la transmision UART. Interrumpe cuando UDR0 esta vacio
-// @param  
-// @return 
+// @param
+// @return
 ISR(USART_RX_vect){
-	
+
 	// Se lee el dato de UDR0 al buffer de lectura
 	if (!RX_buffer_is_full()) {
-		set_RX_data_UDR0(); 
-	
+		set_RX_data_UDR0();
+
 		// Si se encontro el final de una palabra
 		if ((RX_buffer.data[RX_buffer.index_escritura]) == '\n')
 		{
@@ -23,22 +23,22 @@ ISR(USART_RX_vect){
 		inc_RX_index_escritura();
 	}
 	else {
-		// Se deshabilitan las interrupciones por RX en el caso de que el buffer RX esté lleno
+		// Se deshabilitan las interrupciones por RX en el caso de que el buffer RX estï¿½ lleno
 		SerialPort_RX_Interrupt_Disable();
 	}
 }
 
 // @brief	Handler de interrupcion para la recepcion UART. Interrumpe cuando hay un dato en UDR0
-// @param	
-// @return	
+// @param
+// @return
 ISR(USART_UDRE_vect){
-	// Si el buffer TX está lleno se deshabilitan las interrupciones por TX
+	// Si el buffer TX estï¿½ lleno se deshabilitan las interrupciones por TX
 	if(TX_buffer_is_full() == 1){
 		SerialPort_TX_Interrupt_Disable();
 	}
 	// Se escribe en el buffer y se avanza en el indice de lectura
 	else{
-		if (TX_buffer.data[TX_buffer.index_lectura] != '\0') {	
+		if (TX_buffer.data[TX_buffer.index_lectura] != '\0') {
 			UDR0 = TX_buffer.data[TX_buffer.index_lectura];
 		}
 		inc_TX_index_lectura();
@@ -65,11 +65,11 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 {
 	// Si el buffer TX tiene un unico espacio disponible
 	if ((TX_buffer.index_escritura + 1) % BUFFER_TX_LEN == TX_buffer.index_lectura){
-		
+
 		// Se escribe en el mismo el caracter de salto de linea
 		TX_buffer.data[TX_buffer.index_escritura] = '\n';
 		inc_TX_index_escritura();
-		
+
 		// Se retorna "false", indicando que no se pueden enviar mas bytes.
 		return 0;
 	}
@@ -78,7 +78,7 @@ uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 		// Se carga en la posicion index_escirtura del TX buffer el byte data
 		TX_buffer.data[TX_buffer.index_escritura] = data;
 		inc_TX_index_escritura();
-		
+
 		// Se habilitan las interrupciones por TX para que data sea enviado
 		SerialPort_TX_Interrupt_Enable();
 		return 1;
@@ -176,19 +176,6 @@ uint8_t get_TX_index_escritura (void){
 
 uint8_t get_TX_index_lectura (void){
 	return TX_buffer.index_lectura;
-}
-
-void reset_TX_index(void){
-	TX_buffer.index_lectura = 0;
-	TX_buffer.index_escritura = 0;
-}
-
-void reset_TX_index_lectura (void){
-	TX_buffer.index_lectura = 0;
-}
-
-void reset_TX_index_escritura (void){
-	TX_buffer.index_escritura = 0;
 }
 
 void inc_RX_index_escritura (void){

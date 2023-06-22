@@ -29,14 +29,11 @@
 	uint16_t UART_get_words_counter(void);
 	char TX_buffer_is_full();
 	char RX_buffer_is_full();
-	
+
 	void inc_RX_index_escritura (void);
 	void inc_RX_index_lectura (void);
 	void inc_TX_index_escritura (void);
 	void inc_TX_index_lectura (void);
-	void reset_TX_index_lectura (void);
-	void reset_TX_index_escritura (void);
-	void reset_TX_index(void);
 	uint8_t get_TX_index_escritura (void);
 	uint8_t get_TX_index_lectura (void);
 	uint8_t get_TX_data (uint8_t index);
@@ -45,7 +42,6 @@
 	uint8_t get_RX_data_index_lectura();
 	uint8_t get_FLAG_datos_recibidos(void);
 
-	
 
 #define UART_H_
 

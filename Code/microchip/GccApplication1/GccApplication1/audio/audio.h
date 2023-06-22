@@ -1,5 +1,3 @@
-
-
 #ifndef AUDIO_H_
 
     #include <avr/io.h>
