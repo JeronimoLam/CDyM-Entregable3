@@ -33,7 +33,7 @@ ISR(USART_RX_vect){
 ISR(USART_UDRE_vect){
 	if(TX_buffer_is_full() == 1){
 		SerialPort_TX_Interrupt_Disable();
-		SerialPort_RX_Interrupt_Enable();
+	//	SerialPort_RX_Interrupt_Enable();
 	}
 	// Se escribe en el buffer y se avanza en el indice de lectura
 	else{
