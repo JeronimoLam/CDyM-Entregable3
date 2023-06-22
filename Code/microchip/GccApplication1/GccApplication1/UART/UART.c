@@ -23,6 +23,7 @@ ISR(USART_RX_vect){
 		inc_RX_index_escritura();
 	}
 	else {
+		// Se deshabilitan las interrupciones por RX en el caso de que el buffer RX esté lleno
 		SerialPort_RX_Interrupt_Disable();
 	}
 }
@@ -31,9 +32,9 @@ ISR(USART_RX_vect){
 // @param	
 // @return	
 ISR(USART_UDRE_vect){
+	// Si el buffer TX está lleno se deshabilitan las interrupciones por TX
 	if(TX_buffer_is_full() == 1){
 		SerialPort_TX_Interrupt_Disable();
-	//	SerialPort_RX_Interrupt_Enable();
 	}
 	// Se escribe en el buffer y se avanza en el indice de lectura
 	else{
@@ -62,17 +63,23 @@ void UART_Buffer_Init (void)
 // @return	1: buffer lleno, 0: carga exitosa
 uint8_t UART_Write_Char_To_Buffer (uint8_t data)
 {
+	// Si el buffer TX tiene un unico espacio disponible
 	if ((TX_buffer.index_escritura + 1) % BUFFER_TX_LEN == TX_buffer.index_lectura){
-		//Buffer lleno
+		
+		// Se escribe en el mismo el caracter de salto de linea
 		TX_buffer.data[TX_buffer.index_escritura] = '\n';
 		inc_TX_index_escritura();
-		words_counter++;
-		SerialPort_TX_Interrupt_Disable();
+		
+		// Se retorna "false", indicando que no se pueden enviar mas bytes.
 		return 0;
 	}
+	// Hay espacio en el buffer
 	else{
+		// Se carga en la posicion index_escirtura del TX buffer el byte data
 		TX_buffer.data[TX_buffer.index_escritura] = data;
 		inc_TX_index_escritura();
+		
+		// Se habilitan las interrupciones por TX para que data sea enviado
 		SerialPort_TX_Interrupt_Enable();
 		return 1;
 	}
@@ -85,6 +92,8 @@ void UART_Write_String_To_Buffer(char* STR_PTR)
 {
 	uint8_t i = 0;
 	uint8_t is_not_full = 1;
+	// Itera transmitiendo los caracteres de STR_PTR mediante la UART. En el caso de que el buffer
+	// este lleno, no se transmitiran mas caracteres.
 	while ( STR_PTR [ i ] != '\0' && is_not_full){
 		is_not_full = UART_Write_Char_To_Buffer ( STR_PTR [ i ] );
 		i++;
